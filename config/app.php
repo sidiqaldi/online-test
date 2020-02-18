@@ -174,7 +174,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        LaravelFrontendPresets\MaterialPreset\MaterialPresetServiceProvider::class,
     ],
 
     /*
