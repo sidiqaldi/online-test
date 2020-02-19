@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+
 class HomeController extends Controller
 {
+
     /**
-     * Create a new controller instance.
+     * Show the application homepage.
      *
-     * @return void
+     * @return Inertia
      */
-    public function __construct()
+    public function homepage()
     {
-        $this->middleware('auth');
+        return Inertia::render('Welcome')->withViewData(['title' => 'Free Online Test - Ujian Online Gratis']);
     }
 
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\View\View
+     * @return Inertia
      */
-    public function index()
+    public function dashboard()
     {
-        return view('dashboard');
+        return Inertia::render('Welcome');
     }
 }

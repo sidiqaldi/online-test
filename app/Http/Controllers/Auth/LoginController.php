@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Inertia\Inertia;
 
 class LoginController extends Controller
 {
@@ -36,5 +37,25 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Show the application login page.
+     *
+     * @return Inertia
+     */
+    public function showLoginForm()
+    {
+        return Inertia::render('Auth/Login')->withViewData(['title' => 'Masuk - Ujian Online Gratis']);
+    }
+
+    /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function login()
+    {
+        //
     }
 }
