@@ -10,14 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use  \Illuminate\Support\Facades\Route;
 
-Route::whitelist(function () {
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
-    Route::get('/', 'HomeController@homepage')->name('homepage');
+Route::get('/', 'HomeController@homepage')->name('homepage');
 
-    Route::get('/login', 'Auth\LoginController@showloginForm')->name('login');
+Auth::routes(['verify' => true]);
 
-    Route::get('/dashnoard', 'HomeController@dashboard')->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 });
-

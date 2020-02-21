@@ -3,8 +3,12 @@
         <div class="row container justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Masuk - {{ $page.app.name }}</div>
+                    <div class="card-header">Reset Password - {{ $page.app.name }}</div>
                     <div class="card-body">
+                        <div v-if="$page.status" class="alert alert-success" role="alert">
+                            {{ $page.status }}
+                        </div>
+
                         <form @submit.prevent="submit">
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail</label>
@@ -24,7 +28,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                                 <div class="col-md-6">
                                     <input id="password"
@@ -42,28 +46,23 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input"
-                                            type="checkbox"
-                                            name="remember"
-                                            id="remember"
-                                            v-model="form.remember">
-                                        <label class="form-check-label" for="remember">
-                                            Ingatkan saya?
-                                        </label>
-                                    </div>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Ulangi Password</label>
+                                <div class="col-md-6">
+                                    <input id="password-confirm"
+                                        type="password"
+                                        class="form-control"
+                                        name="password_confirmation"
+                                        v-model="form.password_confirmation"
+                                        required
+                                        autocomplete="new-password">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
                                     <button type="submit" class="btn btn-outline-secondary">
-                                        Login
+                                        Reset Password
                                     </button>
-                                    <a v-if="$route('password.request')" class="btn btn-link" :href="$route('password.request')">
-                                        Lupa password?
-                                    </a>
                                 </div>
                             </div>
                         </form>
@@ -75,15 +74,18 @@
 </template>
 
 <script>
-  import Layout from './../../Layout/Guest'
+  import Layout from './../../../Layout/Guest'
 
   export default {
+    props: {
+      token: Object
+    },
     data() {
       return {
         form: {
-          email: null,
-          password: null,
-          remembar: null,
+          token: this.token,
+          password: this.password,
+          password_confirmation: this.password_confirmation,
         },
       }
     },
@@ -92,7 +94,7 @@
     },
     methods: {
       submit() {
-        this.$inertia.post(this.$route('login'), this.form)
+        this.$inertia.post(this.$route('password.update'), this.form)
       },
     },
   }

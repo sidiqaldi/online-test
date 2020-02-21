@@ -48,14 +48,4 @@ class LoginController extends Controller
     {
         return Inertia::render('Auth/Login')->withViewData(['title' => 'Masuk - Ujian Online Gratis']);
     }
-
-    /**
-     * Redirect the user to the GitHub authentication page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function login()
-    {
-        //
-    }
 }

@@ -3,11 +3,28 @@
         <div class="row container justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Masuk - {{ $page.app.name }}</div>
+                    <div class="card-header">Daftar</div>
                     <div class="card-body">
                         <form @submit.prevent="submit">
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail</label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">Nama</label>
+                                <div class="col-md-6">
+                                    <input id="name"
+                                        type="text"
+                                        class="form-control"
+                                        v-bind:class="{ 'is-invalid' : $page.errors.name }"
+                                        name="name"
+                                        v-model="form.name"
+                                        required autocomplete="name"
+                                        autofocus>
+                                    <span v-if="$page.errors.name" class="invalid-feedback" role="alert">
+                                        <strong>{{ $page.errors.name[0] }}</strong>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">Alamat E-Mail</label>
                                 <div class="col-md-6">
                                     <input id="email"
                                         type="email"
@@ -42,28 +59,23 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input"
-                                            type="checkbox"
-                                            name="remember"
-                                            id="remember"
-                                            v-model="form.remember">
-                                        <label class="form-check-label" for="remember">
-                                            Ingatkan saya?
-                                        </label>
-                                    </div>
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Ulangi Password</label>
+                                <div class="col-md-6">
+                                    <input id="password-confirm"
+                                        type="password"
+                                        class="form-control"
+                                        name="password_confirmation"
+                                        v-model="form.password_confirmation"
+                                        required
+                                        autocomplete="new-password">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
+                                <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-outline-secondary">
-                                        Login
+                                        Daftar
                                     </button>
-                                    <a v-if="$route('password.request')" class="btn btn-link" :href="$route('password.request')">
-                                        Lupa password?
-                                    </a>
                                 </div>
                             </div>
                         </form>
@@ -81,9 +93,10 @@
     data() {
       return {
         form: {
+          name: null,
           email: null,
           password: null,
-          remembar: null,
+          password_confirmation: null,
         },
       }
     },
@@ -92,7 +105,7 @@
     },
     methods: {
       submit() {
-        this.$inertia.post(this.$route('login'), this.form)
+        this.$inertia.post(this.$route('register'), this.form)
       },
     },
   }

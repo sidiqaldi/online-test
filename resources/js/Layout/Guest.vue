@@ -14,10 +14,19 @@
                     <ul class="navbar-nav mr-auto">
                     </ul>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto" v-if="!$page.auth.user">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <inertia-link class="nav-link" :href="$route('login')">Masuk/Daftar</inertia-link>
+                            <inertia-link class="nav-link" :href="$route('login')">Masuk</inertia-link>
+                        </li>
+                        <li class="nav-item">
+                            <inertia-link class="nav-link" :href="$route('register')">Daftar</inertia-link>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto" v-if="$page.auth.user">
+                        <!-- Authentication Links -->
+                        <li class="nav-item">
+                            <inertia-link class="nav-link" :href="$route('dashboard')">Dashboard</inertia-link>
                         </li>
                     </ul>
                 </div>
