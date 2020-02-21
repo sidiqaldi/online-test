@@ -12,7 +12,7 @@ class HomeController extends Controller
     /**
      * Show the application homepage.
      *
-     * @return Inertia
+     * @return \Inertia\Response
      */
     public function homepage()
     {
@@ -22,7 +22,7 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return Inertia
+     * @return \Inertia\Response
      */
     public function dashboard()
     {

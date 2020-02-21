@@ -24,7 +24,7 @@ class ForgotPasswordController extends Controller
     /**
      * Display the form to request a password reset link.
      *
-     * @return Inertia
+     * @return \Inertia\Response
      */
     public function showLinkRequestForm()
     {

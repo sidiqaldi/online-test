@@ -42,7 +42,7 @@ class LoginController extends Controller
     /**
      * Show the application login page.
      *
-     * @return Inertia
+     * @return \Inertia\Response
      */
     public function showLoginForm()
     {
