@@ -3,7 +3,7 @@
         <div class="row container justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Daftar</div>
+                    <div class="card-header">Daftar - {{ $page.app.name }}</div>
                     <div class="card-body">
                         <form @submit.prevent="submit">
                             <div class="form-group row">

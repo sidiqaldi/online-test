@@ -30,6 +30,6 @@ class ForgotPasswordController extends Controller
     {
         return Inertia::render('Auth/Password/Email', [
             'routesPasswordEmail' => route('password.email')
-        ])->withViewData(['title' => 'Lupa password - Ujian Online Gratis']);
+        ])->withViewData(['title' => 'Lupa password - ' . config('app.name')]);
     }
 }

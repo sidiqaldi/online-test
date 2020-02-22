@@ -4,7 +4,7 @@
             <nav class="navbar navbar-expand-md navbar-light">
                 <div class="container py-4">
                     <a class="navbar-brand" href="/">
-                        Free Online Test
+                        {{ $page.app.name }}
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

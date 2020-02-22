@@ -4,15 +4,18 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">Verify Your Email Address</div>
+                        <div class="card-header">Verifikasi Alamat Email Anda</div>
 
                         <div class="card-body">
                                 <div v-if="$page.status" class="alert alert-success" role="alert">
-                                    A fresh verification link has been sent to your email address.
+                                    Link untuk verifikasi telah dikirm ke alamat email Anda.
                                 </div>
-
-                                Before proceeding, please check your email for a verification link.
-                                If you did not receive the email, <a @click="submit" href="#">Click here to request another</a>
+                                <p>
+                                    Sebelum melanjutkan, mohon periksa email anda untuk melakukan verifikasi.
+                                </p>
+                                <p>
+                                    Jika anda tidak menerima email, <a @click="submit" href="#">Click untuk kirim ulang.</a>
+                                </p>
                         </div>
                     </div>
                 </div>

@@ -1,30 +1,21 @@
  <template>
-    <layout title="">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Dashboard</div>
-
-                        <div class="card-body">
-                            <div class="alert alert-success" role="alert">
-                                {{ $page.auth.user.name }}
-                            </div>
-                            You are logged in!
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </layout>
+  <layout :title="'Halaman pengguna - ' + $page.app.name" page="Dashboard" active="dashboard">
+    <div v-if="$page.status" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>selamat datang! </strong> {{ $page.auth.user.name }}.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <p>You are logged in!</p>
+  </layout>
 </template>
 
 <script>
-  import Layout from './../Layout/Dashboard'
+import Layout from "./../Layout/Dashboard";
 
-  export default {
-    components: {
-      Layout,
-    },
+export default {
+  components: {
+    Layout
   }
+};
 </script>
