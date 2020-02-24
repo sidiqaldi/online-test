@@ -173,7 +173,7 @@
   var consolePrefix = 'SweetAlert2:';
 
   /**
-   * Filter the unique values into a new array
+   * Filters the unique values into a new array
    * @param arr
    */
   var uniqueArray = function uniqueArray(arr) {

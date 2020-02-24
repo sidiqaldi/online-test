@@ -26,6 +26,10 @@ class CreateQuestionsTable extends Migration
             $table->foreign('section_id')
                 ->references('id')->on('sections')
                 ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

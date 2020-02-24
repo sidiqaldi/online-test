@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTestsTable extends Migration
+class CreateExamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateTestsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tests', function (Blueprint $table) {
+        Schema::create('exams', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid');
             $table->unsignedBigInteger('user_id');
             $table->string('name', 150);
             $table->string('description', 250);
+            $table->unsignedSmallInteger('status_id')->default(\App\Enums\ExamStatus::Inactive);
             $table->timestamps();
 
             $table->foreign('user_id')

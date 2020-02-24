@@ -17,7 +17,7 @@ class CreateConfigsTable extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('test_id');
+            $table->unsignedBigInteger('exam_id');
             $table->unsignedInteger('time_limit')->nullable();
             $table->unsignedSmallInteger('random_questioner');
             $table->unsignedSmallInteger('random_answer');
@@ -25,8 +25,12 @@ class CreateConfigsTable extends Migration
             $table->unsignedSmallInteger('show_ranking');
             $table->timestamps();
 
-            $table->foreign('test_id')
-                ->references('id')->on('tests')
+            $table->foreign('exam_id')
+                ->references('id')->on('exams')
+                ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
                 ->onDelete('cascade');
         });
     }

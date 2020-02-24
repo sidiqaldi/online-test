@@ -28,6 +28,10 @@ class CreateAnswersTable extends Migration
             $table->foreign('participant_id')
                 ->references('id')->on('participants')
                 ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

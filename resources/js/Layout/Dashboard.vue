@@ -1,42 +1,7 @@
 <template>
   <div class="d-flex" id="wrapper" v-bind:class="{'toggled':sidebar}">
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">
-        <inertia-link class="navbar-brand" href="/">{{ $page.app.name }}</inertia-link>
-      </div>
-      <div class="list-group list-group-flush">
-        <inertia-link
-          :href="$route('dashboard')"
-          class="list-group-item list-group-item-action"
-          v-bind:class="{ 'active' : active == 'dashboard' }"
-        >Dashboard</inertia-link>
-        <a
-          class="list-group-item list-group-item-action bg-light"
-          data-toggle="collapse"
-          data-target="#collapseCreator"
-          aria-expanded="true"
-          aria-controls="collapseCreator"
-        >Penyelenggara</a>
-        <div class="collapse" aria-labelledby="collapseCreator" id="collapseCreator">
-          <inertia-link
-            :href="$route('creator.tests.index')"
-            class="list-group-item list-group-item-action"
-            v-bind:class="{ 'active' : active == 'creator.test.index' }"
-          >Daftar Ujian</inertia-link>
-        </div>
-        <a
-          class="list-group-item list-group-item-action bg-light"
-          data-toggle="collapse"
-          data-target="#collapseParticipant"
-          aria-expanded="false"
-          aria-controls="collapseParticipant"
-        >Peserta</a>
-        <div class="collapse" aria-labelledby="collapseParticipant" id="collapseParticipant">
-          <a href="#" class="list-group-item list-group-item-action bg-light">Ikut ujian</a>
-          <a href="#" class="list-group-item list-group-item-action bg-light">Hasil</a>
-        </div>
-      </div>
-    </div>
+
+    <sidebar :sidebar="sidebar" :active="active" />
 
     <div id="page-content-wrapper">
       <nav class="navbar navbar-expand-md navbar-light py-3">
@@ -81,7 +46,9 @@
         </div>
       </nav>
       <div class="container-fluid">
-        <h1 class="mt-4">{{ this.page }}</h1>
+          <div class="my-4">
+              <h1 class="d-inline">{{ this.page }}</h1> <slot name="buttons"></slot>
+          </div>
         <slot />
       </div>
     </div>
@@ -90,10 +57,12 @@
 
 <script>
 import LogoutButton from "../components/LogoutButton";
+import Sidebar from  "../components/Sidebar";
 
 export default {
   components: {
-    LogoutButton
+    LogoutButton,
+    Sidebar
   },
   data() {
     return {
