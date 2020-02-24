@@ -148,6 +148,8 @@ return [
 
     'attributes' => [
         'name' => 'nama',
+        'description' => 'deskripsi',
+        'code' => 'kode'
     ],
 
 ];

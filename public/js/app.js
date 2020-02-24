@@ -2610,22 +2610,79 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Layout: _Layout_Dashboard__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  props: {
+    random_question: Object
+  },
   data: function data() {
     return {
       form: {
         name: null,
-        description: null
+        description: null,
+        code: null
       }
     };
   },
   methods: {
+    generate: function generate() {
+      this.form.code = Math.random().toString(36).substring(3);
+    },
     submit: function submit() {
-      this.$inertia.post(this.$route('creator.exams.store'), this.form);
+      this.$inertia.post(this.$route("creator.exams.store"), this.form);
     }
   }
 });
@@ -2642,6 +2699,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layout_Dashboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../Layout/Dashboard */ "./resources/js/Layout/Dashboard.vue");
+//
+//
+//
 //
 //
 //
@@ -38778,7 +38838,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
-          { staticClass: "container-fluid" },
+          { staticClass: "container-fluid px-4" },
           [
             _c(
               "div",
@@ -39982,140 +40042,227 @@ var render = function() {
     "layout",
     {
       attrs: {
-        title: "Halaman Penyelenggara - " + _vm.$page.app.name,
-        page: "Daftar Ujian",
+        title: "Buat Ujian - " + _vm.$page.app.name,
+        page: "Buat Ujian",
         active: "creator.exams.index"
       }
     },
     [
-      _c("div", { staticClass: "col-md-5" }, [
-        _c(
-          "form",
-          {
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                return _vm.submit($event)
-              }
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit($event)
             }
-          },
-          [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "name" } }, [_vm._v("Nama Ujian")]),
+          }
+        },
+        [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("h2", [_vm._v("Informasi umum")]),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.name,
-                    expression: "form.name"
-                  }
-                ],
-                staticClass: "form-control",
-                class: { "is-invalid": _vm.$page.errors.name },
-                attrs: {
-                  type: "text",
-                  name: "name",
-                  id: "name",
-                  placeholder: "contoh: Ujian matematika dasar"
-                },
-                domProps: { value: _vm.form.name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "name", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.$page.errors.name
-                ? _c(
-                    "span",
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "name" } }, [
+                  _vm._v("Nama Ujian"),
+                  _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
                     {
-                      staticClass: "invalid-feedback",
-                      attrs: { role: "alert" }
-                    },
-                    [_c("strong", [_vm._v(_vm._s(_vm.$page.errors.name[0]))])]
-                  )
-                : _vm._e()
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "description" } }, [
-                _vm._v("Deskripsi")
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.name,
+                      expression: "form.name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  class: { "is-invalid": _vm.$page.errors.name },
+                  attrs: {
+                    type: "text",
+                    name: "name",
+                    id: "name",
+                    placeholder: "contoh: Ujian matematika dasar"
+                  },
+                  domProps: { value: _vm.form.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.$page.errors.name
+                  ? _c(
+                      "span",
+                      {
+                        staticClass: "invalid-feedback",
+                        attrs: { role: "alert" }
+                      },
+                      [_c("strong", [_vm._v(_vm._s(_vm.$page.errors.name[0]))])]
+                    )
+                  : _vm._e()
               ]),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.description,
-                    expression: "form.description"
-                  }
-                ],
-                staticClass: "form-control",
-                class: { "is-invalid": _vm.$page.errors.description },
-                attrs: {
-                  type: "text",
-                  name: "description",
-                  id: "description",
-                  placeholder: "contoh: Ujian matematika dasar tahun 2020"
-                },
-                domProps: { value: _vm.form.description },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.form, "description", $event.target.value)
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _vm.$page.errors.description
-                ? _c(
-                    "span",
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "description" } }, [
+                  _vm._v("Deskripsi"),
+                  _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
                     {
-                      staticClass: "invalid-feedback",
-                      attrs: { role: "alert" }
-                    },
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.description,
+                      expression: "form.description"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  class: { "is-invalid": _vm.$page.errors.description },
+                  attrs: {
+                    type: "text",
+                    name: "description",
+                    id: "description",
+                    placeholder: "contoh: Ujian matematika dasar tahun 2020"
+                  },
+                  domProps: { value: _vm.form.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "description", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.$page.errors.description
+                  ? _c(
+                      "span",
+                      {
+                        staticClass: "invalid-feedback",
+                        attrs: { role: "alert" }
+                      },
+                      [
+                        _c("strong", [
+                          _vm._v(_vm._s(_vm.$page.errors.description[0]))
+                        ])
+                      ]
+                    )
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-3" }, [
+                _c("div", { staticClass: "input-group-prepend" }, [
+                  _c(
+                    "label",
+                    { staticClass: "input-group-text", attrs: { for: "code" } },
                     [
-                      _c("strong", [
-                        _vm._v(_vm._s(_vm.$page.errors.description[0]))
-                      ])
+                      _vm._v("Kode ujian"),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
                     ]
                   )
-                : _vm._e()
-            ]),
-            _vm._v(" "),
+                ]),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "code" } }),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.code,
+                      expression: "form.code"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  class: { "is-invalid": _vm.$page.errors.code },
+                  attrs: {
+                    type: "text",
+                    placeholder: "contoh: 112233aabb",
+                    "aria-label": "code",
+                    "aria-describedby": "code"
+                  },
+                  domProps: { value: _vm.form.code },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.form, "code", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group-append" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-outline-secondary",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.generate($event)
+                        }
+                      }
+                    },
+                    [_vm._v("acak kode")]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.$page.errors.code
+                  ? _c(
+                      "span",
+                      {
+                        staticClass: "invalid-feedback",
+                        attrs: { role: "alert" }
+                      },
+                      [_c("strong", [_vm._v(_vm._s(_vm.$page.errors.code[0]))])]
+                    )
+                  : _vm._e()
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
             _c(
-              "button",
-              {
-                staticClass: "btn btn-outline-secondary",
-                attrs: { type: "submit" }
-              },
-              [_vm._v("Buat ujian")]
-            ),
-            _vm._v(" "),
-            _c(
-              "inertia-link",
-              {
-                staticClass: "btn btn-outline-secondary",
-                attrs: {
-                  href: _vm.$route("creator.exams.index"),
-                  type: "submit"
-                }
-              },
-              [_vm._v("Kembali ke daftar ujian")]
+              "div",
+              { staticClass: "col-md-12" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-outline-secondary",
+                    attrs: { type: "submit" }
+                  },
+                  [_vm._v("Buat ujian")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "inertia-link",
+                  {
+                    staticClass: "btn btn-outline-secondary",
+                    attrs: {
+                      href: _vm.$route("creator.exams.index"),
+                      type: "submit"
+                    }
+                  },
+                  [_vm._v("Kembali ke daftar ujian")]
+                )
+              ],
+              1
             )
-          ],
-          1
-        )
-      ])
+          ])
+        ]
+      )
     ]
   )
 }
@@ -40213,16 +40360,28 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.exams.data, function(exam) {
-            return _c("tr", { key: exam.uuid }, [
-              _c("td", [_vm._v(_vm._s(exam.name))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(exam.description))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(exam.status_id))])
-            ])
-          }),
-          0
+          [
+            _vm._l(_vm.exams.data, function(exam) {
+              return _c("tr", { key: exam.uuid }, [
+                _c("td", [_vm._v(_vm._s(exam.name))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(exam.description))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(exam.status))])
+              ])
+            }),
+            _vm._v(" "),
+            !_vm.exams.meta.total
+              ? _c("tr", [
+                  _c(
+                    "td",
+                    { staticClass: "text-center", attrs: { colspan: "3" } },
+                    [_vm._v("Tidak ada ujian")]
+                  )
+                ])
+              : _vm._e()
+          ],
+          2
         )
       ])
     ]
@@ -52824,10 +52983,14 @@ var map = {
 	"./Auth/Register.vue": "./resources/js/Pages/Auth/Register.vue",
 	"./Auth/Verify": "./resources/js/Pages/Auth/Verify.vue",
 	"./Auth/Verify.vue": "./resources/js/Pages/Auth/Verify.vue",
+	"./Creator/Config/Update": "./resources/js/Pages/Creator/Config/Update.vue",
+	"./Creator/Config/Update.vue": "./resources/js/Pages/Creator/Config/Update.vue",
 	"./Creator/Exam/Create": "./resources/js/Pages/Creator/Exam/Create.vue",
 	"./Creator/Exam/Create.vue": "./resources/js/Pages/Creator/Exam/Create.vue",
 	"./Creator/Exam/Index": "./resources/js/Pages/Creator/Exam/Index.vue",
 	"./Creator/Exam/Index.vue": "./resources/js/Pages/Creator/Exam/Index.vue",
+	"./Creator/Exam/Update": "./resources/js/Pages/Creator/Exam/Update.vue",
+	"./Creator/Exam/Update.vue": "./resources/js/Pages/Creator/Exam/Update.vue",
 	"./Home": "./resources/js/Pages/Home.vue",
 	"./Home.vue": "./resources/js/Pages/Home.vue",
 	"./Welcome": "./resources/js/Pages/Welcome.vue",
@@ -53201,6 +53364,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Creator/Config/Update.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/Pages/Creator/Config/Update.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/Pages/Creator/Config/Update.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Creator/Exam/Create.vue":
 /*!****************************************************!*\
   !*** ./resources/js/Pages/Creator/Exam/Create.vue ***!
@@ -53336,6 +53531,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_4aa9478e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Creator/Exam/Update.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Creator/Exam/Update.vue ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/Pages/Creator/Exam/Update.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 

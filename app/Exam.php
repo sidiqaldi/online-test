@@ -2,8 +2,9 @@
 
 namespace App;
 
+use App\Enums\ExamStatus;
 use App\Filters\Filterable;
-use Illuminate\Database\Eloquent\Builder;
+use App\Traits\HasOwner;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
 
@@ -16,7 +17,7 @@ use Webpatser\Uuid\Uuid;
  */
 class Exam extends Model
 {
-    use Filterable;
+    use Filterable, HasOwner;
 
     protected $fillable = ['user_id', 'name', 'description'];
 
@@ -40,13 +41,10 @@ class Exam extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param User $user
-     * @return Builder
-     * @noinspection PhpUnused
+     * @return string
      */
-    public function scopeOwner(Builder $query, User $user)
+    public function getStatusAttribute()
     {
-        return $query->where('user_id', $user->id);
+        return ExamStatus::getDescription($this->status_id);
     }
 }

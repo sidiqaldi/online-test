@@ -5,11 +5,11 @@ namespace App\Enums;
 use BenSampo\Enum\Enum;
 
 /**
- * @method static static Inactive()
- * @method static static Active()
+ * @method static static Draft()
+ * @method static static Publish()
  */
 final class ExamStatus extends Enum
 {
-    const Inactive = 1;
-    const Active = 2;
+    const Draft = 1;
+    const Publish = 2;
 }

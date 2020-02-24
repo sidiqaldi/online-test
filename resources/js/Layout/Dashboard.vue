@@ -1,6 +1,5 @@
 <template>
   <div class="d-flex" id="wrapper" v-bind:class="{'toggled':sidebar}">
-
     <sidebar :sidebar="sidebar" :active="active" />
 
     <div id="page-content-wrapper">
@@ -45,10 +44,11 @@
           </ul>
         </div>
       </nav>
-      <div class="container-fluid">
-          <div class="my-4">
-              <h1 class="d-inline">{{ this.page }}</h1> <slot name="buttons"></slot>
-          </div>
+      <div class="container-fluid px-4">
+        <div class="my-4">
+          <h1 class="d-inline">{{ this.page }}</h1>
+          <slot name="buttons"></slot>
+        </div>
         <slot />
       </div>
     </div>
@@ -57,7 +57,7 @@
 
 <script>
 import LogoutButton from "../components/LogoutButton";
-import Sidebar from  "../components/Sidebar";
+import Sidebar from "../components/Sidebar";
 
 export default {
   components: {

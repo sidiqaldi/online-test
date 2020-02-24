@@ -19,7 +19,8 @@ class CreateExamsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name', 150);
             $table->string('description', 250);
-            $table->unsignedSmallInteger('status_id')->default(\App\Enums\ExamStatus::Inactive);
+            $table->string('code', 100);
+            $table->unsignedSmallInteger('status_id')->default(\App\Enums\ExamStatus::Draft);
             $table->timestamps();
 
             $table->foreign('user_id')
@@ -35,6 +36,6 @@ class CreateExamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tests');
+        Schema::dropIfExists('exams');
     }
 }

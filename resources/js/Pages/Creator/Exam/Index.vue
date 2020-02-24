@@ -21,7 +21,10 @@
             <tr v-for="exam in exams.data" :key="exam.uuid">
                 <td>{{ exam.name }}</td>
                 <td>{{ exam.description }}</td>
-                <td>{{ exam.status_id }}</td>
+                <td>{{ exam.status }}</td>
+            </tr>
+            <tr v-if="!exams.meta.total">
+                <td colspan=3 class="text-center">Tidak ada ujian</td>
             </tr>
             </tbody>
         </table>

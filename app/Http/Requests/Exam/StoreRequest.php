@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Test;
+namespace App\Http\Requests\Exam;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +27,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|min:15|max:150',
             'description' => 'required|min:50|max:250',
+            'code' => 'required|min:6|max:50,'
         ];
     }
 
