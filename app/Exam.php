@@ -19,7 +19,7 @@ class Exam extends Model
 {
     use Filterable, HasOwner;
 
-    protected $fillable = ['user_id', 'name', 'description'];
+    protected $fillable = ['user_id', 'name', 'description', 'code'];
 
     /**
      * Setup model event hooks
@@ -46,5 +46,13 @@ class Exam extends Model
     public function getStatusAttribute()
     {
         return ExamStatus::getDescription($this->status_id);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function config()
+    {
+        return $this->hasOne('App\Config');
     }
 }

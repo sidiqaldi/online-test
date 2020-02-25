@@ -47,6 +47,9 @@ class AppServiceProvider extends ServiceProvider
             'status' => function () {
                 return session('status', null);
             },
+            'pops' => function () {
+                return session('pops', null);
+            },
         ]);
     }
 }

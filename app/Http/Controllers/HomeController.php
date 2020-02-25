@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function homepage()
     {
-        return Inertia::render('Welcome')->withViewData(['title' => 'Free Online Exam - ' . config('app.name')]);
+        return Inertia::render('Welcome')->withViewData(['title' => config('app.name')]);
     }
 
     /**

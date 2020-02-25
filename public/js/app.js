@@ -2660,6 +2660,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2683,6 +2690,303 @@ __webpack_require__.r(__webpack_exports__);
     },
     submit: function submit() {
       this.$inertia.post(this.$route("creator.exams.store"), this.form);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Layout_Dashboard__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../../Layout/Dashboard */ "./resources/js/Layout/Dashboard.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Layout: _Layout_Dashboard__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    random_question: Object,
+    exam: Object
+  },
+  created: function created() {
+    this.form.exam = this.exam;
+  },
+  data: function data() {
+    return {
+      form: {
+        exam: {
+          name: null,
+          description: null,
+          code: null
+        }
+      },
+      config: {
+        random_question: null
+      }
+    };
+  },
+  methods: {
+    generate: function generate() {
+      this.form.code = Math.random().toString(36).substring(3);
+    },
+    submitExam: function submitExam() {
+      this.$inertia.post(this.$route("creator.exams.update"), this.form.exam);
     }
   }
 });
@@ -39041,7 +39345,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layout", { attrs: { title: "" } }, [
+  return _c("layout", { attrs: { title: "Masuk - " + _vm.$page.app.name } }, [
     _c("div", { staticClass: "row container justify-content-center" }, [
       _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card" }, [
@@ -39305,123 +39609,127 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layout", { attrs: { title: "" } }, [
-    _c("div", { staticClass: "row container justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Lupa Password - " + _vm._s(_vm.$page.app.name))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _vm.$page.status
-              ? _c(
-                  "div",
-                  {
-                    staticClass: "alert alert-success",
-                    attrs: { role: "alert" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.$page.status) +
-                        "\n                    "
-                    )
-                  ]
-                )
-              : _vm._e(),
+  return _c(
+    "layout",
+    { attrs: { title: "Lupa Password - " + _vm.$page.app.name } },
+    [
+      _c("div", { staticClass: "row container justify-content-center" }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Lupa Password - " + _vm._s(_vm.$page.app.name))
+            ]),
             _vm._v(" "),
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.submit($event)
-                  }
-                }
-              },
-              [
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
+            _c("div", { staticClass: "card-body" }, [
+              _vm.$page.status
+                ? _c(
+                    "div",
                     {
-                      staticClass: "col-md-4 col-form-label text-md-right",
-                      attrs: { for: "email" }
+                      staticClass: "alert alert-success",
+                      attrs: { role: "alert" }
                     },
-                    [_vm._v("E-Mail")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.email,
-                          expression: "form.email"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.$page.errors.email },
-                      attrs: {
-                        id: "email",
-                        type: "email",
-                        name: "email",
-                        required: "",
-                        autocomplete: "email"
-                      },
-                      domProps: { value: _vm.form.email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "email", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.$page.errors.email
-                      ? _c(
-                          "span",
-                          {
-                            staticClass: "invalid-feedback",
-                            attrs: { role: "alert" }
-                          },
-                          [
-                            _c("strong", [
-                              _vm._v(_vm._s(_vm.$page.errors.email[0]))
-                            ])
-                          ]
-                        )
-                      : _vm._e()
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row mb-0" }, [
-                  _c("div", { staticClass: "col-md-8 offset-md-4" }, [
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.$page.status) +
+                          "\n                    "
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.submit($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "form-group row" }, [
                     _c(
-                      "button",
+                      "label",
                       {
-                        staticClass: "btn btn-outline-secondary",
-                        attrs: { type: "submit" }
+                        staticClass: "col-md-4 col-form-label text-md-right",
+                        attrs: { for: "email" }
                       },
-                      [
-                        _vm._v(
-                          "\n                                    Kirim Link Reset Password\n                                "
-                        )
-                      ]
-                    )
+                      [_vm._v("E-Mail")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.email,
+                            expression: "form.email"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-invalid": _vm.$page.errors.email },
+                        attrs: {
+                          id: "email",
+                          type: "email",
+                          name: "email",
+                          required: "",
+                          autocomplete: "email"
+                        },
+                        domProps: { value: _vm.form.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "email", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.$page.errors.email
+                        ? _c(
+                            "span",
+                            {
+                              staticClass: "invalid-feedback",
+                              attrs: { role: "alert" }
+                            },
+                            [
+                              _c("strong", [
+                                _vm._v(_vm._s(_vm.$page.errors.email[0]))
+                              ])
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row mb-0" }, [
+                    _c("div", { staticClass: "col-md-8 offset-md-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-secondary",
+                          attrs: { type: "submit" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    Kirim Link Reset Password\n                                "
+                          )
+                        ]
+                      )
+                    ])
                   ])
-                ])
-              ]
-            )
+                ]
+              )
+            ])
           ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39445,225 +39753,229 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layout", { attrs: { title: "" } }, [
-    _c("div", { staticClass: "row container justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Reset Password - " + _vm._s(_vm.$page.app.name))
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _vm.$page.status
-              ? _c(
-                  "div",
-                  {
-                    staticClass: "alert alert-success",
-                    attrs: { role: "alert" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.$page.status) +
-                        "\n                    "
-                    )
-                  ]
-                )
-              : _vm._e(),
+  return _c(
+    "layout",
+    { attrs: { title: "Reset Password -" + _vm.$page.app.name } },
+    [
+      _c("div", { staticClass: "row container justify-content-center" }, [
+        _c("div", { staticClass: "col-md-8" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Reset Password - " + _vm._s(_vm.$page.app.name))
+            ]),
             _vm._v(" "),
-            _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.submit($event)
+            _c("div", { staticClass: "card-body" }, [
+              _vm.$page.status
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "alert alert-success",
+                      attrs: { role: "alert" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(_vm.$page.status) +
+                          "\n                    "
+                      )
+                    ]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.submit($event)
+                    }
                   }
-                }
-              },
-              [
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-md-4 col-form-label text-md-right",
-                      attrs: { for: "email" }
-                    },
-                    [_vm._v("E-Mail")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.email,
-                          expression: "form.email"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.$page.errors.email },
-                      attrs: {
-                        id: "email",
-                        type: "email",
-                        name: "email",
-                        required: "",
-                        autocomplete: "email"
-                      },
-                      domProps: { value: _vm.form.email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "email", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.$page.errors.email
-                      ? _c(
-                          "span",
-                          {
-                            staticClass: "invalid-feedback",
-                            attrs: { role: "alert" }
-                          },
-                          [
-                            _c("strong", [
-                              _vm._v(_vm._s(_vm.$page.errors.email[0]))
-                            ])
-                          ]
-                        )
-                      : _vm._e()
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-md-4 col-form-label text-md-right",
-                      attrs: { for: "password" }
-                    },
-                    [_vm._v("Password")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.password,
-                          expression: "form.password"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.$page.errors.password },
-                      attrs: {
-                        id: "password",
-                        type: "password",
-                        name: "password",
-                        required: "",
-                        autocomplete: "new-password"
-                      },
-                      domProps: { value: _vm.form.password },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "password", $event.target.value)
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.$page.errors.password
-                      ? _c(
-                          "span",
-                          {
-                            staticClass: "invalid-feedback",
-                            attrs: { role: "alert" }
-                          },
-                          [
-                            _c("strong", [
-                              _vm._v(_vm._s(_vm.$page.errors.password[0]))
-                            ])
-                          ]
-                        )
-                      : _vm._e()
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-md-4 col-form-label text-md-right",
-                      attrs: { for: "password-confirm" }
-                    },
-                    [_vm._v("Ulangi Password")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.password_confirmation,
-                          expression: "form.password_confirmation"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "password-confirm",
-                        type: "password",
-                        name: "password_confirmation",
-                        required: "",
-                        autocomplete: "new-password"
-                      },
-                      domProps: { value: _vm.form.password_confirmation },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.form,
-                            "password_confirmation",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group row mb-0" }, [
-                  _c("div", { staticClass: "col-md-8 offset-md-4" }, [
+                },
+                [
+                  _c("div", { staticClass: "form-group row" }, [
                     _c(
-                      "button",
+                      "label",
                       {
-                        staticClass: "btn btn-outline-secondary",
-                        attrs: { type: "submit" }
+                        staticClass: "col-md-4 col-form-label text-md-right",
+                        attrs: { for: "email" }
                       },
-                      [
-                        _vm._v(
-                          "\n                                    Reset Password\n                                "
-                        )
-                      ]
-                    )
+                      [_vm._v("E-Mail")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.email,
+                            expression: "form.email"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-invalid": _vm.$page.errors.email },
+                        attrs: {
+                          id: "email",
+                          type: "email",
+                          name: "email",
+                          required: "",
+                          autocomplete: "email"
+                        },
+                        domProps: { value: _vm.form.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "email", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.$page.errors.email
+                        ? _c(
+                            "span",
+                            {
+                              staticClass: "invalid-feedback",
+                              attrs: { role: "alert" }
+                            },
+                            [
+                              _c("strong", [
+                                _vm._v(_vm._s(_vm.$page.errors.email[0]))
+                              ])
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-md-4 col-form-label text-md-right",
+                        attrs: { for: "password" }
+                      },
+                      [_vm._v("Password")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.password,
+                            expression: "form.password"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-invalid": _vm.$page.errors.password },
+                        attrs: {
+                          id: "password",
+                          type: "password",
+                          name: "password",
+                          required: "",
+                          autocomplete: "new-password"
+                        },
+                        domProps: { value: _vm.form.password },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "password", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm.$page.errors.password
+                        ? _c(
+                            "span",
+                            {
+                              staticClass: "invalid-feedback",
+                              attrs: { role: "alert" }
+                            },
+                            [
+                              _c("strong", [
+                                _vm._v(_vm._s(_vm.$page.errors.password[0]))
+                              ])
+                            ]
+                          )
+                        : _vm._e()
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c(
+                      "label",
+                      {
+                        staticClass: "col-md-4 col-form-label text-md-right",
+                        attrs: { for: "password-confirm" }
+                      },
+                      [_vm._v("Ulangi Password")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.password_confirmation,
+                            expression: "form.password_confirmation"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          id: "password-confirm",
+                          type: "password",
+                          name: "password_confirmation",
+                          required: "",
+                          autocomplete: "new-password"
+                        },
+                        domProps: { value: _vm.form.password_confirmation },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "password_confirmation",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group row mb-0" }, [
+                    _c("div", { staticClass: "col-md-8 offset-md-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-outline-secondary",
+                          attrs: { type: "submit" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                    Reset Password\n                                "
+                          )
+                        ]
+                      )
+                    ])
                   ])
-                ])
-              ]
-            )
+                ]
+              )
+            ])
           ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39687,7 +39999,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layout", { attrs: { title: "" } }, [
+  return _c("layout", { attrs: { title: "Daftar -" + _vm.$page.app.name } }, [
     _c("div", { staticClass: "row container justify-content-center" }, [
       _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card" }, [
@@ -39970,51 +40282,57 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("layout", { attrs: { title: "" } }, [
-    _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Verifikasi Alamat Email Anda")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm.$page.status
-                ? _c(
-                    "div",
-                    {
-                      staticClass: "alert alert-success",
-                      attrs: { role: "alert" }
-                    },
-                    [
-                      _vm._v(
-                        "\n                                Link untuk verifikasi telah dikirm ke alamat email Anda.\n                            "
-                      )
-                    ]
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "\n                                Sebelum melanjutkan, mohon periksa email anda untuk melakukan verifikasi.\n                            "
-                )
+  return _c(
+    "layout",
+    {
+      attrs: { title: "Verifikasi Alamat Email Anda - " + _vm.$page.app.name }
+    },
+    [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row justify-content-center" }, [
+          _c("div", { staticClass: "col-md-8" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _vm._v("Verifikasi Alamat Email Anda")
               ]),
               _vm._v(" "),
-              _c("p", [
-                _vm._v(
-                  "\n                                Jika anda tidak menerima email, "
-                ),
-                _c("a", { attrs: { href: "#" }, on: { click: _vm.submit } }, [
-                  _vm._v("Click untuk kirim ulang.")
+              _c("div", { staticClass: "card-body" }, [
+                _vm.$page.status
+                  ? _c(
+                      "div",
+                      {
+                        staticClass: "alert alert-success",
+                        attrs: { role: "alert" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                                Link untuk verifikasi telah dikirm ke alamat email Anda.\n                            "
+                        )
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                                Sebelum melanjutkan, mohon periksa email anda untuk melakukan verifikasi.\n                            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                                Jika anda tidak menerima email, "
+                  ),
+                  _c("a", { attrs: { href: "#" }, on: { click: _vm.submit } }, [
+                    _vm._v("Click untuk kirim ulang.")
+                  ])
                 ])
               ])
             ])
           ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -40065,7 +40383,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "name" } }, [
-                  _vm._v("Nama Ujian"),
+                  _vm._v("\n            Nama Ujian\n            "),
                   _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
                 ]),
                 _vm._v(" "),
@@ -40111,7 +40429,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c("label", { attrs: { for: "description" } }, [
-                  _vm._v("Deskripsi"),
+                  _vm._v("\n            Deskripsi\n            "),
                   _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
                 ]),
                 _vm._v(" "),
@@ -40165,7 +40483,7 @@ var render = function() {
                     "label",
                     { staticClass: "input-group-text", attrs: { for: "code" } },
                     [
-                      _vm._v("Kode ujian"),
+                      _vm._v("\n              Kode ujian\n              "),
                       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
                     ]
                   )
@@ -40259,6 +40577,695 @@ var render = function() {
                 )
               ],
               1
+            )
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=template&id=6ba4b1fe&":
+/*!***************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=template&id=6ba4b1fe& ***!
+  \***************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "layout",
+    {
+      attrs: {
+        title: "Buat Ujian - " + _vm.$page.app.name,
+        page: "Buat Ujian",
+        active: "creator.exams.index"
+      }
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "accordion", attrs: { id: "accordionExample" } },
+        [
+          _c("div", { staticClass: "card" }, [
+            _c(
+              "div",
+              { staticClass: "card-header", attrs: { id: "headingOne" } },
+              [
+                _c(
+                  "h2",
+                  {
+                    staticClass: "mb-0",
+                    class: { collapsed: _vm.$page.pops != null },
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "collapse",
+                      "data-target": "#collapseOne",
+                      "aria-expanded":
+                        _vm.$page.pops === null ? "true" : "false",
+                      "aria-controls": "collapseOne"
+                    }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "bi bi-grid",
+                        attrs: {
+                          width: "1em",
+                          height: "1em",
+                          viewBox: "0 0 20 20",
+                          fill: "currentColor",
+                          xmlns: "http://www.w3.org/2000/svg"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M9.5 4.5a1 1 0 00-1-1h-4a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1v-4zm-1 7h-4v4h4v-4zm7 0h-4v4h4v-4zm0-7h-4v4h4v-4zm-7 0h-4v4h4v-4zm2 0a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4zm-6 6a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1v-4a1 1 0 00-1-1h-4zm7 0a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1v-4a1 1 0 00-1-1h-4z",
+                            "clip-rule": "evenodd"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" Informasi Umum\n        ")
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "collapse",
+                class: { show: _vm.$page.pops === null },
+                attrs: {
+                  id: "collapseOne",
+                  "aria-labelledby": "headingOne",
+                  "data-parent": "#accordionExample"
+                }
+              },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.submitExam($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", { attrs: { for: "name" } }, [
+                              _vm._v(
+                                "\n                    Nama Ujian\n                    "
+                              ),
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("*")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.exam.name,
+                                  expression: "form.exam.name"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: { "is-invalid": _vm.$page.errors.name },
+                              attrs: {
+                                type: "text",
+                                name: "name",
+                                id: "name",
+                                placeholder: "contoh: Ujian matematika dasar"
+                              },
+                              domProps: { value: _vm.form.exam.name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form.exam,
+                                    "name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.$page.errors.name
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "invalid-feedback",
+                                    attrs: { role: "alert" }
+                                  },
+                                  [
+                                    _c("strong", [
+                                      _vm._v(_vm._s(_vm.$page.errors.name[0]))
+                                    ])
+                                  ]
+                                )
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", { attrs: { for: "description" } }, [
+                              _vm._v(
+                                "\n                    Deskripsi\n                    "
+                              ),
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("*")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.exam.description,
+                                  expression: "form.exam.description"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid": _vm.$page.errors.description
+                              },
+                              attrs: {
+                                type: "text",
+                                name: "description",
+                                id: "description",
+                                placeholder:
+                                  "contoh: Ujian matematika dasar tahun 2020"
+                              },
+                              domProps: { value: _vm.form.exam.description },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form.exam,
+                                    "description",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.$page.errors.description
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "invalid-feedback",
+                                    attrs: { role: "alert" }
+                                  },
+                                  [
+                                    _c("strong", [
+                                      _vm._v(
+                                        _vm._s(_vm.$page.errors.description[0])
+                                      )
+                                    ])
+                                  ]
+                                )
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group mb-3" }, [
+                            _c("div", { staticClass: "input-group-prepend" }, [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "input-group-text",
+                                  attrs: { for: "code" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                      Kode ujian\n                      "
+                                  ),
+                                  _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v("*")
+                                  ])
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: "code" } }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.exam.code,
+                                  expression: "form.exam.code"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: { "is-invalid": _vm.$page.errors.code },
+                              attrs: {
+                                type: "text",
+                                placeholder: "contoh: 112233aabb",
+                                "aria-label": "code",
+                                "aria-describedby": "code"
+                              },
+                              domProps: { value: _vm.form.exam.code },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form.exam,
+                                    "code",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "input-group-append" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-outline-secondary",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.generate($event)
+                                    }
+                                  }
+                                },
+                                [_vm._v("acak kode")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _vm.$page.errors.code
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "invalid-feedback",
+                                    attrs: { role: "alert" }
+                                  },
+                                  [
+                                    _c("strong", [
+                                      _vm._v(_vm._s(_vm.$page.errors.code[0]))
+                                    ])
+                                  ]
+                                )
+                              : _vm._e()
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12" },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-outline-secondary",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("Buat ujian")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "inertia-link",
+                              {
+                                staticClass: "btn btn-outline-secondary",
+                                attrs: {
+                                  href: _vm.$route("creator.exams.index"),
+                                  type: "submit"
+                                }
+                              },
+                              [_vm._v("Kembali ke daftar ujian")]
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ]
+                  )
+                ])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card" }, [
+            _c(
+              "div",
+              { staticClass: "card-header", attrs: { id: "headingTwo" } },
+              [
+                _c(
+                  "h2",
+                  {
+                    staticClass: "mb-0",
+                    class: { collapsed: _vm.$page.pops != "config" },
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "collapse",
+                      "data-target": "#collapseTwo",
+                      "aria-expanded":
+                        _vm.$page.pops === "config" ? "true" : "false",
+                      "aria-controls": "collapseTwo"
+                    }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "bi bi-gear",
+                        attrs: {
+                          width: "1em",
+                          height: "1em",
+                          viewBox: "0 0 20 20",
+                          fill: "currentColor",
+                          xmlns: "http://www.w3.org/2000/svg"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M10.837 3.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 016.377 5.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 01-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 011.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 012.692 1.115l.094.319c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 012.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 011.115-2.693l.319-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 01-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159a1.873 1.873 0 01-2.693-1.115l-.094-.319zm-2.633-.283c.527-1.79 3.064-1.79 3.592 0l.094.319a.873.873 0 001.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 00.52 1.255l.319.094c1.79.527 1.79 3.064 0 3.592l-.319.094a.873.873 0 00-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 00-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 00-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 00-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 00.52-1.255l-.16-.292c-.892-1.64.901-3.433 2.541-2.54l.292.159a.873.873 0 001.255-.52l.094-.319z",
+                            "clip-rule": "evenodd"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M10 7.754a2.246 2.246 0 100 4.492 2.246 2.246 0 000-4.492zM6.754 10a3.246 3.246 0 116.492 0 3.246 3.246 0 01-6.492 0z",
+                            "clip-rule": "evenodd"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" Pengaturan\n        ")
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "collapse",
+                class: { show: _vm.$page.pops === "config" },
+                attrs: {
+                  id: "collapseTwo",
+                  "aria-labelledby": "headingTwo",
+                  "data-parent": "#accordionExample"
+                }
+              },
+              [
+                _c("div", { staticClass: "card-body" }, [
+                  _c(
+                    "form",
+                    {
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.submitExam($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-md-6" }, [
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", { attrs: { for: "name" } }, [
+                              _vm._v(
+                                "\n                    Nama Ujian\n                    "
+                              ),
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("*")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.exam.name,
+                                  expression: "form.exam.name"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: { "is-invalid": _vm.$page.errors.name },
+                              attrs: {
+                                type: "text",
+                                name: "name",
+                                id: "name",
+                                placeholder: "contoh: Ujian matematika dasar"
+                              },
+                              domProps: { value: _vm.form.exam.name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form.exam,
+                                    "name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.$page.errors.name
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "invalid-feedback",
+                                    attrs: { role: "alert" }
+                                  },
+                                  [
+                                    _c("strong", [
+                                      _vm._v(_vm._s(_vm.$page.errors.name[0]))
+                                    ])
+                                  ]
+                                )
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "form-group" }, [
+                            _c("label", { attrs: { for: "description" } }, [
+                              _vm._v(
+                                "\n                    Deskripsi\n                    "
+                              ),
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("*")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.exam.description,
+                                  expression: "form.exam.description"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: {
+                                "is-invalid": _vm.$page.errors.description
+                              },
+                              attrs: {
+                                type: "text",
+                                name: "description",
+                                id: "description",
+                                placeholder:
+                                  "contoh: Ujian matematika dasar tahun 2020"
+                              },
+                              domProps: { value: _vm.form.exam.description },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form.exam,
+                                    "description",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.$page.errors.description
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "invalid-feedback",
+                                    attrs: { role: "alert" }
+                                  },
+                                  [
+                                    _c("strong", [
+                                      _vm._v(
+                                        _vm._s(_vm.$page.errors.description[0])
+                                      )
+                                    ])
+                                  ]
+                                )
+                              : _vm._e()
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "input-group mb-3" }, [
+                            _c("div", { staticClass: "input-group-prepend" }, [
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "input-group-text",
+                                  attrs: { for: "code" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                      Kode ujian\n                      "
+                                  ),
+                                  _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v("*")
+                                  ])
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: "code" } }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.form.exam.code,
+                                  expression: "form.exam.code"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              class: { "is-invalid": _vm.$page.errors.code },
+                              attrs: {
+                                type: "text",
+                                placeholder: "contoh: 112233aabb",
+                                "aria-label": "code",
+                                "aria-describedby": "code"
+                              },
+                              domProps: { value: _vm.form.exam.code },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form.exam,
+                                    "code",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "input-group-append" }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-outline-secondary",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.generate($event)
+                                    }
+                                  }
+                                },
+                                [_vm._v("acak kode")]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _vm.$page.errors.code
+                              ? _c(
+                                  "span",
+                                  {
+                                    staticClass: "invalid-feedback",
+                                    attrs: { role: "alert" }
+                                  },
+                                  [
+                                    _c("strong", [
+                                      _vm._v(_vm._s(_vm.$page.errors.code[0]))
+                                    ])
+                                  ]
+                                )
+                              : _vm._e()
+                          ])
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "row" }, [
+                        _c(
+                          "div",
+                          { staticClass: "col-md-12" },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-outline-secondary",
+                                attrs: { type: "submit" }
+                              },
+                              [_vm._v("Buat ujian")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "inertia-link",
+                              {
+                                staticClass: "btn btn-outline-secondary",
+                                attrs: {
+                                  href: _vm.$route("creator.exams.index"),
+                                  type: "submit"
+                                }
+                              },
+                              [_vm._v("Kembali ke daftar ujian")]
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ]
+                  )
+                ])
+              ]
             )
           ])
         ]
@@ -40476,7 +41483,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("layout", {
-    attrs: { title: "" },
+    attrs: { title: _vm.$page.app.name },
     scopedSlots: _vm._u([
       {
         key: "header",
@@ -52987,10 +53994,10 @@ var map = {
 	"./Creator/Config/Update.vue": "./resources/js/Pages/Creator/Config/Update.vue",
 	"./Creator/Exam/Create": "./resources/js/Pages/Creator/Exam/Create.vue",
 	"./Creator/Exam/Create.vue": "./resources/js/Pages/Creator/Exam/Create.vue",
+	"./Creator/Exam/Edit": "./resources/js/Pages/Creator/Exam/Edit.vue",
+	"./Creator/Exam/Edit.vue": "./resources/js/Pages/Creator/Exam/Edit.vue",
 	"./Creator/Exam/Index": "./resources/js/Pages/Creator/Exam/Index.vue",
 	"./Creator/Exam/Index.vue": "./resources/js/Pages/Creator/Exam/Index.vue",
-	"./Creator/Exam/Update": "./resources/js/Pages/Creator/Exam/Update.vue",
-	"./Creator/Exam/Update.vue": "./resources/js/Pages/Creator/Exam/Update.vue",
 	"./Home": "./resources/js/Pages/Home.vue",
 	"./Home.vue": "./resources/js/Pages/Home.vue",
 	"./Welcome": "./resources/js/Pages/Welcome.vue",
@@ -53465,6 +54472,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Creator/Exam/Edit.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/Pages/Creator/Exam/Edit.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Edit_vue_vue_type_template_id_6ba4b1fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Edit.vue?vue&type=template&id=6ba4b1fe& */ "./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=template&id=6ba4b1fe&");
+/* harmony import */ var _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Edit.vue?vue&type=script&lang=js& */ "./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Edit_vue_vue_type_template_id_6ba4b1fe___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Edit_vue_vue_type_template_id_6ba4b1fe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/Pages/Creator/Exam/Edit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=template&id=6ba4b1fe&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=template&id=6ba4b1fe& ***!
+  \*********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6ba4b1fe___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Edit.vue?vue&type=template&id=6ba4b1fe& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/Pages/Creator/Exam/Edit.vue?vue&type=template&id=6ba4b1fe&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6ba4b1fe___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Edit_vue_vue_type_template_id_6ba4b1fe___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Creator/Exam/Index.vue":
 /*!***************************************************!*\
   !*** ./resources/js/Pages/Creator/Exam/Index.vue ***!
@@ -53531,38 +54607,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_4aa9478e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Creator/Exam/Update.vue":
-/*!****************************************************!*\
-  !*** ./resources/js/Pages/Creator/Exam/Update.vue ***!
-  \****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-var render, staticRenderFns
-var script = {}
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
-  script,
-  render,
-  staticRenderFns,
-  false,
-  null,
-  null,
-  null
-  
-)
-
-component.options.__file = "resources/js/Pages/Creator/Exam/Update.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 

@@ -1,5 +1,5 @@
  <template>
-    <layout title="">
+    <layout :title="'Verifikasi Alamat Email Anda - ' + $page.app.name">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">

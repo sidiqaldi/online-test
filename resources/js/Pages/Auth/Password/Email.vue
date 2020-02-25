@@ -1,5 +1,5 @@
  <template>
-    <layout title="">
+    <layout :title="'Lupa Password - ' + $page.app.name">
         <div class="row container justify-content-center">
             <div class="col-md-8">
                 <div class="card">

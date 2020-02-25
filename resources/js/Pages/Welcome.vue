@@ -1,5 +1,5 @@
 <template>
-    <layout title="">
+    <layout :title="$page.app.name">
         <template v-slot:header>
             <div class="container py-5">
                 <div class="row container">

@@ -27,7 +27,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|min:15|max:150',
             'description' => 'required|min:50|max:250',
-            'code' => 'required|min:6|max:50,'
+            'code' => 'required|min:6|max:50|unique:exams'
         ];
     }
 
@@ -40,6 +40,7 @@ class StoreRequest extends FormRequest
             'name' => $this->input('name'),
             'description' => $this->input('description'),
             'user_id' => Auth::user()->id,
+            'code' => $this->input('code'),
         ];
     }
 }

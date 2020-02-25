@@ -5,7 +5,10 @@
         <div class="col-md-6">
           <h2>Informasi umum</h2>
           <div class="form-group">
-            <label for="name">Nama Ujian<span class="text-danger">*</span></label>
+            <label for="name">
+              Nama Ujian
+              <span class="text-danger">*</span>
+            </label>
             <input
               type="text"
               name="name"
@@ -20,7 +23,10 @@
             </span>
           </div>
           <div class="form-group">
-            <label for="description">Deskripsi<span class="text-danger">*</span></label>
+            <label for="description">
+              Deskripsi
+              <span class="text-danger">*</span>
+            </label>
             <input
               type="text"
               name="description"
@@ -35,12 +41,13 @@
             </span>
           </div>
           <div class="input-group mb-3">
-              <div class="input-group-prepend">
-    <label class="input-group-text" for="code">Kode ujian<span class="text-danger">*</span></label>
-  </div>
-            <label for="code">
-
-            </label>
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="code">
+                Kode ujian
+                <span class="text-danger">*</span>
+              </label>
+            </div>
+            <label for="code"></label>
             <input
               type="text"
               class="form-control"
