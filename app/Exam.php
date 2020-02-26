@@ -14,6 +14,7 @@ use Webpatser\Uuid\Uuid;
  * @method static self owner(\Illuminate\Contracts\Auth\Authenticatable|null $user)
  * @method static self paginate($perPage)
  * @method static create(array $data)
+ * @property mixed id
  */
 class Exam extends Model
 {

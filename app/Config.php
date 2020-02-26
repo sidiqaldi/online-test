@@ -11,8 +11,9 @@ class Config extends Model
         'user_id',
         'exam_id',
         'time_limit',
-        'random_questioner',
-        'random_answer',
+        'time_mode',
+        'question_order',
+        'answer_order',
         'show_result',
         'show_ranking'
     ];

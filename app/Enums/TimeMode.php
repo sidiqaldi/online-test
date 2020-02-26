@@ -2,6 +2,7 @@
 
 namespace App\Enums;
 
+use BenSampo\Enum\Contracts\LocalizedEnum;
 use BenSampo\Enum\Enum;
 
 /**
@@ -9,7 +10,7 @@ use BenSampo\Enum\Enum;
  * @method static static TimeLimit()
  * @method static static PerQuestion()
  */
-final class TimeMode extends Enum
+final class TimeMode extends Enum implements LocalizedEnum
 {
     const NoLimit = 1;
     const TimeLimit = 2;

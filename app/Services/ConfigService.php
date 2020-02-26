@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Enums\AnswerOrderStatus;
+use App\Enums\QuestionOrderStatus;
 use App\Enums\RandomAnswerStatus;
 use App\Enums\RandomQuestionStatus;
 use App\Enums\ShowRankingStatus;
@@ -15,9 +17,9 @@ class ConfigService
     public static function getConfigOptions()
     {
         return [
-            'random_question' => RandomQuestionStatus::toSelectArray(),
+            'question_order' => QuestionOrderStatus::toSelectArray(),
             'time_mode' => TimeMode::toSelectArray(),
-            'random_answer' => RandomAnswerStatus::toSelectArray(),
+            'answer_order' => AnswerOrderStatus::toSelectArray(),
             'show_result' => ShowResultStatus::toSelectArray(),
             'show_ranking' => ShowRankingStatus::toSelectArray(),
         ];
@@ -29,8 +31,9 @@ class ConfigService
             'user_id' =>Auth::user()->id,
             'exam_id' => $exam->id,
             'time_limit' => null,
-            'random_questioner' => RandomQuestionStatus::False,
-            'random_answer' => RandomAnswerStatus::False,
+            'time_mode' => TimeMode::NoLimit,
+            'question_order' => QuestionOrderStatus::Sequence,
+            'answer_order' => AnswerOrderStatus::Sequence,
             'show_result' => ShowResultStatus::True,
             'show_ranking' => ShowRankingStatus::True,
         ];

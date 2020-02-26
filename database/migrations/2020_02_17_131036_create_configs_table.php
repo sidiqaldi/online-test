@@ -19,8 +19,9 @@ class CreateConfigsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('exam_id');
             $table->unsignedInteger('time_limit')->nullable();
-            $table->unsignedSmallInteger('random_questioner');
-            $table->unsignedSmallInteger('random_answer');
+            $table->unsignedSmallInteger('time_mode');
+            $table->unsignedSmallInteger('question_order');
+            $table->unsignedSmallInteger('answer_order');
             $table->unsignedSmallInteger('show_result');
             $table->unsignedSmallInteger('show_ranking');
             $table->timestamps();

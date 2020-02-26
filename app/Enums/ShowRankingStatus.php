@@ -2,13 +2,14 @@
 
 namespace App\Enums;
 
+use BenSampo\Enum\Contracts\LocalizedEnum;
 use BenSampo\Enum\Enum;
 
 /**
  * @method static static False()
  * @method static static True()
  */
-final class ShowRankingStatus extends Enum
+final class ShowRankingStatus extends Enum implements LocalizedEnum
 {
     const False = 1;
     const True = 2;
