@@ -6,6 +6,7 @@ use App\Config;
 use App\Exam;
 use App\Filters\ExamFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Exam\UpdateRequest;
 use App\Http\Requests\Exam\StoreRequest;
 use App\Http\Resources\ExamResource;
 use App\Services\ConfigService;
@@ -37,7 +38,7 @@ class ExamController extends Controller
 
         return redirect()->route('creator.exams.edit', $exam->uuid)
             ->with('status', __('notification.success.add', ['model' => __('general.Exam')]))
-            ->with( 'pops', 'config');
+            ->with('pops', 'config');
     }
 
     public function edit(Exam $exam)
@@ -50,8 +51,12 @@ class ExamController extends Controller
         ], $options));
     }
 
-    public function update()
+    public function update(UpdateRequest $request, Exam $exam)
     {
-        return redirect()->back();
+        $exam->update($request->data());
+
+        return redirect()->back()
+            ->with('status', __('notification.success.update', ['model' => __('general.Exam')]))
+            ->with('pops', null);
     }
 }

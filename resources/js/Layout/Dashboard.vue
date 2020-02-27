@@ -47,7 +47,9 @@
       <div class="container-fluid px-4">
         <div class="my-4">
           <h1 class="d-inline">{{ this.page }}</h1>
-          <slot name="buttons"></slot>
+          <div class="d-block my-3">
+            <slot name="buttons"></slot>
+          </div>
         </div>
         <slot />
       </div>

@@ -1,6 +1,9 @@
 <?php
 
+use App\Enums\AnswerOrderStatus;
 use App\Enums\QuestionOrderStatus;
+use App\Enums\RankingStatus;
+use App\Enums\ResultStatus;
 use App\Enums\TimeMode;
 
 return [
@@ -16,4 +19,18 @@ return [
         QuestionOrderStatus::Random => 'Acak',
     ],
 
+    AnswerOrderStatus::class => [
+        AnswerOrderStatus::Sequence => 'Urut',
+        AnswerOrderStatus::Random => 'Acak',
+    ],
+
+    ResultStatus::class => [
+        ResultStatus::Show => 'Tampilkan',
+        ResultStatus::Hide => 'Sembunyikan',
+    ],
+
+    RankingStatus::class => [
+        RankingStatus::Show => 'Tampilkan',
+        RankingStatus::Hide => 'Sembunyikan',
+    ],
 ];

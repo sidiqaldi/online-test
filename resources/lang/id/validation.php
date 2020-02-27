@@ -1,5 +1,7 @@
 <?php
 
+use App\Enums\TimeMode;
+
 return [
 
     /*
@@ -149,7 +151,19 @@ return [
     'attributes' => [
         'name' => 'nama',
         'description' => 'deskripsi',
-        'code' => 'kode'
+        'code' => 'kode',
+        'time_limit' => 'Batas waktu',
+        'time_mode' => 'Pengaturan waktu',
+        'question_order' => 'Urutan soal',
+        'answer_order' => 'Urutan jawaban',
+        'ranking_status' => 'Tampilan ranking',
+        'result_status' => 'Tampilan hasil',
+    ],
+
+    'values' => [
+        'time_mode' => [
+            TimeMode::TimeLimit => 'Batas waktu'
+        ],
     ],
 
 ];

@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\Creator;
 
+use App\Config;
 use App\Exam;
 use App\Http\Controllers\Controller;
-use App\Services\ConfigService;
-use Inertia\Inertia;
+use App\Http\Requests\Config\UpdateRequest;
 
 class ConfigController extends Controller
 {
-    public function update(Exam $exam)
+    public function update(UpdateRequest $request, Config $config)
     {
-        $options = ConfigService::getConfigOptions();
+        $config->update($request->data());
 
-        return Inertia::render('Creator/Exam/Edit', array_merge([
-            'exam' => $exam,
-            'config' => $exam->config,
-        ], $options));
+        return redirect()->route('creator.exams.edit', Exam::find($config->exam_id)->uuid)
+            ->with('status', __('notification.success.update', ['model' => __('general.Config')]))
+            ->with( 'pops', 'config');
     }
 }

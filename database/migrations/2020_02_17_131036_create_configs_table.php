@@ -22,8 +22,8 @@ class CreateConfigsTable extends Migration
             $table->unsignedSmallInteger('time_mode');
             $table->unsignedSmallInteger('question_order');
             $table->unsignedSmallInteger('answer_order');
-            $table->unsignedSmallInteger('show_result');
-            $table->unsignedSmallInteger('show_ranking');
+            $table->unsignedSmallInteger('result_status');
+            $table->unsignedSmallInteger('ranking_status');
             $table->timestamps();
 
             $table->foreign('exam_id')

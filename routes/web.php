@@ -22,5 +22,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::prefix('creator')->name('creator.')->group(function () {
         Route::resource('/exams', 'Creator\ExamController');
+        Route::resource('/configs', 'Creator\ConfigController')->only('update');
     });
 });

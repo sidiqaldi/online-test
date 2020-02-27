@@ -14,9 +14,17 @@ class Config extends Model
         'time_mode',
         'question_order',
         'answer_order',
-        'show_result',
-        'show_ranking'
+        'result_status',
+        'ranking_status',
     ];
+
+    /**
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 
     /**
      * Setup model event hooks
