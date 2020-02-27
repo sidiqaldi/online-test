@@ -1,6 +1,6 @@
 <template>
     <div class="border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading">
+        <div class="sidebar-heading d-none d-md-block d-sm-none">
             <inertia-link class="navbar-brand" href="/">{{ $page.app.name }}</inertia-link>
         </div>
         <div class="list-group list-group-flush">

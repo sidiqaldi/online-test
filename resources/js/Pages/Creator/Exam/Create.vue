@@ -4,75 +4,25 @@
       <div class="row">
         <div class="col-md-6">
           <h2>Informasi umum</h2>
-          <div class="form-group">
-            <label for="name">
-              Nama Ujian
-              <span class="text-danger">*</span>
-            </label>
-            <input
-              type="text"
-              name="name"
-              class="form-control"
-              id="name"
-              v-model="form.name"
-              v-bind:class="{ 'is-invalid' : $page.errors.name }"
-              placeholder="contoh: Ujian matematika dasar"
-            />
-            <span v-if="$page.errors.name" class="invalid-feedback" role="alert">
-              <strong>{{ $page.errors.name[0] }}</strong>
-            </span>
-          </div>
-          <div class="form-group">
-            <label for="description">
-              Deskripsi
-              <span class="text-danger">*</span>
-            </label>
-            <input
-              type="text"
-              name="description"
-              class="form-control"
-              id="description"
-              v-bind:class="{ 'is-invalid' : $page.errors.description }"
-              v-model="form.description"
-              placeholder="contoh: Ujian matematika dasar tahun 2020"
-            />
-            <span v-if="$page.errors.description" class="invalid-feedback" role="alert">
-              <strong>{{ $page.errors.description[0] }}</strong>
-            </span>
-          </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="code">
-                Kode ujian
-                <span class="text-danger">*</span>
-              </label>
-            </div>
-            <label for="code"></label>
-            <input
-              type="text"
-              class="form-control"
-              placeholder="contoh: 112233aabb"
-              aria-label="code"
-              v-model="form.code"
-              aria-describedby="code"
-              v-bind:class="{ 'is-invalid' : $page.errors.code }"
-            />
-            <div class="input-group-append">
-              <button
-                class="btn btn-outline-secondary"
-                @click.prevent="generate"
-                type="button"
-              >acak kode</button>
-            </div>
-            <span v-if="$page.errors.code" class="invalid-feedback" role="alert">
-              <strong>{{ $page.errors.code[0] }}</strong>
-            </span>
-          </div>
+          <input-text class="form-group" v-model="form.name" :errors="$page.errors.name" label="Nama Ujian" :required="true" placeholder="contoh: Ujian matematika dasar"/>
+          <input-text class="form-group" v-model="form.description" :errors="$page.errors.description" label="Deskripsi" :required="true" placeholder="contoh: Ujian matematika dasar tahun 2020"/>
+          <input-text class="input-group mb-3" :value="form.code" v-model="form.code" :errors="$page.errors.code" :required="true" placeholder="contoh: 112233aabb">
+            <template v-slot:prepend>
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="code">Kode ujian <span class="text-danger">*</span></label>
+              </div>
+            </template>
+            <template v-slot:append>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" @click.prevent="generate" type="button">acak kode</button>
+                </div>
+            </template>
+          </input-text>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-md-12">
-          <button type="submit" class="btn btn-outline-secondary">Buat ujian</button>
+          <button-loading :loading="sending" class="btn btn-outline-secondary" type="submit">Buat ujian</button-loading>
           <inertia-link
             :href="$route('creator.exams.index')"
             type="submit"
@@ -85,17 +35,22 @@
 </template>
 
 <script>
-import Layout from "./../../../Layout/Dashboard";
+import Layout from "@/Layout/Dashboard";
+import InputText from "@/Shared/InputText";
+import ButtonLoading from "@/Shared/ButtonLoading"
 
 export default {
   components: {
-    Layout
+    Layout,
+    InputText,
+    ButtonLoading
   },
   props: {
     random_question: Object
   },
   data() {
     return {
+      sending: false,
       form: {
         name: null,
         description: null,
@@ -110,7 +65,8 @@ export default {
         .substring(3);
     },
     submit() {
-      this.$inertia.post(this.$route("creator.exams.store"), this.form);
+      this.sending = true
+      this.$inertia.post(this.$route("creator.exams.store"), this.form).then(() => this.sending = false)
     }
   }
 };

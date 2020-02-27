@@ -3,7 +3,8 @@
     <sidebar :sidebar="sidebar" :active="active" />
 
     <div id="page-content-wrapper">
-      <nav class="navbar navbar-expand-md navbar-light py-3">
+      <div class="container-fluid text-center text-white bg-secondary d-sm-block d-md-none">{{ $page.app.name }}</div>
+      <nav class="navbar navbar-expand navbar-light py-3">
         <button class="btn btn-outline-secondary" id="menu-toggle" @click="sidebar = !sidebar">Menu</button>
 
         <button
@@ -38,7 +39,7 @@
               >
                 <a href="#" class="dropdown-item">Profil</a>
                 <div class="dropdown-divider"></div>
-                <logout-button class="dropdown-item" />
+                <button-logout class="dropdown-item" />
               </div>
             </li>
           </ul>
@@ -58,12 +59,12 @@
 </template>
 
 <script>
-import LogoutButton from "../components/LogoutButton";
-import Sidebar from "../components/Sidebar";
+import ButtonLogout from "@/Shared/ButtonLogout";
+import Sidebar from "@/Shared/Sidebar";
 
 export default {
   components: {
-    LogoutButton,
+    ButtonLogout,
     Sidebar
   },
   data() {

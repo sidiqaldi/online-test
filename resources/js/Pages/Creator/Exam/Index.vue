@@ -37,7 +37,7 @@
 </template>
 
 <script>
-    import Layout from "./../../../Layout/Dashboard";
+    import Layout from "@/Layout/Dashboard";
 
     export default {
         props: {
