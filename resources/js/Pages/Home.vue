@@ -1,4 +1,4 @@
- <template>
+<template>
   <layout :title="'Halaman pengguna - ' + $page.app.name" page="Dashboard" active="dashboard">
     <div v-if="$page.status" class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>selamat datang! </strong> {{ $page.auth.user.name }}.

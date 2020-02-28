@@ -7,36 +7,13 @@
       <nav class="navbar navbar-expand navbar-light py-3">
         <button class="btn btn-outline-secondary" id="menu-toggle" @click="sidebar = !sidebar">Menu</button>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto"></ul>
           <ul class="navbar-nav ml-auto my-2">
             <li class="nav-item"></li>
             <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >{{ $page.auth.user.name }}</a>
-              <div
-                class="dropdown-menu dropdown-menu-right fade bg-light"
-                aria-labelledby="navbarDropdown"
-              >
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $page.auth.user.name }}</a>
+              <div class="dropdown-menu dropdown-menu-right fade bg-light" aria-labelledby="navbarDropdown" >
                 <a href="#" class="dropdown-item">Profil</a>
                 <div class="dropdown-divider"></div>
                 <button-logout class="dropdown-item" />
@@ -46,10 +23,11 @@
         </div>
       </nav>
       <div class="container-fluid px-4">
+        <flash-note />
         <div class="my-4">
-          <h1 class="d-inline">{{ this.page }}</h1>
-          <div class="d-block my-3">
-            <slot name="buttons"></slot>
+          <slot name="header" />
+          <div class="d-flex my-3">
+            <slot name="buttons" />
           </div>
         </div>
         <slot />
@@ -59,12 +37,14 @@
 </template>
 
 <script>
-import ButtonLogout from "@/Shared/ButtonLogout";
-import Sidebar from "@/Shared/Sidebar";
+import ButtonLogout from "@/Shared/ButtonLogout"
+import Sidebar from "@/Shared/Sidebar"
+import FlashNote from "@/Shared/FlashNote"
 
 export default {
   components: {
     ButtonLogout,
+    FlashNote,
     Sidebar
   },
   data() {
@@ -74,7 +54,6 @@ export default {
   },
   props: {
     title: String,
-    page: String,
     active: String
   },
   watch: {
@@ -87,7 +66,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$inertia.post(this.$route("logout"), this.form);
+      this.$inertia.post(this.$route("logout"), this.form)
     }
   }
 };

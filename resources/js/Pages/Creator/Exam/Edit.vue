@@ -1,263 +1,79 @@
 <template>
-  <layout :title="'Edit Ujian - ' + $page.app.name" active="creator.exams.index" page="Edit Ujian">
-    <template v-slot:buttons>
-      <inertia-link
-        :href="$route('creator.exams.index')"
-        class="btn btn-outline-secondary"
-        type="submit"
-      >Kembali ke daftar ujian</inertia-link>
+  <layout :title="'Edit Ujian - ' + $page.app.name" active="creator.exams.index">
+    <template v-slot:header>
+      <h1 class="d-inline">
+        <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link> / Edit
+      </h1>
     </template>
-    <div class="alert alert-success alert-dismissible fade show" role="alert" v-if="$page.status">
-      <strong>Success!</strong>
-      {{ $page.status }}.
-      <button
-        aria-label="Close"
-        class="close"
-        data-dismiss="alert"
-        type="button"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="accordion" id="accordionEditConfig">
-      <div class="card">
+    <div class="accordion col-md-6" id="accordionEditConfig">
+      <div class="card row">
         <div class="card-header" id="headingBasic">
-          <h2
-            :aria-expanded="$page.pops === null ? 'true' : 'false'"
-            aria-controls="collapseBasic"
-            class="mb-0"
-            data-target="#collapseBasic"
-            data-toggle="collapse"
-            type="button"
-            v-bind:class="{'collapsed' : $page.pops != null}"
-          >
+          <h2 :aria-expanded="$page.pops === null ? 'true' : 'false'" aria-controls="collapseBasic" class="mb-0" data-target="#collapseBasic" data-toggle="collapse" type="button" v-bind:class="{'collapsed' : $page.pops != null}" >
             <Icon name="grid"/>
             Informasi Umum
           </h2>
         </div>
-
-        <div
-          aria-labelledby="headingBasic"
-          class="collapse"
-          data-parent="#accordionEditConfig"
-          id="collapseBasic"
-          v-bind:class="{'show' : $page.pops === null}"
-        >
+        <div aria-labelledby="headingBasic" class="collapse" data-parent="#accordionEditConfig" id="collapseBasic" v-bind:class="{'show' : $page.pops === null}">
           <div class="card-body">
             <form @submit.prevent="submitExam">
               <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="name">
-                      Nama Ujian
-                      <span class="text-danger">*</span>
-                    </label>
-                    <input
-                      class="form-control"
-                      id="name"
-                      name="name"
-                      placeholder="contoh: Ujian matematika dasar"
-                      type="text"
-                      v-bind:class="{ 'is-invalid' : $page.errors.name }"
-                      v-model="form.exam.name"
-                    />
-                    <span class="invalid-feedback" role="alert" v-if="$page.errors.name">
-                      <strong>{{ $page.errors.name[0] }}</strong>
-                    </span>
-                  </div>
-                  <div class="form-group">
-                    <label for="description">
-                      Deskripsi
-                      <span class="text-danger">*</span>
-                    </label>
-                    <input
-                      class="form-control"
-                      id="description"
-                      name="description"
-                      placeholder="contoh: Ujian matematika dasar tahun 2020"
-                      type="text"
-                      v-bind:class="{ 'is-invalid' : $page.errors.description }"
-                      v-model="form.exam.description"
-                    />
-                    <span class="invalid-feedback" role="alert" v-if="$page.errors.description">
-                      <strong>{{ $page.errors.description[0] }}</strong>
-                    </span>
-                  </div>
-                  <div class="input-group mb-3">
+                <input-text class="form-group col-12" v-model="form.exam.name" :errors="$page.errors.name" label="Nama Ujian" :required="true" placeholder="contoh: Ujian matematika dasar"/>
+                <input-text class="form-group col-12" v-model="form.exam.description" :errors="$page.errors.description" label="Deskripsi" :required="true" placeholder="contoh: Ujian matematika dasar tahun 2020"/>
+                <input-text class="input-group mb-3 col-12" v-model="form.exam.code" :errors="$page.errors.code" :required="true" placeholder="contoh: 112233aabb">
+                  <template v-slot:prepend>
                     <div class="input-group-prepend">
-                      <label class="input-group-text" for="examCode">
-                        Kode ujian
-                        <span class="text-danger">*</span>
-                      </label>
+                      <label class="input-group-text" for="code">Kode ujian <span class="text-danger">*</span></label>
                     </div>
-                    <input
-                      aria-describedby="code"
-                      aria-label="code"
-                      class="form-control"
-                      id="examCode"
-                      placeholder="contoh: 112233aabb"
-                      type="text"
-                      v-bind:class="{ 'is-invalid' : $page.errors.code }"
-                      v-model="form.exam.code"
-                    />
+                  </template>
+                  <template v-slot:append>
                     <div class="input-group-append">
-                      <button
-                        @click.prevent="generate"
-                        class="btn btn-outline-secondary"
-                        type="button"
-                      >acak kode</button>
+                      <button class="btn btn-outline-secondary" @click.prevent="generate" type="button">acak kode</button>
                     </div>
-                    <span class="invalid-feedback" role="alert" v-if="$page.errors.code">
-                      <strong>{{ $page.errors.code[0] }}</strong>
-                    </span>
-                  </div>
-                </div>
+                  </template>
+                </input-text>
               </div>
-              <div class="row">
+              <div class="row my-4">
                 <div class="col-md-12">
-                  <button class="btn btn-outline-secondary" type="submit">Simpan</button>
+                  <button-loading :loading="sending" type="submit">Simpan</button-loading>
                 </div>
               </div>
             </form>
           </div>
         </div>
       </div>
-      <div class="card">
+      <div class="card row">
         <div class="card-header" id="headingConfig">
-          <h2
-            :aria-expanded="$page.pops === 'config' ? 'true' : 'false'"
-            aria-controls="collapseConfig"
-            class="mb-0"
-            data-target="#collapseConfig"
-            data-toggle="collapse"
-            type="button"
-            v-bind:class="{'collapsed' : $page.pops !== 'config'}"
-          >
+          <h2 :aria-expanded="$page.pops === 'config' ? 'true' : 'false'" aria-controls="collapseConfig" class="mb-0" data-target="#collapseConfig" data-toggle="collapse" type="button" v-bind:class="{'collapsed' : $page.pops !== 'config'}">
             <icon name="gear" />
             Pengaturan
           </h2>
         </div>
-        <div
-          aria-labelledby="headingConfig"
-          class="collapse"
-          data-parent="#accordionEditConfig"
-          id="collapseConfig"
-          v-bind:class="{'show' : $page.pops === 'config'}"
-        >
+        <div aria-labelledby="headingConfig" class="collapse" data-parent="#accordionEditConfig" id="collapseConfig" v-bind:class="{'show' : $page.pops === 'config'}" >
           <div class="card-body">
             <form @submit.prevent="submitConfig">
               <div class="row">
-                <div class="col-md-6">
-                  <div class="form-row">
-                    <div class="form-group col-md-5">
-                      <label for="timeMode">Pengaturan waktu</label>
-                      <select
-                        class="form-control"
-                        id="timeMode"
-                        v-bind:class="{ 'is-invalid' : $page.errors.time_mode}"
-                        v-model="form.config.time_mode"
-                      >
-                        <option
-                          :key="key"
-                          :value="key"
-                          v-for="(value, key) in time_mode"
-                        >{{ value }}</option>
-                      </select>
-                      <span class="invalid-feedback" role="alert" v-if="$page.errors.time_mode">
-                        <strong>{{ $page.errors.time_mode[0] }}</strong>
-                      </span>
-                    </div>
-                    <div class="form-group col-md-7" v-if="parseInt(form.config.time_mode) === 2">
-                      <label for="inputTimeLimit">Batas waktu (dalam menit)</label>
-                      <input
-                        class="form-control"
-                        id="inputTimeLimit"
-                        min="0"
-                        placeholder="contoh: 120"
-                        step="1"
-                        type="number"
-                        v-bind:class="{ 'is-invalid' : $page.errors.time_limit}"
-                        v-model="form.config.time_limit"
-                      />
-                      <span class="invalid-feedback" role="alert" v-if="$page.errors.time_limit">
-                        <strong>{{ $page.errors.time_limit[0] }}</strong>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="questionOrder">Urutan Soal</label>
-                    <select
-                      class="form-control"
-                      id="questionOrder"
-                      v-model="form.config.question_order"
-                    >
-                      <option
-                        :key="key"
-                        :value="key"
-                        v-for="(value, key) in question_order"
-                      >{{ value }}</option>
-                    </select>
-                    <span class="invalid-feedback" role="alert" v-if="$page.errors.question_order">
-                      <strong>{{ $page.errors.question_order[0] }}</strong>
-                    </span>
-                  </div>
-                  <div class="form-group">
-                    <label for="answerOrder">Urutan Jawaban</label>
-                    <select
-                      class="form-control"
-                      id="answerOrder"
-                      v-model="form.config.answer_order"
-                    >
-                      <option
-                        :key="key"
-                        :value="key"
-                        v-for="(value, key) in answer_order"
-                      >{{ value }}</option>
-                    </select>
-                    <span class="invalid-feedback" role="alert" v-if="$page.errors.answer_order">
-                      <strong>{{ $page.errors.answer_order[0] }}</strong>
-                    </span>
-                  </div>
-                  <div class="form-group">
-                    <label for="rankingStatus">Tampilan Ranking</label>
-                    <select
-                      class="form-control"
-                      id="answerOrder"
-                      v-model="form.config.ranking_status"
-                    >
-                      <option
-                        :key="key"
-                        :value="key"
-                        v-for="(value, key) in ranking_status"
-                      >{{ value }}</option>
-                    </select>
-                    <span class="invalid-feedback" role="alert" v-if="$page.errors.ranking_status">
-                      <strong>{{ $page.errors.ranking_status[0] }}</strong>
-                    </span>
-                  </div>
-                  <div class="form-group">
-                    <label for="rankingStatus">Tampilan Hasil</label>
-                    <select
-                      class="form-control"
-                      id="answerOrder"
-                      v-model="form.config.result_status"
-                    >
-                      <option
-                        :key="key"
-                        :value="key"
-                        v-for="(value, key) in result_status"
-                      >{{ value }}</option>
-                    </select>
-                    <span class="invalid-feedback" role="alert" v-if="$page.errors.result_status">
-                      <strong>{{ $page.errors.result_status[0] }}</strong>
-                    </span>
-                  </div>
+                <div class="form-row col-md-12 row">
+                  <input-select class="form-group col-6" v-model="form.config.time_mode" :errors="$page.errors.time_mode" label="Pengaturan waktu" :required="true">
+                    <option :key="key" :value="key" v-for="(value, key) in time_mode" >{{ value }}</option>
+                  </input-select>
+                  <input-text v-if="parseInt(form.config.time_mode) === 2" class="form-group col-6" v-model="form.config.time_limit" :errors="$page.errors.time_limit" label="Batas waktu (dalam menit)" :required="true" />
                 </div>
+                <input-select class="form-group col-12" v-model="form.config.question_order" :errors="$page.errors.question_order" label="Urutan Soal" :required="true">
+                  <option :key="key" :value="key" v-for="(value, key) in question_order" >{{ value }}</option>
+                </input-select>
+                <input-select class="form-group col-12" v-model="form.config.answer_order" :errors="$page.errors.answer_order" label="Urutan Jawaban" :required="true">
+                  <option :key="key" :value="key" v-for="(value, key) in answer_order" >{{ value }}</option>
+                </input-select>
+                <input-select class="form-group col-12" v-model="form.config.ranking_status" :errors="$page.errors.ranking_status" label="Tampilan Ranking" :required="true">
+                  <option :key="key" :value="key" v-for="(value, key) in ranking_status" >{{ value }}</option>
+                </input-select>
+                <input-select class="form-group col-12" v-model="form.config.result_status" :errors="$page.errors.result_status" label="Tampilan Hasil" :required="true">
+                  <option :key="key" :value="key" v-for="(value, key) in result_status" >{{ value }}</option>
+                </input-select>
               </div>
-              <div class="row">
+              <div class="row my-4">
                 <div class="col-md-12">
-                  <button class="btn btn-outline-secondary" type="submit">Simpan</button>
-
+                  <button-loading :loading="sending" type="submit">Simpan</button-loading>
                 </div>
               </div>
             </form>
@@ -269,13 +85,19 @@
 </template>
 
 <script>
-import Layout from "@/Layout/Dashboard";
-import Icon from "@/Shared/Icon";
+import Layout from "@/Layout/Dashboard"
+import Icon from "@/Shared/Icon"
+import InputText from "@/Shared/InputText"
+import InputSelect from "@/Shared/InputSelect"
+import ButtonLoading from "@/Shared/ButtonLoading"
 
 export default {
   components: {
     Layout,
-    Icon
+    Icon,
+    InputText,
+    InputSelect,
+    ButtonLoading,
   },
   props: {
     question_order: Object,
@@ -292,6 +114,7 @@ export default {
   },
   data() {
     return {
+      sending: false,
       form: {
         exam: {
           name: null,
@@ -316,10 +139,12 @@ export default {
         .substring(3);
     },
     submitExam() {
-      this.$inertia.put(this.$route("creator.exams.update", this.form.exam.uuid), this.form.exam);
+      this.sending = true
+      this.$inertia.put(this.$route("creator.exams.update", this.form.exam.uuid), this.form.exam).then(() => this.sending = false)
     },
     submitConfig() {
-      this.$inertia.put(this.$route("creator.configs.update", this.form.config.uuid), this.form.config);
+      this.sending = true
+      this.$inertia.put(this.$route("creator.configs.update", this.form.config.uuid), this.form.config).then(() => this.sending = false)
     }
   }
 };
