@@ -1,9 +1,9 @@
 <template>
   <layout :title="'Buat Ujian - ' + $page.app.name"  active="creator.exams.index">
     <template v-slot:header>
-      <h1 class="d-inline">
+      <h3 class="d-inline">
         <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link> / Buat baru
-      </h1>
+      </h3>
     </template>
     <form @submit.prevent="submit">
       <div class="row">

@@ -1,11 +1,12 @@
 <template>
   <layout :title="'Buat Seksi Ujian - ' + $page.app.name"  active="creator.exams.index">
     <template v-slot:header>
-      <h1 class="d-inline">
-        <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link> 
-        / <inertia-link :href="$route('creator.sections.index', exam.uuid)" type="submit">Daftar Seksi</inertia-link> 
+      <h3 class="d-inline">
+        <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link>
+        / <inertia-link :href="$route('creator.exams.edit', exam.uuid)" type="submit">{{ exam.name }}</inertia-link>
+        / <inertia-link :href="$route('creator.sections.index', exam.uuid)" type="submit">Daftar Seksi</inertia-link>
         / Buat baru
-      </h1>
+      </h3>
     </template>
     <form @submit.prevent="submit">
       <div class="row">

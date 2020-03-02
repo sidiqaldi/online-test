@@ -3,12 +3,14 @@
     <template v-slot:header>
       <h3 class="d-inline">
         <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link> /
-        <inertia-link :href="$route('creator.exams.edit', exam.uuid)" type="submit">{{ exam.name }}</inertia-link> / Daftar Seksi
+        <inertia-link :href="$route('creator.exams.edit', exam.uuid)" type="submit">{{ exam.name }}</inertia-link> /
+        <inertia-link :href="$route('creator.sections.index', exam.uuid)" type="submit">Daftar Seksi</inertia-link> /
+       {{ section.name }}
       </h3>
     </template>
     <div class="row  no-gutters">
         <div role="tablist" class="col-md-6">
-        <b-card no-body class="mb-1" v-for ="(section, key) in sections" :key="key">
+        <b-card no-body class="mb-1" v-for ="(section, key) in questions" :key="key">
             <b-card-header header-tag="header" role="tab">
                 <div class="row">
                     <div class="col-md-6 p-2">
@@ -16,7 +18,7 @@
                     </div>
                     <div class="col-md-6">
                         <b-row align-h="end">
-                            <inertia-link :href="$route('creator.questions.index', section.uuid)" align-self="end" class="btn btn-light"><icon name="list-task" /> Daftar Soal</inertia-link>
+                            <b-button align-self="end" variant="light"><icon name="list-task" /> Daftar Soal</b-button>
                             <b-button align-self="end" variant="light" v-b-modal="'delete-' + section.uuid"><icon name="trash" /> Hapus</b-button>
                             <b-modal :id="'delete-' + section.uuid" hide-backdrop title="Konfirmasi">
                                 Hapus seksi <strong>{{ section.name }}</strong>?
@@ -57,7 +59,7 @@
                 <inertia-link :href="$route('creator.sections.create', exam.uuid)" class="btn col-12 btn-outline-secondary">
                 <span class="border-secondary col-12">
                     <icon name="plus" />
-                    Seksi baru
+                    Soal baru
                 </span>
                 </inertia-link>
             </b-card-header>
@@ -78,7 +80,8 @@ export default {
   },
   props: {
     exam: Object,
-    sections: Array,
+    questions: Array,
+    section: Object,
   },
   data() {
     return {

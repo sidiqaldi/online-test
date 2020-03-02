@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Creator;
 
 use App\Exam;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Section\DestroyRequest;
 use App\Http\Requests\Section\StoreRequest;
 use App\Section;
 use Inertia\Inertia;
@@ -32,5 +33,15 @@ class SectionController extends Controller
 
         return redirect()->route('creator.sections.index', $exam->uuid)
             ->with('success', __('notification.success.add', ['model' => __('general.Section')]));
+    }
+
+    public function destroy(DestroyRequest $request, Section $section)
+    {
+        $exam = $section->exam;
+
+        $section->delete();
+
+        return redirect()->route('creator.sections.index', $exam->uuid)
+            ->with('success', __('notification.success.delete', ['model' => __('general.Section')]));
     }
 }

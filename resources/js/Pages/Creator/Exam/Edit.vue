@@ -1,17 +1,17 @@
 <template>
   <layout :title="'Edit Ujian - ' + $page.app.name" active="creator.exams.index">
     <template v-slot:header>
-      <h1 class="d-inline">
-        <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link> / Edit
-      </h1>
+      <h3 class="d-inline">
+        <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link> / {{exam.name}} / Edit
+      </h3>
     </template>
     <div class="accordion col-md-6" id="accordionEditConfig">
       <div class="card row">
         <div class="card-header" id="headingBasic">
-          <h2 :aria-expanded="$page.pops === null ? 'true' : 'false'" aria-controls="collapseBasic" class="mb-0" data-target="#collapseBasic" data-toggle="collapse" type="button" v-bind:class="{'collapsed' : $page.pops != null}" >
+          <h4 :aria-expanded="$page.pops === null ? 'true' : 'false'" aria-controls="collapseBasic" class="mb-0" data-target="#collapseBasic" data-toggle="collapse" type="button" v-bind:class="{'collapsed' : $page.pops != null}" >
             <Icon name="grid"/>
             Informasi Umum
-          </h2>
+          </h4>
         </div>
         <div aria-labelledby="headingBasic" class="collapse" data-parent="#accordionEditConfig" id="collapseBasic" v-bind:class="{'show' : $page.pops === null}">
           <div class="card-body">
@@ -43,10 +43,10 @@
       </div>
       <div class="card row">
         <div class="card-header" id="headingConfig">
-          <h2 :aria-expanded="$page.pops === 'config' ? 'true' : 'false'" aria-controls="collapseConfig" class="mb-0" data-target="#collapseConfig" data-toggle="collapse" type="button" v-bind:class="{'collapsed' : $page.pops !== 'config'}">
+          <h4 :aria-expanded="$page.pops === 'config' ? 'true' : 'false'" aria-controls="collapseConfig" class="mb-0" data-target="#collapseConfig" data-toggle="collapse" type="button" v-bind:class="{'collapsed' : $page.pops !== 'config'}">
             <icon name="gear" />
             Pengaturan
-          </h2>
+          </h4>
         </div>
         <div aria-labelledby="headingConfig" class="collapse" data-parent="#accordionEditConfig" id="collapseConfig" v-bind:class="{'show' : $page.pops === 'config'}" >
           <div class="card-body">
@@ -80,6 +80,14 @@
           </div>
         </div>
       </div>
+        <div class="card row">
+        <div class="card-header" id="headingConfig">
+          <h4 class="mb-0" type="button">
+            <icon name="list-task" />
+            <inertia-link :href="$route('creator.sections.index', exam.uuid)"> Seksi & Soal </inertia-link>
+          </h4>
+        </div>
+        </div>
     </div>
   </layout>
 </template>

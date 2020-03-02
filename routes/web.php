@@ -27,6 +27,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/{exam}', 'Creator\SectionController@index')->name('sections.index');
             Route::get('/{exam}/create', 'Creator\SectionController@create')->name('sections.create');
             Route::post('/{exam}/store', 'Creator\SectionController@store')->name('sections.store');
+            Route::delete('/{section}', 'Creator\SectionController@destroy')->name('sections.destroy');
+        });
+        Route::prefix('/questions')->group(function () {
+            Route::get('/{section}', 'Creator\QuestionController@index')->name('questions.index');
         });
     });
 });

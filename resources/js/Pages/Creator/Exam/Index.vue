@@ -1,9 +1,9 @@
 <template>
     <layout :title="'Halaman Penyelenggara - ' + $page.app.name" page="Daftar Ujian" active="creator.exams.index">
         <template v-slot:header>
-            <h1 class="d-inline">
+            <h3 class="d-inline">
                 Daftar Ujian
-            </h1>
+            </h3>
         </template>
         <template v-slot:buttons>
             <inertia-link :href="$route('creator.exams.create')" class="mr-auto my-auto btn btn-outline-secondary">Buat ujian</inertia-link>
@@ -27,7 +27,7 @@
                     <td class="align-middle">
                         <div class="d-flex">
                             <inertia-link :href="$route('creator.exams.edit', exam.uuid)" class="mr-2 align-self-stretch btn btn-outline-secondary"> Edit </inertia-link>
-                            <inertia-link :href="$route('creator.sections.index', exam.uuid)" class="mr-2 align-self-stretch btn btn-outline-secondary"> Daftar Soal </inertia-link>
+                            <inertia-link :href="$route('creator.sections.index', exam.uuid)" class="mr-2 align-self-stretch btn btn-outline-secondary"> Seksi & Soal </inertia-link>
                         </div>
                     </td>
                 </tr>
