@@ -23,5 +23,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('creator')->name('creator.')->group(function () {
         Route::resource('/exams', 'Creator\ExamController');
         Route::resource('/configs', 'Creator\ConfigController')->only('update');
+        Route::prefix('/sections')->group(function () {
+            Route::get('/{exam}', 'Creator\SectionController@index')->name('sections.index');
+            Route::get('/{exam}/create', 'Creator\SectionController@create')->name('sections.create');
+            Route::post('/{exam}/store', 'Creator\SectionController@store')->name('sections.store');
+        });
     });
 });

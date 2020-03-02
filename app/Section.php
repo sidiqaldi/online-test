@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Enums\ExamStatus;
 use App\Filters\Filterable;
 use App\Traits\HasOwner;
 use Illuminate\Database\Eloquent\Model;
@@ -16,11 +15,11 @@ use Webpatser\Uuid\Uuid;
  * @method static create(array $data)
  * @property mixed id
  */
-class Exam extends Model
+class Section extends Model
 {
     use Filterable, HasOwner;
 
-    protected $fillable = ['user_id', 'name', 'description', 'code'];
+    protected $fillable = ['user_id', 'exam_id', 'name', 'score_per_question', 'passing_grade', 'order'];
 
     /**
      * Setup model event hooks
@@ -42,26 +41,10 @@ class Exam extends Model
     }
 
     /**
-     * @return string
+     * @return BelongsTo
      */
-    public function getStatusAttribute()
+    public function exam()
     {
-        return ExamStatus::getDescription($this->status_id);
-    }
-
-    /**
-     * @return HasOne
-     */
-    public function config()
-    {
-        return $this->hasOne('App\Config');
-    }
-
-    /**
-     * @return HasMany
-     */
-    public function sections()
-    {
-        return $this->hasMany('App\Section');
+        return $this->belongsTo('App\Exam');
     }
 }

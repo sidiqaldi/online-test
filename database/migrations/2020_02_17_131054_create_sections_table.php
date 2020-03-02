@@ -18,6 +18,8 @@ class CreateSectionsTable extends Migration
             $table->uuid('uuid');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('exam_id');
+            $table->string('name', 200);
+            $table->unsignedInteger('score_per_question');
             $table->unsignedInteger('passing_grade');
             $table->unsignedInteger('order');
             $table->timestamps();

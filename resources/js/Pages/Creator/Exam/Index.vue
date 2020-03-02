@@ -9,12 +9,6 @@
             <inertia-link :href="$route('creator.exams.create')" class="mr-auto my-auto btn btn-outline-secondary">Buat ujian</inertia-link>
             <input type="text" class="col-6 form-control"/>
         </template>
-        <div v-if="$page.status" class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Sukses! </strong> {{ $page.status }}.
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -33,7 +27,7 @@
                     <td class="align-middle">
                         <div class="d-flex">
                             <inertia-link :href="$route('creator.exams.edit', exam.uuid)" class="mr-2 align-self-stretch btn btn-outline-secondary"> Edit </inertia-link>
-                            <inertia-link :href="$route('creator.exams.create')" class="mr-2 align-self-stretch btn btn-outline-secondary"> Daftar Soal </inertia-link>
+                            <inertia-link :href="$route('creator.sections.index', exam.uuid)" class="mr-2 align-self-stretch btn btn-outline-secondary"> Daftar Soal </inertia-link>
                         </div>
                     </td>
                 </tr>

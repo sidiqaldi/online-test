@@ -27,7 +27,6 @@
       <div class="row mt-5">
         <div class="col-md-12">
           <button-loading :loading="sending" type="submit">Buat ujian</button-loading>
-         
         </div>
       </div>
     </form>
