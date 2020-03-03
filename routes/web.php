@@ -31,6 +31,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
         Route::prefix('/questions')->group(function () {
             Route::get('/{section}', 'Creator\QuestionController@index')->name('questions.index');
+            Route::get('/{section}/create', 'Creator\QuestionController@create')->name('questions.create');
         });
     });
 });

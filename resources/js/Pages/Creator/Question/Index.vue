@@ -5,7 +5,7 @@
         <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link> /
         <inertia-link :href="$route('creator.exams.edit', exam.uuid)" type="submit">{{ exam.name }}</inertia-link> /
         <inertia-link :href="$route('creator.sections.index', exam.uuid)" type="submit">Daftar Seksi</inertia-link> /
-       {{ section.name }}
+        {{ section.name }}
       </h3>
     </template>
     <div class="row  no-gutters">
@@ -56,7 +56,7 @@
         </b-card>
         <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
-                <inertia-link :href="$route('creator.sections.create', exam.uuid)" class="btn col-12 btn-outline-secondary">
+                <inertia-link :href="$route('creator.questions.create', section.uuid)" class="btn col-12 btn-outline-secondary">
                 <span class="border-secondary col-12">
                     <icon name="plus" />
                     Soal baru
