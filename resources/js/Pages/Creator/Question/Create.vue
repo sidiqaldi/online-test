@@ -10,53 +10,66 @@
     </template>
     <form @submit.prevent="submit">
       <div class="row">
-        <div class="col-md-6">
-          <h4>Soal:</h4>
-          <input-textarea v-model="form.question" />
-          <input-text class="form-group" v-model="form.question" :errors="$page.errors.name" label="Nama Ujian" :required="true" placeholder="contoh: Ujian matematika dasar"/>
-          <h4>Jawaban:</h4>
-          <div v-for="(answer, key) in form.answers" :key="key" >
-            <input-text class="input-group mb-3" v-model="answer.value" :errors="$page.errors.code" :required="true" placeholder="contoh: 112233aabb">
-                <template v-slot:prepend>
-                <div class="input-group-prepend">
-                    <b-form-radio v-model="answer.is_correct" name="answersradio" :value="true"></b-form-radio>
+        <div class="col-md-6 pl-3">
+            <label>Soal:</label>
+            <div class="row">
+                <div class="col-md-2 col-6 mb-2">
+                    <select class="form-control" v-model="form.question.type" >
+                        <option v-for="(type, index) in input_type" :value="index" :key="index">{{type}}</option>
+                    </select>
                 </div>
-                </template>
-                <template v-slot:append>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" @click.prevent="deleteAnswer(key)" type="button"><icon name="trash" /></button>
+                 <div class="col-md-8">
+                    <div class="form-group">
+                        <textarea class="form-control mb-2" v-model="form.question.value"></textarea>
+                        <input v-if="form.question.type == 2" type="text" class="form-control" v-model="form.question.image" placeholder="https://dummyimage.com/300x200/b8b8b8/fff.jpg">
                     </div>
-                </template>
-            </input-text>
+                 </div>
+            </div>
+          <label>Pilihan jawaban:</label>
+          <div v-for="(option, key) in form.options" :key="key" class="row mb-3">
+            <div class="col-md-2 col-6 mb-2">
+                <select class="form-control" v-model="option.type" >
+                    <option v-for="(type, index) in input_type" :value="index" :key="index">{{type}}</option>
+                </select>
+            </div>
+            <div class="col-md-8 col-8">
+                <input v-if="option.type == 1" type="text" class="form-control" v-model="option.value"  placeholder="contoh: 112233aabb">
+                <input v-else-if="option.type == 2" type="text" class="form-control" v-model="option.value"  placeholder="https://dummyimage.com/300x200/b8b8b8/fff.jpg">
+            </div>
+            <div class="col-md-2 col-4 row">
+                <b-button-group size="sm">
+                    <b-button :variant="answer == key ? 'success' : 'outline-secondary'" @click="correct(key)">{{ answer == key ? 'Benar' : 'Salah' }}</b-button>
+                    <b-button variant="outline-secondary" @click.prevent="deleteAnswer(key)" type="button"><icon name="trash" /></b-button>
+                </b-button-group>
+            </div>
           </div>
-          <b-button class="col-12" variant="outline-secondary" @click.prevent="addAnswer">Tambah jawaban</b-button>
+          <div class="row">
+            <div class="col-12">
+                <b-button size="sm" class="col-10" variant="outline-secondary" @click.prevent="addAnswer"><icon name="plus"/>Tambah jawaban</b-button>
+            </div>
+          </div>
+          <div class="row my-4">
+            <div class="col-md-12">
+              <button-loading :loading="sending" type="submit">Buat soal</button-loading>
+            </div>
+          </div>
         </div>
         <div class="col-md-6">
-          <h4>Preview:</h4>
-          <h4>Soal:</h4>
-          <pre>{{ form.question }}</pre>
-          <h4>Jawaban:</h4>
-          <div v-for="(answer, key) in form.answers" :key="key" >
-            <input-text class="input-group mb-3" v-model="answer.value" :errors="$page.errors.code" :required="true" placeholder="contoh: 112233aabb">
-                <template v-slot:prepend>
-                <div class="input-group-prepend">
-                    <b-form-radio v-model="answer.is_correct" name="answersradio" :value="true"></b-form-radio>
-                </div>
-                </template>
-                <template v-slot:append>
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" @click.prevent="deleteAnswer(key)" type="button"><icon name="trash" /></button>
-                    </div>
-                </template>
-            </input-text>
-          </div>
+            <label>Preview:</label>
+            <b-card class="col-auto mb-2">
+                <div class="mb-3" style="white-space: pre-line">{{ form.question.value }}</div>
+                <div v-if="form.question.type == 2" class="mb-3"><img :src="form.question.image"/></div>
+                <ul>
+                    <li v-for="(option, key) in form.options" :key="key" >
+                        <img v-if="option.type == 2" :src="option.value" />
+                        <span v-else >{{option.value}}</span>
+                    </li>
+                </ul>
+            </b-card>
+
         </div>
       </div>
-      <div class="row mt-5">
-        <div class="col-md-12">
-          <button-loading :loading="sending" type="submit">Buat ujian</button-loading>
-        </div>
-      </div>
+
     </form>
   </layout>
 </template>
@@ -80,24 +93,43 @@ export default {
     config: Object,
     exam: Object,
     section: Object,
+    input_type: Object,
   },
   data() {
     return {
       sending: false,
-      finds: [],
+      answer: null,
       form: {
-        question: null,
-        answers: []
+        question: {
+            type: 1,
+            value: null,
+            image: null
+        },
+        options: []
       }
     };
   },
   methods: {
+    correct(key) {
+      let val = null
+      if (this.answer !== null) {
+        val = this.form.options[this.answer]
+        val.is_correct = null
+        Vue.set(this.form.options, this.answer, val)
+      }
+      this.answer = key
+      val = this.form.options[this.answer]
+      val.is_correct = true
+      Vue.set(this.form.options, this.answer, val)
+
+    },
     deleteAnswer(key) {
-      Vue.delete(this.form.answers, key)
+      Vue.delete(this.form.options, key)
     },
     addAnswer() {
-      this.form.answers.push({
+      this.form.options.push({
           value: '',
+          type: 1,
           is_correct: false,
       })
     },

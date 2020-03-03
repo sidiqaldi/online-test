@@ -1,5 +1,6 @@
 <template>
   <div>
+    <label v-if="label" :for="id">{{ label }} <span v-if="required" class="text-danger">*</span></label>
     <textarea ref="input" :id="id" v-bind="$attrs" class="form-control" :class="{ 'is-invalid': errors.length }" :value="value" :placeholder="placeholder" @input="$emit('input', $event.target.value)"></textarea>
     <span v-if="errors.length" class="invalid-feedback" role="alert">
       <strong>{{ errors[0] }}</strong>
@@ -17,6 +18,7 @@ export default {
         return `textarea-input-${this._uid}`
       },
     },
+    required: false,
     value: String,
     label: String,
     placeholder: {

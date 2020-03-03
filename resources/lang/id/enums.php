@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\AnswerOrderStatus;
+use App\Enums\InputType;
 use App\Enums\QuestionOrderStatus;
 use App\Enums\RankingStatus;
 use App\Enums\ResultStatus;
@@ -33,4 +34,9 @@ return [
         RankingStatus::Show => 'Tampilkan',
         RankingStatus::Hide => 'Sembunyikan',
     ],
+
+    InputType::class => [
+        InputType::Text => 'Teks',
+        InputType::ImageUrl => 'Gambar',
+    ]
 ];

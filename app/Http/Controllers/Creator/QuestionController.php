@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Creator;
 
-use App\Exam;
+use App\Enums\InputType;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Section\DestroyRequest;
-use App\Http\Requests\Section\StoreRequest;
 use App\Section;
 use Inertia\Inertia;
 
@@ -26,6 +24,7 @@ class QuestionController extends Controller
             'exam' => $section->exam,
             'section' => $section,
             'config' => $section->exam->config,
+            'input_type' => InputType::toSelectArray(),
         ]);
     }
 }
