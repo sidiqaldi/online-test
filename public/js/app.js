@@ -2996,6 +2996,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       sending: false,
       answer: null,
+      answerKey: null,
       form: {
         question: {
           type: 1,
@@ -3009,26 +3010,30 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     correct: function correct(key) {
       var val = null;
-
-      if (this.answer !== null) {
-        val = this.form.options[this.answer];
-        val.is_correct = null;
-        Vue.set(this.form.options, this.answer, val);
+      if (this.answer !== null) this.setIsCorrect(this.answerKey, 0);
+      this.setIsCorrect(key, 1);
+    },
+    setIsCorrect: function setIsCorrect(key, val) {
+      var form = this.form.options[key];
+      form.is_correct = val;
+      Vue.set(this.form.options, key, form);
+      this.answer = form.key;
+      this.answerKey = key;
+    },
+    deleteOption: function deleteOption(key) {
+      if (this.answerKey == key) {
+        this.answer = null;
+        this.answerKey = null;
       }
 
-      this.answer = key;
-      val = this.form.options[this.answer];
-      val.is_correct = true;
-      Vue.set(this.form.options, this.answer, val);
-    },
-    deleteAnswer: function deleteAnswer(key) {
       Vue["delete"](this.form.options, key);
     },
-    addAnswer: function addAnswer() {
+    addOption: function addOption() {
       this.form.options.push({
+        key: Date.now(),
         value: '',
         type: 1,
-        is_correct: false
+        is_correct: 0
       });
     },
     submit: function submit() {
@@ -79415,160 +79420,168 @@ var render = function() {
                 _c("label", [_vm._v("Pilihan jawaban:")]),
                 _vm._v(" "),
                 _vm._l(_vm.form.options, function(option, key) {
-                  return _c("div", { key: key, staticClass: "row mb-3" }, [
-                    _c("div", { staticClass: "col-md-2 col-6 mb-2" }, [
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: option.type,
-                              expression: "option.type"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
-                              _vm.$set(
-                                option,
-                                "type",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              )
-                            }
-                          }
-                        },
-                        _vm._l(_vm.input_type, function(type, index) {
-                          return _c(
-                            "option",
-                            { key: index, domProps: { value: index } },
-                            [_vm._v(_vm._s(type))]
-                          )
-                        }),
-                        0
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-8 col-8" }, [
-                      option.type == 1
-                        ? _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: option.value,
-                                expression: "option.value"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder: "contoh: 112233aabb"
-                            },
-                            domProps: { value: option.value },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(option, "value", $event.target.value)
-                              }
-                            }
-                          })
-                        : option.type == 2
-                        ? _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: option.value,
-                                expression: "option.value"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              placeholder:
-                                "https://dummyimage.com/300x200/b8b8b8/fff.jpg"
-                            },
-                            domProps: { value: option.value },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.$set(option, "value", $event.target.value)
-                              }
-                            }
-                          })
-                        : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "col-md-2 col-4 row" },
-                      [
+                  return _c(
+                    "div",
+                    { key: option.key, staticClass: "row mb-3" },
+                    [
+                      _c("div", { staticClass: "col-md-2 col-6 mb-2" }, [
                         _c(
-                          "b-button-group",
-                          { attrs: { size: "sm" } },
-                          [
-                            _c(
-                              "b-button",
+                          "select",
+                          {
+                            directives: [
                               {
-                                attrs: {
-                                  variant:
-                                    _vm.answer == key
-                                      ? "success"
-                                      : "outline-secondary"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.correct(key)
-                                  }
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  _vm._s(_vm.answer == key ? "Benar" : "Salah")
+                                name: "model",
+                                rawName: "v-model",
+                                value: option.type,
+                                expression: "option.type"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            on: {
+                              change: function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.$set(
+                                  option,
+                                  "type",
+                                  $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
                                 )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-button",
-                              {
-                                attrs: {
-                                  variant: "outline-secondary",
-                                  type: "button"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.deleteAnswer(key)
-                                  }
-                                }
-                              },
-                              [_c("icon", { attrs: { name: "trash" } })],
-                              1
+                              }
+                            }
+                          },
+                          _vm._l(_vm.input_type, function(type, index) {
+                            return _c(
+                              "option",
+                              { key: index, domProps: { value: index } },
+                              [_vm._v(_vm._s(type))]
                             )
-                          ],
-                          1
+                          }),
+                          0
                         )
-                      ],
-                      1
-                    )
-                  ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-8 col-8" }, [
+                        option.type == 1
+                          ? _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: option.value,
+                                  expression: "option.value"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                placeholder: "contoh: 112233aabb"
+                              },
+                              domProps: { value: option.value },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(option, "value", $event.target.value)
+                                }
+                              }
+                            })
+                          : option.type == 2
+                          ? _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: option.value,
+                                  expression: "option.value"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                placeholder:
+                                  "https://dummyimage.com/300x200/b8b8b8/fff.jpg"
+                              },
+                              domProps: { value: option.value },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(option, "value", $event.target.value)
+                                }
+                              }
+                            })
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2 col-4 row" },
+                        [
+                          _c(
+                            "b-button-group",
+                            { attrs: { size: "sm" } },
+                            [
+                              _c(
+                                "b-button",
+                                {
+                                  attrs: {
+                                    variant:
+                                      _vm.answer == option.key
+                                        ? "success"
+                                        : "outline-secondary"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.correct(key)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.answer == option.key
+                                        ? "Benar"
+                                        : "Salah"
+                                    )
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-button",
+                                {
+                                  attrs: {
+                                    variant: "outline-secondary",
+                                    type: "button"
+                                  },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.deleteOption(key)
+                                    }
+                                  }
+                                },
+                                [_c("icon", { attrs: { name: "trash" } })],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "row" }, [
@@ -79576,24 +79589,29 @@ var render = function() {
                     "div",
                     { staticClass: "col-12" },
                     [
-                      _c(
-                        "b-button",
-                        {
-                          staticClass: "col-10",
-                          attrs: { size: "sm", variant: "outline-secondary" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.addAnswer($event)
-                            }
-                          }
-                        },
-                        [
-                          _c("icon", { attrs: { name: "plus" } }),
-                          _vm._v("Tambah jawaban")
-                        ],
-                        1
-                      )
+                      _vm.form.options.length < 5
+                        ? _c(
+                            "b-button",
+                            {
+                              staticClass: "col-10",
+                              attrs: {
+                                size: "sm",
+                                variant: "outline-secondary"
+                              },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.addOption($event)
+                                }
+                              }
+                            },
+                            [
+                              _c("icon", { attrs: { name: "plus" } }),
+                              _vm._v("Tambah jawaban")
+                            ],
+                            1
+                          )
+                        : _vm._e()
                     ],
                     1
                   )

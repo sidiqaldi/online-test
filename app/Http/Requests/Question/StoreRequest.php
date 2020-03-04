@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Qestion;
 
+use App\Enums\CorrectStatus;
+use App\Enums\InputType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,14 +29,26 @@ class StoreRequest extends FormRequest
         return [
             'name' => 'required|min:15|max:150',
             'description' => 'required|min:50|max:250',
-            'code' => 'required|min:6|max:50|unique:exams'
+            'options' => 'required|array|min:2|max:6',
+            'options.*.type' => [
+                'required',
+                InputType::getValues(),
+            ],
+            'options.*.value' => [
+                'required',
+                'distinct'
+            ],
+            'options.*.is_correct' => [
+                'required',
+                CorrectStatus::getValues(),
+            ],
         ];
     }
 
     /**
      * @return array
      */
-    public function data()
+    public function dataQuestion()
     {
         return [
             'name' => $this->input('name'),
@@ -42,5 +56,13 @@ class StoreRequest extends FormRequest
             'user_id' => Auth::user()->id,
             'code' => $this->input('code'),
         ];
+    }
+
+    /**
+     * @return array 
+     */
+    public function dataOptions()
+    {
+        return $this->options;
     }
 }

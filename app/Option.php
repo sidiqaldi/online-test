@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Filters\Filterable;
 use App\Traits\HasOwner;
 use Illuminate\Database\Eloquent\Model;
 use Webpatser\Uuid\Uuid;
@@ -15,11 +14,11 @@ use Webpatser\Uuid\Uuid;
  * @method static create(array $data)
  * @property mixed id
  */
-class Section extends Model
+class Option extends Model
 {
-    use Filterable, HasOwner;
+    use HasOwner;
 
-    protected $fillable = ['user_id', 'exam_id', 'name', 'score_per_question', 'passing_grade', 'order'];
+    protected $fillable = ['user_id', 'question_id', 'type', 'value', 'order'];
 
     /**
      * Setup model event hooks
@@ -41,18 +40,10 @@ class Section extends Model
     }
 
     /**
-     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function exam()
+    public function question()
     {
-        return $this->belongsTo('App\Exam');
-    }
-
-    /**
-     * @return Illuminate\Database\Eloquent\Relations\HasMany 
-     */
-    public function options()
-    {
-        return $this->hasMany('App\Option');
+        return $this->belongsTo('App\Question');
     }
 }

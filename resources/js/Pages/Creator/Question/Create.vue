@@ -26,7 +26,7 @@
                  </div>
             </div>
           <label>Pilihan jawaban:</label>
-          <div v-for="(option, key) in form.options" :key="key" class="row mb-3">
+          <div v-for="(option, key) in form.options" :key="option.key" class="row mb-3">
             <div class="col-md-2 col-6 mb-2">
                 <select class="form-control" v-model="option.type" >
                     <option v-for="(type, index) in input_type" :value="index" :key="index">{{type}}</option>
@@ -38,14 +38,14 @@
             </div>
             <div class="col-md-2 col-4 row">
                 <b-button-group size="sm">
-                    <b-button :variant="answer == key ? 'success' : 'outline-secondary'" @click="correct(key)">{{ answer == key ? 'Benar' : 'Salah' }}</b-button>
-                    <b-button variant="outline-secondary" @click.prevent="deleteAnswer(key)" type="button"><icon name="trash" /></b-button>
+                    <b-button :variant="answer == option.key ? 'success' : 'outline-secondary'" @click="correct(key)">{{ answer == option.key ? 'Benar' : 'Salah' }}</b-button>
+                    <b-button variant="outline-secondary" @click.prevent="deleteOption(key)" type="button"><icon name="trash" /></b-button>
                 </b-button-group>
             </div>
           </div>
           <div class="row">
             <div class="col-12">
-                <b-button size="sm" class="col-10" variant="outline-secondary" @click.prevent="addAnswer"><icon name="plus"/>Tambah jawaban</b-button>
+                <b-button v-if="form.options.length < 5" size="sm" class="col-10" variant="outline-secondary" @click.prevent="addOption"><icon name="plus"/>Tambah jawaban</b-button>
             </div>
           </div>
           <div class="row my-4">
@@ -99,6 +99,7 @@ export default {
     return {
       sending: false,
       answer: null,
+      answerKey: null,
       form: {
         question: {
             type: 1,
@@ -112,25 +113,29 @@ export default {
   methods: {
     correct(key) {
       let val = null
-      if (this.answer !== null) {
-        val = this.form.options[this.answer]
-        val.is_correct = null
-        Vue.set(this.form.options, this.answer, val)
-      }
-      this.answer = key
-      val = this.form.options[this.answer]
-      val.is_correct = true
-      Vue.set(this.form.options, this.answer, val)
-
+      if (this.answer !== null) this.setIsCorrect(this.answerKey, 0)
+      this.setIsCorrect(key, 1)
     },
-    deleteAnswer(key) {
+    setIsCorrect(key, val) {
+      let form = this.form.options[key]
+      form.is_correct = val
+      Vue.set(this.form.options, key, form)
+      this.answer = form.key
+      this.answerKey = key
+    },
+    deleteOption(key) {
+      if (this.answerKey == key) {
+        this.answer = null
+        this.answerKey = null
+      }
       Vue.delete(this.form.options, key)
     },
-    addAnswer() {
+    addOption() {
       this.form.options.push({
+          key: Date.now(),
           value: '',
           type: 1,
-          is_correct: false,
+          is_correct: 0,
       })
     },
     submit() {

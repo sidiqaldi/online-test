@@ -20,6 +20,7 @@ class CreateOptionsTable extends Migration
             $table->unsignedBigInteger('question_id');
             $table->unsignedSmallInteger('type');
             $table->text('value');
+            $table->unsignedSmallInteger('correct_id');
             $table->unsignedInteger('order');
             $table->timestamps();
 

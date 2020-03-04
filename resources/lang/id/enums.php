@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\AnswerOrderStatus;
+use App\Enums\CorrectStatus;
 use App\Enums\InputType;
 use App\Enums\QuestionOrderStatus;
 use App\Enums\RankingStatus;
@@ -38,5 +39,10 @@ return [
     InputType::class => [
         InputType::Text => 'Teks',
         InputType::ImageUrl => 'Gambar',
+    ],
+
+    CorrectStatus::class => [
+        CorrectStatus::True => 'Benar',
+        CorrectStatus::False => 'Salah',
     ]
 ];
