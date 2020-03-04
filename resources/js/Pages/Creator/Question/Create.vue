@@ -57,7 +57,9 @@
         <div class="col-md-6">
             <label>Preview:</label>
             <b-card class="col-auto mb-2">
-                <div class="mb-3" style="white-space: pre-line">{{ form.question.value }}</div>
+                <vue-markdown class="result-html full-height" :watches="['markdown.show','markdown.html','markdown.breaks','markdown.linkify','markdown.emoji','markdown.typographer','markdown.toc']"
+                  :source="form.question.value" :show="markdown.show" :html="markdown.html" :breaks="markdown.breaks" :linkify="markdown.linkify"
+                  :emoji="markdown.emoji" :typographer="markdown.typographer" :toc="markdown.toc" toc-id="toc"></vue-markdown>
                 <div v-if="form.question.type == 2" class="mb-3"><img :src="form.question.image"/></div>
                 <ul>
                     <li v-for="(option, key) in form.options" :key="key" >
@@ -80,6 +82,7 @@ import InputText from "@/Shared/InputText"
 import InputTextarea from "@/Shared/InputTextarea"
 import ButtonLoading from "@/Shared/ButtonLoading"
 import Icon from "@/Shared/Icon"
+import VueMarkdown from 'vue-markdown'
 
 export default {
   components: {
@@ -88,6 +91,7 @@ export default {
     InputTextarea,
     ButtonLoading,
     Icon,
+    VueMarkdown,
   },
   props: {
     config: Object,
@@ -97,14 +101,23 @@ export default {
   },
   data() {
     return {
+      markdown: {
+        show: true,
+        html: false,
+        breaks: true,
+        linkify: false,
+        emoji: true,
+        typographer: true,
+        toc: false
+      },
       sending: false,
       answer: null,
       answerKey: null,
       form: {
         question: {
             type: 1,
-            value: null,
-            image: null
+            value: "",
+            image: ""
         },
         options: []
       }
@@ -141,7 +154,7 @@ export default {
     submit() {
       this.sending = true
       this.$inertia.post(this.$route("creator.exams.store"), this.form).then(() => this.sending = false)
-    }
+    },
   }
 };
 </script>

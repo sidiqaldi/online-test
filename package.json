@@ -31,11 +31,13 @@
         "@fortawesome/vue-fontawesome": "^0.1.9",
         "@inertiajs/inertia": "^0.1.7",
         "@inertiajs/inertia-vue": "^0.1.2",
+        "babel-runtime": "^6.26.0",
         "bootstrap-vue": "^2.5.0",
         "eslint": "^6.8.0",
         "eslint-plugin-vue": "^6.2.1",
         "npm": "^6.13.7",
         "nprogress": "^0.2.0",
+        "vue-markdown": "^2.2.4",
         "vuedraggable": "^2.23.2",
         "webpack": "^4.41.6"
     }
