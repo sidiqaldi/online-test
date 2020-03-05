@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Creator;
 
 use App\Enums\InputType;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Qestion\StoreRequest;
+use App\Http\Requests\Question\StoreRequest;
 use App\Section;
 use Inertia\Inertia;
 

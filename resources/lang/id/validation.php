@@ -119,6 +119,7 @@ return [
     'uploaded' => ':attribute gagal melakukan upload.',
     'url' => ':attribute format tidak valid.',
     'uuid' => ':attribute harus berupa UUID yang valid.',
+    'correct_value' => 'harus ada satu jawaban benar.',
 
     /*
     |--------------------------------------------------------------------------

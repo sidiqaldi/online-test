@@ -14,15 +14,30 @@
             <label>Soal:</label>
             <div class="row">
                 <div class="col-md-2 col-6 mb-2">
-                    <select class="form-control" v-model="form.question.type" >
+                    <select class="form-control" v-model="form.question_type" >
                         <option v-for="(type, index) in input_type" :value="index" :key="index">{{type}}</option>
                     </select>
                 </div>
                  <div class="col-md-8">
                     <div class="form-group">
-                        <textarea class="form-control mb-2" v-model="form.question.value"></textarea>
-                        <input v-if="form.question.type == 2" type="text" class="form-control" v-model="form.question.image" placeholder="https://dummyimage.com/300x200/b8b8b8/fff.jpg">
+                        <textarea class="form-control mb-2" v-model="form.question_value" 
+                          :class="{ 'is-invalid' : $page.errors.question_value }">
+                        </textarea>
+                        <span v-if="$page.errors.question_value" class="invalid-feedback" role="alert">
+                          <strong>{{ $page.errors.question_value[0] }}</strong>
+                        </span>
                     </div>
+                    <div class="form-group">
+                        <input v-if="form.question_type == 2" type="text" class="form-control"
+                          :class="{ 'is-invalid' : $page.errors.question_image }"
+                          v-model="form.question_image"
+                          placeholder="https://dummyimage.com/300x200/b8b8b8/fff.jpg">
+                        <span v-if="$page.errors.question_image" class="invalid-feedback" role="alert">
+                          <strong>{{ $page.errors.question_image[0] }}</strong>
+                        </span>
+                    </div>
+
+
                  </div>
             </div>
           <label>Pilihan jawaban:</label>
@@ -34,7 +49,7 @@
             </div>
             <div class="col-md-8 col-8">
                 <input v-if="option.type == 1" type="text" class="form-control" v-model="option.value"  placeholder="contoh: 112233aabb">
-                <input v-else-if="option.type == 2" type="text" class="form-control" v-model="option.value"  placeholder="https://dummyimage.com/300x200/b8b8b8/fff.jpg">
+                <input v-else-if="option.type == 2" type="text" class="form-control" v-model="option.image"  placeholder="https://dummyimage.com/300x200/b8b8b8/fff.jpg">
             </div>
             <div class="col-md-2 col-4 row">
                 <b-button-group size="sm">
@@ -58,12 +73,12 @@
             <label>Preview:</label>
             <b-card class="col-auto mb-2">
                 <vue-markdown class="result-html full-height" :watches="['markdown.show','markdown.html','markdown.breaks','markdown.linkify','markdown.emoji','markdown.typographer','markdown.toc']"
-                  :source="form.question.value" :show="markdown.show" :html="markdown.html" :breaks="markdown.breaks" :linkify="markdown.linkify"
+                  :source="form.question_value" :show="markdown.show" :html="markdown.html" :breaks="markdown.breaks" :linkify="markdown.linkify"
                   :emoji="markdown.emoji" :typographer="markdown.typographer" :toc="markdown.toc" toc-id="toc"></vue-markdown>
-                <div v-if="form.question.type == 2" class="mb-3"><img :src="form.question.image"/></div>
+                <div v-if="form.question_type == 2" class="mb-3"><img :src="form.question_image"/></div>
                 <ul>
                     <li v-for="(option, key) in form.options" :key="key" >
-                        <img v-if="option.type == 2" :src="option.value" />
+                        <img v-if="option.type == 2" :src="option.image" />
                         <span v-else >{{option.value}}</span>
                     </li>
                 </ul>
@@ -114,11 +129,9 @@ export default {
       answer: null,
       answerKey: null,
       form: {
-        question: {
-            type: 1,
-            value: "",
-            image: ""
-        },
+        question_value: "",
+        question_type: 1,
+        question_image: "",
         options: []
       }
     };
@@ -126,8 +139,8 @@ export default {
   methods: {
     correct(key) {
       let val = null
-      if (this.answer !== null) this.setIsCorrect(this.answerKey, 0)
-      this.setIsCorrect(key, 1)
+      if (this.answer !== null) this.setIsCorrect(this.answerKey, 1)
+      this.setIsCorrect(key, 2)
     },
     setIsCorrect(key, val) {
       let form = this.form.options[key]
@@ -147,13 +160,14 @@ export default {
       this.form.options.push({
           key: Date.now(),
           value: '',
+          image: '',
           type: 1,
-          is_correct: 0,
+          is_correct: 1,
       })
     },
     submit() {
       this.sending = true
-      this.$inertia.post(this.$route("creator.exams.store"), this.form).then(() => this.sending = false)
+      this.$inertia.post(this.$route("creator.questions.store", this.section.uuid), this.form).then(() => this.sending = false)
     },
   }
 };

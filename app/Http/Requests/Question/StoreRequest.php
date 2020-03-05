@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Qestion;
+namespace App\Http\Requests\Question;
 
 use App\Enums\CorrectStatus;
 use App\Enums\InputType;
+use App\Rules\CorrectValue;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
 {
@@ -27,20 +29,45 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:15|max:150',
-            'description' => 'required|min:50|max:250',
-            'options' => 'required|array|min:2|max:6',
+            'question_value' => [
+                'required',
+                'min:10',
+                'max: 255',
+            ],
+            'question_type' => [
+                'required',
+                Rule::in(InputType::getValues()),
+            ],
+            'question_image' => [
+                'sometimes',
+                'nullable',
+                'active_url',
+            ],
+            'options' => [
+                'required',
+                'array',
+                'min:2',
+                'max:6',
+                new CorrectValue(),
+            ],
             'options.*.type' => [
                 'required',
-                InputType::getValues(),
+                Rule::in(InputType::getValues()),
             ],
             'options.*.value' => [
-                'required',
-                'distinct'
+                'required_if:options.*.type,' . InputType::Text,
+                'distinct',
+                'min:1',
+                'max:200',
+            ],
+            'options.*.image' => [
+                'required_if:options.*.type,' . InputType::ImageUrl,
+                'distinct',
+                'active_url',
             ],
             'options.*.is_correct' => [
                 'required',
-                CorrectStatus::getValues(),
+                Rule::in(CorrectStatus::getValues()),
             ],
         ];
     }
