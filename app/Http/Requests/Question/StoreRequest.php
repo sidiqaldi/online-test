@@ -4,7 +4,9 @@ namespace App\Http\Requests\Question;
 
 use App\Enums\CorrectStatus;
 use App\Enums\InputType;
+use App\Question;
 use App\Rules\CorrectValue;
+use App\Section;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -29,6 +31,11 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'question_title' => [
+                'required',
+                'min:1',
+                'max: 200',
+            ],
             'question_value' => [
                 'required',
                 'min:10',
@@ -39,11 +46,12 @@ class StoreRequest extends FormRequest
                 Rule::in(InputType::getValues()),
             ],
             'question_image' => [
-                'sometimes',
+                'required_if:question_type,' . InputType::ImageUrl,
                 'nullable',
                 'active_url',
             ],
             'options' => [
+                'bail',
                 'required',
                 'array',
                 'min:2',
@@ -56,12 +64,14 @@ class StoreRequest extends FormRequest
             ],
             'options.*.value' => [
                 'required_if:options.*.type,' . InputType::Text,
+                'nullable',
                 'distinct',
                 'min:1',
                 'max:200',
             ],
             'options.*.image' => [
                 'required_if:options.*.type,' . InputType::ImageUrl,
+                'nullable',
                 'distinct',
                 'active_url',
             ],
@@ -72,21 +82,36 @@ class StoreRequest extends FormRequest
         ];
     }
 
-    /**
-     * @return array
-     */
-    public function dataQuestion()
+    public function messages()
     {
         return [
-            'name' => $this->input('name'),
-            'description' => $this->input('description'),
-            'user_id' => Auth::user()->id,
-            'code' => $this->input('code'),
+            'question_image.required_if' => __('validation.required', ['attribute' => __('validation.attributes.question_image')]),
+            'options.*.value.required_if' => __('validation.required', ['attribute' => __('validation.attributes.options')]),
+            'options.*.image.required_if' => __('validation.required', ['attribute' => __('validation.attributes.options')]),
+            'options.*.value.distinct' => __('validation.distinct', ['attribute' => __('validation.attributes.options')]),
+            'options.*.image.distinct' => __('validation.distinct', ['attribute' => __('validation.attributes.options')]),
+
         ];
     }
 
     /**
-     * @return array 
+     * @return array
+     */
+    public function dataQuestion(Section $section)
+    {
+        return [
+            'title' => $this->question_title,
+            'value' => $this->question_value,
+            'type' => $this->question_type,
+            'image' => $this->question_image,
+            'user_id' => Auth::user()->id,
+            'section_id' => $section->id,
+            'order' => $section->questions()->count() + 1,
+        ];
+    }
+
+    /**
+     * @return array
      */
     public function dataOptions()
     {

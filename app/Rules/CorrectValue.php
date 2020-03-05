@@ -28,7 +28,7 @@ class CorrectValue implements Rule
     public function passes($attribute, $value)
     {
         foreach ($value as $item) {
-            if (isset($item['is_correct'])) {
+            if (!isset($item['is_correct'])) {
                 return false;
             }
 

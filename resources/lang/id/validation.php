@@ -159,6 +159,10 @@ return [
         'answer_order' => 'Urutan jawaban',
         'ranking_status' => 'Tampilan ranking',
         'result_status' => 'Tampilan hasil',
+        'question_value' => 'Pertanyaan',
+        'question_image' => 'Gambar',
+        'question_title' => 'Judul',
+        'options' => 'Jawaban',
     ],
 
     'values' => [

@@ -18,7 +18,7 @@ class Option extends Model
 {
     use HasOwner;
 
-    protected $fillable = ['user_id', 'question_id', 'type', 'value', 'order'];
+    protected $fillable = ['user_id', 'question_id', 'type', 'value', 'order', 'correct_id'];
 
     /**
      * Setup model event hooks

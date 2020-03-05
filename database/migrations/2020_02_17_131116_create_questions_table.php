@@ -19,7 +19,9 @@ class CreateQuestionsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('section_id');
             $table->unsignedSmallInteger('type');
+            $table->string('title');
             $table->text('value');
+            $table->string('image')->nullable();
             $table->unsignedInteger('order');
             $table->timestamps();
 

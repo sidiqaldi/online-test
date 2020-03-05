@@ -6,6 +6,8 @@ return [
     'Config' => 'Pengaturan',
     'Section' => 'Seksi',
     'Login' => 'Masuk',
-    'Logout' => "Keluar",
-
+    'Logout' => 'Keluar',
+    'Question' => 'Pertanyaan',
+    'Option' => 'Jawaban',
+    'Title' => 'Judul',
 ];

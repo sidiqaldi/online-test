@@ -27,8 +27,8 @@
                                 </p>
                                 <template v-slot:modal-footer>
                                 <div class="w-100">
-                                    <b-button variant="primary" size="sm" class="float-right mr-1" @click="deleteSection(section.uuid)">Ya</b-button>
-                                    <b-button variant="primary" size="sm" class="float-right mr-1" @click="$bvModal.hide('delete-' + section.uuid)">Batal</b-button>
+                                    <b-button variant="secondary" size="sm" class="float-right mr-1" @click="deleteSection(section.uuid)">Hapus</b-button>
+                                    <b-button variant="outline-secondary" size="sm" class="float-right mr-1" @click="$bvModal.hide('delete-' + section.uuid)">Batal</b-button>
                                 </div>
                             </template>
                             </b-modal>

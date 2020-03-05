@@ -15,11 +15,11 @@ use Webpatser\Uuid\Uuid;
  * @method static create(array $data)
  * @property mixed id
  */
-class Section extends Model
+class Question extends Model
 {
     use Filterable, HasOwner;
 
-    protected $fillable = ['user_id', 'exam_id', 'name', 'score_per_question', 'passing_grade', 'order'];
+    protected $fillable = ['user_id', 'section_id', 'type', 'title', 'value', 'image', 'order'];
 
     /**
      * Setup model event hooks
@@ -49,7 +49,7 @@ class Section extends Model
     }
 
     /**
-     * @return Illuminate\Database\Eloquent\Relations\HasMany 
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function options()
     {
