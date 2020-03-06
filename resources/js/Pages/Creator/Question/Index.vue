@@ -10,8 +10,9 @@
     </template>
     <div class="row  no-gutters">
         <div role="tablist" class="col-md-6">
-        <draggable v-model="list_question" group="soal" @start="drag=true" @end="drag=false">
-            <b-card no-body class="mb-1" v-for ="(question, key) in list_question" :key="key">
+        <draggable v-model="list_question" v-bind="dragOptions" group="soal" @start="drag=true" @end="drag=false" @change="updateOrder">
+          <transition-group type="transition" name="flip-list">
+            <b-card no-body class="mb-1" v-for ="(question) in list_question" :key="question.uuid">
                 <b-card-header header-tag="header" role="tab">
                     <div class="row">
                         <div class="col-md-6 p-2">
@@ -40,6 +41,7 @@
                     </div>
                 </b-card-header>
             </b-card>
+          </transition-group>
         </draggable>
         <b-card no-body class="mb-1">
             <b-card-header header-tag="header" class="p-1" role="tab">
@@ -76,6 +78,16 @@ export default {
   mounted() {
     this.list_question = this.questions
   },
+  computed: {
+    dragOptions() {
+      return {
+        animation: 0,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost"
+      };
+    }
+  },
   data() {
     return {
       list_question: [],
@@ -86,13 +98,35 @@ export default {
   methods: {
     deleteSection(uuid) {
       this.$inertia.delete(this.$route("creator.sections.destroy", uuid))
-    }
+    },
+    updateOrder(e) {
+      if (e.moved) {
+        this.$inertia.post(this.$route("creator.sections.order", e.moved.element.uuid), {
+          from : e.moved.oldIndex,
+          to : e.moved.newIndex
+        })
+        // console.log(e.moved.oldIndex)
+        // console.log(e.moved.newIndex)
+        // console.log(e.moved.element)
+        // console.log(e.moved.element.uuid)
+      }
+    },
   }
 };
 </script>
 
 <style scoped>
-    .section-title {
-        cursor: pointer;
-    }
+.section-title {
+  cursor: pointer;
+}
+.flip-list-move {
+  transition: transform 0.5s;
+}
+.no-move {
+  transition: transform 0s;
+}
+.ghost {
+  opacity: 0.5;
+  background: #c8ebfb;
+}
 </style>>
