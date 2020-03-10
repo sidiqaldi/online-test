@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Creator;
 
 use App\Enums\InputType;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Question\OrderRequest;
 use App\Http\Requests\Question\StoreRequest;
+use App\Http\Requests\Question\DestroyRequest;
 use App\Question;
 use App\Section;
 use App\Services\OptionService;
@@ -18,7 +20,9 @@ class QuestionController extends Controller
         return Inertia::render('Creator/Question/Index', [
             'exam' => $section->exam,
             'section' => $section,
-            'questions' => $section->questions,
+            'questions' => function () use ($section) {
+                return $section->questions;
+            },
         ]);
     }
 
@@ -44,5 +48,28 @@ class QuestionController extends Controller
 
         return redirect()->route('creator.questions.index', $section->uuid)
             ->with('status', __('notification.success.add', ['model' => __('general.Question')]));
+    }
+
+    public function order(OrderRequest $request, Question $question)
+    {
+        if ($request->input('from') > $request->input('to')) {
+            Question::whereBetween('order', [$request->input('to'), $request->input('from')])->increment('order');
+        } else {
+            Question::whereBetween('order', [$request->input('from'), $request->input('to')])->decrement('order');
+        }
+
+        $question->order = $request->input('to');
+
+        $question->save();
+
+        return redirect()->back();
+    }
+
+    public function destroy(DestroyRequest $request, Question $question)
+    {
+        $question->delete();
+
+        return redirect()->back()
+            ->with('status', __('notification.success.delete', ['model' => __('general.Section')]));
     }
 }

@@ -10,4 +10,5 @@ return [
     'Question' => 'Pertanyaan',
     'Option' => 'Jawaban',
     'Title' => 'Judul',
+    'Order' => 'Urutan',
 ];

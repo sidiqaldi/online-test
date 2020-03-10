@@ -101,14 +101,10 @@ export default {
     },
     updateOrder(e) {
       if (e.moved) {
-        this.$inertia.post(this.$route("creator.sections.order", e.moved.element.uuid), {
-          from : e.moved.oldIndex,
-          to : e.moved.newIndex
+        this.$inertia.post(this.$route("creator.questions.order", e.moved.element.uuid), {
+          from : e.moved.oldIndex + 1,
+          to : e.moved.newIndex + 1,
         })
-        // console.log(e.moved.oldIndex)
-        // console.log(e.moved.newIndex)
-        // console.log(e.moved.element)
-        // console.log(e.moved.element.uuid)
       }
     },
   }

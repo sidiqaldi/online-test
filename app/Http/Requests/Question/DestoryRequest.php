@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Section;
+namespace App\Http\Requests\Question;
 
+use App\Exam;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class OrderRequest extends FormRequest
+class DestroyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +15,7 @@ class OrderRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->route('section')->user_id == Auth::id();
+        return $this->route('question')->user_id == Auth::id();
     }
 
     /**
@@ -24,9 +25,6 @@ class OrderRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'from' => 'required|numeric',
-            'to' => 'required|numeric',
-        ];
+        return [];
     }
 }

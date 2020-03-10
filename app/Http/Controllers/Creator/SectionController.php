@@ -33,33 +33,29 @@ class SectionController extends Controller
         Section::create($request->data($exam));
 
         return redirect()->route('creator.sections.index', $exam->uuid)
-            ->with('success', __('notification.success.add', ['model' => __('general.Section')]));
+            ->with('status', __('notification.success.add', ['model' => __('general.Section')]));
     }
 
     public function order(OrderRequest $request, Section $section)
     {
-        $sections = Section::whereBetween('order_id', $request->all());
-
         if ($request->input('from') > $request->input('to')) {
-            $sections->increment('order_id');
+            Section::whereBetween('order', [ $request->input('to'), $request->input('from')])->increment('order');
         } else {
-            $sections->decrement('order_id');
+            Section::whereBetween('order', [$request->input('from'), $request->input('to')])->decrement('order');
         }
 
-        $section->order_id = $request->input('to');
+        $section->order = $request->input('to');
 
         $section->save();
 
-        return response()->json('OK');
+        return redirect()->back();
     }
 
     public function destroy(DestroyRequest $request, Section $section)
     {
-        $exam = $section->exam;
-
         $section->delete();
 
-        return redirect()->route('creator.sections.index', $exam->uuid)
-            ->with('success', __('notification.success.delete', ['model' => __('general.Section')]));
+        return redirect()->back()
+            ->with('status', __('notification.success.delete', ['model' => __('general.Section')]));
     }
 }

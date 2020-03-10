@@ -48,6 +48,14 @@ class Question extends Model
         return $this->belongsTo('App\Exam');
     }
 
+    /** 
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+    public function section()
+    {
+        return $this->belongsTo('App\Section');
+    }
+
     /**
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */

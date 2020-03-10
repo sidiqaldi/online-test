@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Section;
+namespace App\Http\Requests\Question;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +14,7 @@ class OrderRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->route('section')->user_id == Auth::id();
+        return $this->route('question')->user_id == Auth::id();
     }
 
     /**
