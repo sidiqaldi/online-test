@@ -1,5 +1,5 @@
 <template>
-  <layout :title="'Edit Ujian - ' + $page.app.name" active="creator.exams.index">
+  <layout :title="'Edit Pertanyaan - ' + $page.app.name" active="creator.exams.index">
     <template v-slot:header>
       <h3 class="d-inline">
         <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link> /
@@ -23,15 +23,10 @@
                                 <b-button align-self="end" variant="light"><icon name="pencil" /> Edit Soal</b-button>
                                 <b-button align-self="end" variant="light" v-b-modal="'delete-' + question.uuid"><icon name="trash" /> Hapus</b-button>
                                 <b-modal :id="'delete-' + question.uuid" hide-backdrop title="Konfirmasi">
-                                    Hapus seksi <strong>{{ question.title }}</strong>?
-                                    <p>
-                                    <small class="text-danger">
-                                        <strong>Peringatan!</strong> menghapus seksi akan menghapus semua daftar soal yang ada pada seksi tersebut
-                                    </small>
-                                    </p>
+                                    Hapus pertanyaan <strong>{{ question.title }}</strong>?
                                     <template v-slot:modal-footer>
                                     <div class="w-100">
-                                        <b-button variant="primary" size="sm" class="float-right mr-1" @click="deleteSection(question.uuid)">Ya</b-button>
+                                        <b-button variant="primary" size="sm" class="float-right mr-1" @click="deletQuestion(question.uuid)">Ya</b-button>
                                         <b-button variant="primary" size="sm" class="float-right mr-1" @click="$bvModal.hide('delete-' + question.uuid)">Batal</b-button>
                                     </div>
                                 </template>
@@ -96,8 +91,8 @@ export default {
     };
   },
   methods: {
-    deleteSection(uuid) {
-      this.$inertia.delete(this.$route("creator.sections.destroy", uuid))
+    deletQuestion(uuid) {
+      this.$inertia.delete(this.$route("creator.questions.destroy", uuid))
     },
     updateOrder(e) {
       if (e.moved) {

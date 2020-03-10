@@ -53,6 +53,8 @@ class SectionController extends Controller
 
     public function destroy(DestroyRequest $request, Section $section)
     {
+        Section::where('order', '>', $section->order)->decrement('order');
+
         $section->delete();
 
         return redirect()->back()

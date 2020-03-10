@@ -11,4 +11,5 @@ return [
     'Option' => 'Jawaban',
     'Title' => 'Judul',
     'Order' => 'Urutan',
+    'Code' => 'Kode',
 ];

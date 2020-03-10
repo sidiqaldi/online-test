@@ -67,6 +67,8 @@ class QuestionController extends Controller
 
     public function destroy(DestroyRequest $request, Question $question)
     {
+        Question::where('order', '>', $question->order)->decrement('order');
+
         $question->delete();
 
         return redirect()->back()

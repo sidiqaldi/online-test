@@ -41,12 +41,22 @@ class Exam extends Model
         return 'uuid';
     }
 
+    public function scopePublished($query)
+    {
+        return $query->where('status_id', ExamStatus::Publish);
+    }
+
     /**
      * @return string
      */
     public function getStatusAttribute()
     {
         return ExamStatus::getDescription($this->status_id);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
     /**
@@ -62,6 +72,6 @@ class Exam extends Model
      */
     public function sections()
     {
-        return $this->hasMany('App\Section');
+        return $this->hasMany('App\Section')->orderBy('order');
     }
 }
