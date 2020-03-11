@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Creator;
 
 use App\Enums\InputType;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Question\OrderRequest;
-use App\Http\Requests\Question\StoreRequest;
-use App\Http\Requests\Question\DestroyRequest;
+use App\Http\Requests\Creator\Question\OrderRequest;
+use App\Http\Requests\Creator\Question\StoreRequest;
+use App\Http\Requests\Creator\Question\DestroyRequest;
+use App\Http\Requests\Creator\Question\EditRequest;
 use App\Question;
 use App\Section;
 use App\Services\OptionService;
@@ -48,6 +49,30 @@ class QuestionController extends Controller
 
         return redirect()->route('creator.questions.index', $section->uuid)
             ->with('status', __('notification.success.add', ['model' => __('general.Question')]));
+    }
+
+    public function edit(EditRequest $request, Question $question)
+    {
+        $section = $question->section;
+
+        return Inertia::render('Creator/Question/Edit', [
+            'exam' => $section->exam,
+            'section' => $section,
+            'config' => $section->exam->config,
+            'input_type' => InputType::toSelectArray(),
+            'question' => $question,
+            'options' => $question->options->transform(function ($option) {
+                return [
+                    'id' => $option->id,
+                    'key' => $option->uuid,
+                    'value' => $option->value,
+                    'image'=> $option->image,
+                    'type' => $option->type,
+                    'correct_id' => $option->correct_id,
+                ];
+            }),
+            'answer' => $question->answer,
+        ]);
     }
 
     public function order(OrderRequest $request, Question $question)

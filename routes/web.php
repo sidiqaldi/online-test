@@ -34,6 +34,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/{section}', 'Creator\QuestionController@index')->name('questions.index');
             Route::get('/{section}/create', 'Creator\QuestionController@create')->name('questions.create');
             Route::post('/{section}/create', 'Creator\QuestionController@store')->name('questions.store');
+            Route::get('/{question}/edit', 'Creator\QuestionController@edit')->name('questions.edit');
             Route::post('/{question}/order', 'Creator\QuestionController@order')->name('questions.order');
             Route::delete('/{question}', 'Creator\QuestionController@destroy')->name('questions.destroy');
         });

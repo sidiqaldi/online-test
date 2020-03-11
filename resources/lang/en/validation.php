@@ -117,7 +117,8 @@ return [
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'The :attribute format is invalid.',
     'uuid' => 'The :attribute must be a valid UUID.',
-    'correct_value' => 'there is must be one correct value.',
+    'correct_value' => 'There is must be one correct value.',
+    'no_question' => 'There are section that still have no questions.',
 
     /*
     |--------------------------------------------------------------------------

@@ -3,7 +3,7 @@
     <template v-slot:header>
       <h3 class="d-inline">
         <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link> /
-        <inertia-link :href="$route('creator.exams.edit', exam.uuid)" type="submit">{{ exam.name }}</inertia-link> / Daftar Seksi
+        <inertia-link :href="$route('creator.exams.edit', exam.uuid)" type="submit">{{ exam.name }}</inertia-link> / Daftar Sesi
       </h3>
     </template>
     <div class="row  no-gutters">
@@ -11,46 +11,46 @@
         <draggable v-model="list_section" v-bind="dragOptions" group="soal" @start="drag=true" @end="drag=false" @change="updateOrder">
           <transition-group type="transition" name="flip-list">
             <b-card no-body class="mb-1" v-for ="section in list_section" :key="section.uuid">
-                <b-card-header header-tag="header" role="tab">
-                    <div class="row">
-                        <div class="col-md-6 p-2">
-                            <a href="#" v-b-toggle="section.uuid" variant="light">{{ section.name }}</a>
-                        </div>
-                        <div class="col-md-6">
-                            <b-row align-h="end">
-                                <inertia-link :href="$route('creator.questions.index', section.uuid)" align-self="end" class="btn btn-light"><icon name="list-task" /> Daftar Soal</inertia-link>
-                                <b-button align-self="end" variant="light" v-b-modal="'delete-' + section.uuid"><icon name="trash" /> Hapus</b-button>
-                                <b-modal :id="'delete-' + section.uuid" hide-backdrop title="Konfirmasi">
-                                    Hapus seksi <strong>{{ section.name }}</strong>?
-                                    <p>
-                                    <small class="text-danger">
-                                        <strong>Peringatan!</strong> menghapus seksi akan menghapus semua daftar soal yang ada pada seksi tersebut
-                                    </small>
-                                    </p>
-                                    <template v-slot:modal-footer>
-                                    <div class="w-100">
-                                        <b-button variant="secondary" size="sm" class="float-right mr-1" @click="deleteSection(section.uuid)">Hapus</b-button>
-                                        <b-button variant="outline-secondary" size="sm" class="float-right mr-1" @click="$bvModal.hide('delete-' + section.uuid)">Batal</b-button>
-                                    </div>
-                                </template>
-                                </b-modal>
-                            </b-row>
-                        </div>
-                    </div>
-                </b-card-header>
-                <b-collapse :id="section.uuid" accordion="my-accordion" role="tabpanel">
+              <b-card-header header-tag="header" role="tab">
+                <div class="row">
+                  <div class="col-md-6 p-2">
+                    <a href="#" v-b-toggle="section.uuid" variant="light">{{ section.name }}</a>
+                  </div>
+                  <div class="col-md-6">
+                    <b-row align-h="end">
+                      <inertia-link :href="$route('creator.questions.index', section.uuid)" align-self="end" class="btn btn-light"><icon name="list-task" /> Daftar Soal</inertia-link>
+                      <b-button align-self="end" variant="light" v-b-modal="'delete-' + section.uuid"><icon name="trash" /> Hapus</b-button>
+                      <b-modal :id="'delete-' + section.uuid" hide-backdrop title="Konfirmasi">
+                          Hapus sesi <strong>{{ section.name }}</strong>?
+                          <p>
+                          <small class="text-danger">
+                              <strong>Peringatan!</strong> menghapus sesi akan menghapus semua daftar soal yang ada pada sesi tersebut
+                          </small>
+                          </p>
+                          <template v-slot:modal-footer>
+                          <div class="w-100">
+                            <b-button variant="secondary" size="sm" class="float-right mr-1" @click="deleteSection(section.uuid)">Hapus</b-button>
+                            <b-button variant="outline-secondary" size="sm" class="float-right mr-1" @click="$bvModal.hide('delete-' + section.uuid)">Batal</b-button>
+                          </div>
+                      </template>
+                      </b-modal>
+                    </b-row>
+                  </div>
+                </div>
+              </b-card-header>
+              <b-collapse :id="section.uuid" accordion="my-accordion" role="tabpanel">
                 <b-card-body>
-                    <div class="row">
-                        <div class="col-md-6 p-2">
-                            <div>Nilai per soal : {{ section.score_per_question }}</div>
-                            <div>Passing grade : {{ section.passing_grade }}</div>
-                        </div>
-                        <div class="col-md-6">
-                            <b-row align-h="end">
-                                <b-button align-self="end" variant="light">Edit</b-button>
-                            </b-row>
-                        </div>
+                  <div class="row">
+                    <div class="col-md-6 p-2">
+                      <div>Nilai per soal : {{ section.score_per_question }}</div>
+                      <div>Passing grade : {{ section.passing_grade }}</div>
                     </div>
+                    <div class="col-md-6">
+                      <b-row align-h="end">
+                        <b-button align-self="end" variant="light">Edit</b-button>
+                      </b-row>
+                    </div>
+                  </div>
                 </b-card-body>
                 </b-collapse>
             </b-card>
@@ -61,7 +61,7 @@
                 <inertia-link :href="$route('creator.sections.create', exam.uuid)" class="btn col-12 btn-outline-secondary">
                 <span class="border-secondary col-12">
                     <icon name="plus" />
-                    Seksi baru
+                    Sesi baru
                 </span>
                 </inertia-link>
             </b-card-header>

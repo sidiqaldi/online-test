@@ -4,7 +4,7 @@
       <h3 class="d-inline">
         <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link> /
         <inertia-link :href="$route('creator.exams.edit', exam.uuid)" type="submit">{{ exam.name }}</inertia-link> /
-        <inertia-link :href="$route('creator.sections.index', exam.uuid)" type="submit">Daftar Seksi</inertia-link> /
+        <inertia-link :href="$route('creator.sections.index', exam.uuid)" type="submit">Daftar Sesi</inertia-link> /
         {{ section.name }}
       </h3>
     </template>
@@ -20,7 +20,9 @@
                         </div>
                         <div class="col-md-6">
                             <b-row align-h="end">
-                                <b-button align-self="end" variant="light"><icon name="pencil" /> Edit Soal</b-button>
+                                <inertia-link :href="$route('creator.questions.edit', question.uuid)" class="btn btn-outline-secondary">
+                                  <icon name="pencil" /> Edit Soal
+                                </inertia-link>
                                 <b-button align-self="end" variant="light" v-b-modal="'delete-' + question.uuid"><icon name="trash" /> Hapus</b-button>
                                 <b-modal :id="'delete-' + question.uuid" hide-backdrop title="Konfirmasi">
                                     Hapus pertanyaan <strong>{{ question.title }}</strong>?

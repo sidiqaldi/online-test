@@ -4,7 +4,7 @@ return [
 
     'Exam' => 'Ujian',
     'Config' => 'Pengaturan',
-    'Section' => 'Seksi',
+    'Section' => 'Sesi',
     'Login' => 'Masuk',
     'Logout' => 'Keluar',
     'Question' => 'Pertanyaan',

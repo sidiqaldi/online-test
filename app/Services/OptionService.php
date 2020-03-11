@@ -15,7 +15,7 @@ class OptionService
                 'question_id' => $question->id,
                 'type' => $option['type'],
                 'value' => $option['type'] == InputType::Text ? $option['value'] : $option['image'],
-                'correct_id' => $option['is_correct'],
+                'correct_id' => $option['correct_id'],
                 'order' => $key+1
             ];
             Option::create($data);
@@ -27,7 +27,7 @@ class OptionService
             $data = [
                 'type' => $option['type'],
                 'value' => $option['type'] == InputType::Text ? $option['value'] : $option['image'],
-                'correct_id' => $option['is_correct'],
+                'correct_id' => $option['correct_id'],
                 'order' => $key+1
             ];
             Option::updateOrcreate(['id' => $option['id']], $data);

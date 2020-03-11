@@ -28,11 +28,11 @@ class CorrectValue implements Rule
     public function passes($attribute, $value)
     {
         foreach ($value as $item) {
-            if (!isset($item['is_correct'])) {
+            if (!isset($item['correct_id'])) {
                 return false;
             }
 
-            if ($item['is_correct'] == CorrectStatus::True) {
+            if ($item['correct_id'] == CorrectStatus::True) {
                 $this->exist ++;
             }
         }

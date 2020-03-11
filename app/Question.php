@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Enums\CorrectStatus;
 use App\Filters\Filterable;
 use App\Traits\HasOwner;
 use Illuminate\Database\Eloquent\Model;
@@ -62,5 +63,10 @@ class Question extends Model
     public function options()
     {
         return $this->hasMany('App\Option');
+    }
+
+    public function getAnswerAttribute()
+    {
+        $answerOptions = $this->options()->where('correct_id', CorrectStatus::True)->first()->uuid;
     }
 }

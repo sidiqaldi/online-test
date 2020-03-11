@@ -84,7 +84,7 @@
         <div class="card-header" id="headingConfig">
           <h4 class="mb-0" type="button">
             <icon name="list-task" />
-            <inertia-link :href="$route('creator.sections.index', exam.uuid)"> Seksi & Soal </inertia-link>
+            <inertia-link :href="$route('creator.sections.index', exam.uuid)"> Sesi & Soal </inertia-link>
           </h4>
         </div>
         </div>

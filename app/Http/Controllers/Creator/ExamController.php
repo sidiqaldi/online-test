@@ -6,8 +6,9 @@ use App\Config;
 use App\Exam;
 use App\Filters\ExamFilter;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Exam\UpdateRequest;
-use App\Http\Requests\Exam\StoreRequest;
+use App\Http\Requests\Creator\Exam\UpdateRequest;
+use App\Http\Requests\Creator\Exam\StoreRequest;
+use App\Http\Requests\Exam\PublishRequest;
 use App\Http\Resources\ExamResource;
 use App\Services\ConfigService;
 use Illuminate\Http\Request;
@@ -58,5 +59,14 @@ class ExamController extends Controller
         return redirect()->back()
             ->with('status', __('notification.success.update', ['model' => __('general.Exam')]))
             ->with('pops', null);
+    }
+
+    public function publish(PublishRequest $request, Exam $exam)
+    {
+        foreach ($exam->sections as $section) {
+            if (!$section->questions()->count()) {
+                return redirect()->back()->withErrors(['exam' => [__('validation.no_questions')]]);
+            }
+        }
     }
 }

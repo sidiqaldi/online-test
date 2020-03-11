@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Creator;
 use App\Config;
 use App\Exam;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Config\UpdateRequest;
+use App\Http\Requests\Creator\Config\UpdateRequest;
 
 class ConfigController extends Controller
 {

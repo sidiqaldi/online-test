@@ -4,7 +4,7 @@
       <h3 class="d-inline">
         <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link> /
         <inertia-link :href="$route('creator.exams.edit', exam.uuid)" type="submit">{{ exam.name }}</inertia-link> /
-        <inertia-link :href="$route('creator.sections.index', exam.uuid)" type="submit">Daftar Seksi</inertia-link> /
+        <inertia-link :href="$route('creator.sections.index', exam.uuid)" type="submit">Daftar Sesi</inertia-link> /
         <inertia-link :href="$route('creator.questions.index', section.uuid)" type="submit">{{ section.name }}</inertia-link> /
         Buat Soal
       </h3>
@@ -167,7 +167,7 @@ export default {
     },
     setIsCorrect(key, val) {
       let form = this.form.options[key]
-      form.is_correct = val
+      form.correct_id = val
       Vue.set(this.form.options, key, form)
       this.answer = form.key
       this.answerKey = key
@@ -185,7 +185,7 @@ export default {
           value: '',
           image: '',
           type: 1,
-          is_correct: 1,
+          correct_id: 1,
       })
     },
     imgError(e) {

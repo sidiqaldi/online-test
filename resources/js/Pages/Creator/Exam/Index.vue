@@ -27,7 +27,7 @@
                     <td class="align-middle">
                         <div class="d-flex">
                             <inertia-link :href="$route('creator.exams.edit', exam.uuid)" class="mr-2 align-self-stretch btn btn-outline-secondary"> Edit </inertia-link>
-                            <inertia-link :href="$route('creator.sections.index', exam.uuid)" class="mr-2 align-self-stretch btn btn-outline-secondary"> Seksi & Soal </inertia-link>
+                            <inertia-link :href="$route('creator.sections.index', exam.uuid)" class="mr-2 align-self-stretch btn btn-outline-secondary"> Sesi & Soal </inertia-link>
                         </div>
                     </td>
                 </tr>
