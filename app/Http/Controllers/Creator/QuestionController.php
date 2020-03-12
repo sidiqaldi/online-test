@@ -8,6 +8,7 @@ use App\Http\Requests\Creator\Question\OrderRequest;
 use App\Http\Requests\Creator\Question\StoreRequest;
 use App\Http\Requests\Creator\Question\DestroyRequest;
 use App\Http\Requests\Creator\Question\EditRequest;
+use App\Http\Requests\Creator\Question\UpdateRequest;
 use App\Question;
 use App\Section;
 use App\Services\OptionService;
@@ -71,8 +72,22 @@ class QuestionController extends Controller
                     'correct_id' => $option->correct_id,
                 ];
             }),
-            'answer' => $question->answer,
+            'correct_answer' => $question->answer,
         ]);
+    }
+
+    public function update(UpdateRequest $request, Question $question)
+    {
+        DB::beginTransaction();
+
+        $question->update($request->dataQuestion());
+
+        OptionService::updateOptions($request->dataOptions());
+
+        DB::commit();
+
+        return redirect()->route('creator.questions.index', $question->section->uuid)
+            ->with('status', __('notification.success.update', ['model' => __('general.Question')]));
     }
 
     public function order(OrderRequest $request, Question $question)

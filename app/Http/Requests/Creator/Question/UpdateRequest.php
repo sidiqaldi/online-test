@@ -5,8 +5,8 @@ namespace App\Http\Requests\Creator\Question;
 use App\Enums\CorrectStatus;
 use App\Enums\InputType;
 use App\Rules\CorrectValue;
-use App\Section;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
@@ -18,7 +18,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return $this->route('question')->user_id == Auth::id();
     }
 
     /**
@@ -94,7 +94,7 @@ class UpdateRequest extends FormRequest
     /**
      * @return array
      */
-    public function dataQuestion(Section $section)
+    public function dataQuestion()
     {
         return [
             'title' => $this->question_title,

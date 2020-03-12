@@ -152,6 +152,7 @@ export default {
       answer: null,
       answerKey: null,
       form: {
+        question_title: "",
         question_value: "",
         question_type: 1,
         question_image: "",

@@ -67,6 +67,13 @@ class Question extends Model
 
     public function getAnswerAttribute()
     {
-        $answerOptions = $this->options()->where('correct_id', CorrectStatus::True)->first()->uuid;
+        foreach ($this->options()->get() as $key => $answer) {
+            if ($answer->correct_id == CorrectStatus::True) {
+                return (object) [
+                    'key' => $key,
+                    'answer' => $answer->uuid
+                ];
+            }
+        }
     }
 }

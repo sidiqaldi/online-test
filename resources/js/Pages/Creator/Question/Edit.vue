@@ -88,7 +88,7 @@
           </div>
           <div class="row my-4">
             <div class="col-md-12">
-              <button-loading :loading="sending" type="submit">Buat soal</button-loading>
+              <button-loading :loading="sending" type="submit">Update soal</button-loading>
             </div>
           </div>
         </div>
@@ -138,6 +138,7 @@ export default {
     input_type: Object,
     question: Object,
     options: Array,
+    correct_answer: Object,
   },
   data() {
     return {
@@ -154,6 +155,7 @@ export default {
       answer: null,
       answerKey: null,
       form: {
+        question_title: "",
         question_value: "",
         question_type: 1,
         question_image: "",
@@ -162,6 +164,9 @@ export default {
     };
   },
   mounted() {
+    this.answer = this.correct_answer.answer
+    this.answerKey = this.correct_answer.key
+    this.form.question_title = this.question.title
     this.form.question_value = this.question.value
     this.form.question_type = this.question.type
     this.form.question_image = this.question.image
@@ -201,7 +206,7 @@ export default {
     },
     submit() {
       this.sending = true
-      this.$inertia.post(this.$route("creator.questions.store", this.section.uuid), this.form).then(() => this.sending = false)
+      this.$inertia.put(this.$route("creator.questions.update", this.question.uuid), this.form).then(() => this.sending = false)
     },
   }
 };

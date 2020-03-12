@@ -27,6 +27,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/{exam}', 'Creator\SectionController@index')->name('sections.index');
             Route::get('/{exam}/create', 'Creator\SectionController@create')->name('sections.create');
             Route::post('/{exam}/store', 'Creator\SectionController@store')->name('sections.store');
+            Route::get('/{section}/edit', 'Creator\SectionController@edit')->name('sections.edit');
+            Route::put('/{section}/update', 'Creator\SectionController@update')->name('sections.update');
             Route::post('/{section}/order', 'Creator\SectionController@order')->name('sections.order');
             Route::delete('/{section}', 'Creator\SectionController@destroy')->name('sections.destroy');
         });
@@ -35,6 +37,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::get('/{section}/create', 'Creator\QuestionController@create')->name('questions.create');
             Route::post('/{section}/create', 'Creator\QuestionController@store')->name('questions.store');
             Route::get('/{question}/edit', 'Creator\QuestionController@edit')->name('questions.edit');
+            Route::put('/{question}/update', 'Creator\QuestionController@update')->name('questions.update');
             Route::post('/{question}/order', 'Creator\QuestionController@order')->name('questions.order');
             Route::delete('/{question}', 'Creator\QuestionController@destroy')->name('questions.destroy');
         });

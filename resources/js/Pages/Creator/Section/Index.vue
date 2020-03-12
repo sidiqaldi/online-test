@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-md-6">
                       <b-row align-h="end">
-                        <b-button align-self="end" variant="light">Edit</b-button>
+                        <inertia-link align-self="end" class="btn btn-outline-secondary" :href="$route('creator.sections.edit', section.uuid)">Edit</inertia-link>
                       </b-row>
                     </div>
                   </div>
