@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'Exam' => 'Ujian',
     'Config' => 'Pengaturan',
     'Section' => 'Sesi',

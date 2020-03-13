@@ -21,18 +21,18 @@
                       <inertia-link :href="$route('creator.questions.index', section.uuid)" align-self="end" class="btn btn-light"><icon name="list-task" /> Daftar Soal</inertia-link>
                       <b-button align-self="end" variant="light" v-b-modal="'delete-' + section.uuid"><icon name="trash" /> Hapus</b-button>
                       <b-modal :id="'delete-' + section.uuid" hide-backdrop title="Konfirmasi">
-                          Hapus sesi <strong>{{ section.name }}</strong>?
-                          <p>
+                        Hapus sesi <strong>{{ section.name }}</strong>?
+                        <p>
                           <small class="text-danger">
-                              <strong>Peringatan!</strong> menghapus sesi akan menghapus semua daftar soal yang ada pada sesi tersebut
+                            <strong>Peringatan!</strong> menghapus sesi akan menghapus semua daftar soal yang ada pada sesi tersebut
                           </small>
-                          </p>
-                          <template v-slot:modal-footer>
+                        </p>
+                        <template v-slot:modal-footer>
                           <div class="w-100">
                             <b-button variant="secondary" size="sm" class="float-right mr-1" @click="deleteSection(section.uuid)">Hapus</b-button>
                             <b-button variant="outline-secondary" size="sm" class="float-right mr-1" @click="$bvModal.hide('delete-' + section.uuid)">Batal</b-button>
                           </div>
-                      </template>
+                        </template>
                       </b-modal>
                     </b-row>
                   </div>

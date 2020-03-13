@@ -13,6 +13,7 @@
             Informasi Umum
           </h4>
         </div>
+        <b-alert show variant="danger" v-if="$page.errors.exam">{{ $page.errors.exam[0] }}</b-alert>
         <div aria-labelledby="headingBasic" class="collapse" data-parent="#accordionEditConfig" id="collapseBasic" v-bind:class="{'show' : $page.pops === null}">
           <div class="card-body">
             <form @submit.prevent="submitExam">
@@ -32,10 +33,13 @@
                   </template>
                 </input-text>
               </div>
-              <div class="row my-4">
-                <div class="col-md-12">
-                  <button-loading :loading="sending" type="submit">Simpan</button-loading>
-                </div>
+              <div class="row col-md-12 justify-content-between col-12 my-4">
+                <button-loading class="btn btn-outline-secondary" :loading="sending" type="submit">Simpan</button-loading>
+                <button class="btn" :class="{'btn-outline-primary' : exam.status_id == 1, 'btn-outline-danger' : exam.status_id != 1,}" @click.prevent="publish">
+                  <span v-if="sending" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  <span v-if="exam.status_id == 1">publish</span>
+                  <span v-else>unpublish</span>
+                </button>
               </div>
             </form>
           </div>
@@ -73,7 +77,7 @@
               </div>
               <div class="row my-4">
                 <div class="col-md-12">
-                  <button-loading :loading="sending" type="submit">Simpan</button-loading>
+                  <button-loading :loading="sending" class="btn btn-outline-secondary" type="submit">Simpan</button-loading>
                 </div>
               </div>
             </form>
@@ -149,6 +153,10 @@ export default {
     submitExam() {
       this.sending = true
       this.$inertia.put(this.$route("creator.exams.update", this.form.exam.uuid), this.form.exam).then(() => this.sending = false)
+    },
+    publish() {
+      this.sending = true
+      this.$inertia.put(this.$route("creator.exams.publish", this.form.exam.uuid)).then(() => this.sending = false)
     },
     submitConfig() {
       this.sending = true

@@ -22,6 +22,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
     Route::prefix('creator')->name('creator.')->group(function () {
         Route::resource('/exams', 'Creator\ExamController');
+        Route::put('/exams-publish/{exam}', 'Creator\ExamController@publish')->name('exams.publish');
         Route::resource('/configs', 'Creator\ConfigController')->only('update');
         Route::prefix('/sections')->group(function () {
             Route::get('/{exam}', 'Creator\SectionController@index')->name('sections.index');

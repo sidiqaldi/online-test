@@ -35,7 +35,7 @@ class SectionController extends Controller
         Section::create($request->data($exam));
 
         return redirect()->route('creator.sections.index', $exam->uuid)
-            ->with('status', __('notification.success.add', ['model' => __('general.Section')]));
+            ->with('status', __('notification.success.add', ['model' => __('Section')]));
     }
 
     public function edit(EditRequest $request, Section $section)
@@ -54,7 +54,7 @@ class SectionController extends Controller
         $section->update($request->validated());
 
         return redirect()->route('creator.sections.index', $section->exam->uuid)
-            ->with('status', __('notification.success.update', ['model' => __('general.Section')]));
+            ->with('status', __('notification.success.update', ['model' => __('Section')]));
     }
 
     public function order(OrderRequest $request, Section $section)
@@ -79,6 +79,6 @@ class SectionController extends Controller
         $section->delete();
 
         return redirect()->back()
-            ->with('status', __('notification.success.delete', ['model' => __('general.Section')]));
+            ->with('status', __('notification.success.delete', ['model' => __('Section')]));
     }
 }

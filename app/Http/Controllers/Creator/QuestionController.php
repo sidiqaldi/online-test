@@ -49,7 +49,7 @@ class QuestionController extends Controller
         DB::commit();
 
         return redirect()->route('creator.questions.index', $section->uuid)
-            ->with('status', __('notification.success.add', ['model' => __('general.Question')]));
+            ->with('status', __('notification.success.add', ['model' => __('Question')]));
     }
 
     public function edit(EditRequest $request, Question $question)
@@ -87,7 +87,7 @@ class QuestionController extends Controller
         DB::commit();
 
         return redirect()->route('creator.questions.index', $question->section->uuid)
-            ->with('status', __('notification.success.update', ['model' => __('general.Question')]));
+            ->with('status', __('notification.success.update', ['model' => __('Question')]));
     }
 
     public function order(OrderRequest $request, Question $question)
@@ -112,6 +112,6 @@ class QuestionController extends Controller
         $question->delete();
 
         return redirect()->back()
-            ->with('status', __('notification.success.delete', ['model' => __('general.Section')]));
+            ->with('status', __('notification.success.delete', ['model' => __('Section')]));
     }
 }

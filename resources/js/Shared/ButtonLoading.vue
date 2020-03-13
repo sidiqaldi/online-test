@@ -1,7 +1,7 @@
 
 <template>
-  <button :disabled="loading" class="btn btn-outline-secondary">
-      <span v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  <button :disabled="loading">
+    <span v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     <slot />
   </button>
 </template>

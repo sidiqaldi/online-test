@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Creator;
 
 use App\Config;
+use App\Enums\ExamStatus;
 use App\Exam;
 use App\Filters\ExamFilter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Creator\Exam\DestroyRequest;
+use App\Http\Requests\Creator\Exam\PublishRequest;
 use App\Http\Requests\Creator\Exam\UpdateRequest;
 use App\Http\Requests\Creator\Exam\StoreRequest;
-use App\Http\Requests\Exam\PublishRequest;
 use App\Http\Resources\ExamResource;
 use App\Services\ConfigService;
 use Illuminate\Http\Request;
@@ -38,7 +40,7 @@ class ExamController extends Controller
         Config::create(ConfigService::defaultConfig($exam));
 
         return redirect()->route('creator.exams.edit', $exam->uuid)
-            ->with('status', __('notification.success.add', ['model' => __('general.Exam')]))
+            ->with('status', __('notification.success.add', ['model' => __('Exam')]))
             ->with('pops', 'config');
     }
 
@@ -57,7 +59,16 @@ class ExamController extends Controller
         $exam->update($request->data());
 
         return redirect()->back()
-            ->with('status', __('notification.success.update', ['model' => __('general.Exam')]))
+            ->with('status', __('notification.success.update', ['model' => __('Exam')]))
+            ->with('pops', null);
+    }
+
+    public function destroy(DestroyRequest $request, Exam $exam)
+    {
+        $exam->delete();
+
+        return redirect()->back()
+            ->with('status', __('notification.success.destroy', ['model' => __('Exam')]))
             ->with('pops', null);
     }
 
@@ -68,5 +79,12 @@ class ExamController extends Controller
                 return redirect()->back()->withErrors(['exam' => [__('validation.no_questions')]]);
             }
         }
+
+        $exam->status_id = $exam->status_id == ExamStatus::Publish ? ExamStatus::Draft : ExamStatus::Publish;
+        $exam->save();
+
+        return redirect()->back()
+            ->with('status', __('notification.success.update', ['model' => __('Exam')]))
+            ->with('pops', null);
     }
 }

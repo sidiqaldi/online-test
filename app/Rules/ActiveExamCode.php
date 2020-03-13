@@ -36,6 +36,6 @@ class ActiveExamCode implements Rule
      */
     public function message()
     {
-        return __('validation.exists', ['attribute' => __('general.Code')]);
+        return __('validation.exists', ['attribute' => __('Code')]);
     }
 }

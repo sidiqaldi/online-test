@@ -120,7 +120,7 @@ return [
     'url' => ':attribute format tidak valid.',
     'uuid' => ':attribute harus berupa UUID yang valid.',
     'correct_value' => 'harus ada satu jawaban benar.',
-    'no_question' => 'ada sesi yang belum memiliki pertanyaan.',
+    'no_questions' => 'ada sesi yang belum memiliki pertanyaan.',
 
     /*
     |--------------------------------------------------------------------------
