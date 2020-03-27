@@ -3,7 +3,9 @@
     <sidebar :sidebar="sidebar" :active="active" />
 
     <div id="page-content-wrapper">
-      <div class="container-fluid text-center text-white bg-secondary d-sm-block d-md-none">{{ $page.app.name }}</div>
+      <div
+        class="container-fluid text-center text-white bg-secondary d-sm-block d-md-none"
+      >{{ $page.app.name }}</div>
       <nav class="navbar navbar-expand navbar-light py-3">
         <button class="btn btn-outline-secondary" id="menu-toggle" @click="sidebar = !sidebar">Menu</button>
 
@@ -12,8 +14,19 @@
           <ul class="navbar-nav ml-auto my-2">
             <li class="nav-item"></li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $page.auth.user.name }}</a>
-              <div class="dropdown-menu dropdown-menu-right fade bg-light" aria-labelledby="navbarDropdown" >
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >{{ $page.auth.user.name }}</a>
+              <div
+                class="dropdown-menu dropdown-menu-right fade bg-light"
+                aria-labelledby="navbarDropdown"
+              >
                 <a href="#" class="dropdown-item">Profil</a>
                 <div class="dropdown-divider"></div>
                 <button-logout class="dropdown-item" />
@@ -37,9 +50,9 @@
 </template>
 
 <script>
-import ButtonLogout from "@/Shared/ButtonLogout"
-import Sidebar from "@/Shared/Sidebar"
-import FlashNote from "@/Shared/FlashNote"
+import ButtonLogout from "@/Shared/ButtonLogout";
+import Sidebar from "@/Shared/Sidebar";
+import FlashNote from "@/Shared/FlashNote";
 
 export default {
   components: {
@@ -66,7 +79,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$inertia.post(this.$route("logout"), this.form)
+      this.$inertia.post(this.$route("logout"), this.form);
     }
   }
 };

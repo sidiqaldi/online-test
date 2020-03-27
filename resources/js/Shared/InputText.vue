@@ -45,7 +45,7 @@ export default {
     value: String,
     label: {
       type: String,
-      default: null,
+      default: null
     },
     required: {
       type: Boolean,

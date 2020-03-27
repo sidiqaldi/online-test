@@ -1,6 +1,9 @@
 <template>
   <div>
-    <label v-if="label" class="form-label" :for="id">{{ label }} <span v-if="required" class="text-danger">*</span></label>
+    <label v-if="label" class="form-label" :for="id">
+      {{ label }}
+      <span v-if="required" class="text-danger">*</span>
+    </label>
     <select
       :id="id"
       ref="input"
@@ -11,7 +14,7 @@
     >
       <slot />
     </select>
-     <span v-if="errors.length" class="invalid-feedback" role="alert">
+    <span v-if="errors.length" class="invalid-feedback" role="alert">
       <strong>{{ errors[0] }}</strong>
     </span>
   </div>
@@ -29,7 +32,7 @@ export default {
     },
     required: {
       type: Boolean,
-      default: false,
+      default: false
     },
     value: [String, Number, Boolean],
     label: String,

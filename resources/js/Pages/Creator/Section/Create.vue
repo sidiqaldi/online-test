@@ -1,19 +1,43 @@
 <template>
-  <layout :title="'Buat Sesi Ujian - ' + $page.app.name"  active="creator.exams.index">
+  <layout :title="'Buat Sesi Ujian - ' + $page.app.name" active="creator.exams.index">
     <template v-slot:header>
       <h3 class="d-inline">
-        <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link>
-        / <inertia-link :href="$route('creator.exams.edit', exam.uuid)" type="submit">{{ exam.name }}</inertia-link>
-        / <inertia-link :href="$route('creator.sections.index', exam.uuid)" type="submit">Daftar Sesi</inertia-link>
-        / Buat baru
+        <inertia-link :href="$route('creator.exams.index')" type="submit">Daftar Ujian</inertia-link>/
+        <inertia-link :href="$route('creator.exams.edit', exam.uuid)" type="submit">{{ exam.name }}</inertia-link>/
+        <inertia-link :href="$route('creator.sections.index', exam.uuid)" type="submit">Daftar Sesi</inertia-link>/ Buat baru
       </h3>
     </template>
     <form @submit.prevent="submit">
       <div class="row">
         <div class="col-md-6">
-          <input-text class="form-group" v-model="form.name" :errors="$page.errors.name" label="Nama Sesi" :required="true" placeholder="contoh: Sesi 1 matematika dasar"/>
-          <input-text type="number" min="0" class="form-group" v-model="form.score_per_question" :errors="$page.errors.score_per_question" label="Nilai per soal" :required="true" placeholder="contoh: 10"/>
-          <input-text type="number" min="0" class="form-group" v-model="form.passing_grade" :errors="$page.errors.passing_grade" label="Passing Grade" :required="true" placeholder="contoh: 100"/>
+          <input-text
+            class="form-group"
+            v-model="form.name"
+            :errors="$page.errors.name"
+            label="Nama Sesi"
+            :required="true"
+            placeholder="contoh: Sesi 1 matematika dasar"
+          />
+          <input-text
+            type="number"
+            min="0"
+            class="form-group"
+            v-model="form.score_per_question"
+            :errors="$page.errors.score_per_question"
+            label="Nilai per soal"
+            :required="true"
+            placeholder="contoh: 10"
+          />
+          <input-text
+            type="number"
+            min="0"
+            class="form-group"
+            v-model="form.passing_grade"
+            :errors="$page.errors.passing_grade"
+            label="Passing Grade"
+            :required="true"
+            placeholder="contoh: 100"
+          />
         </div>
       </div>
       <div class="row mt-5">
@@ -28,7 +52,7 @@
 <script>
 import Layout from "@/Layout/Dashboard";
 import InputText from "@/Shared/InputText";
-import ButtonLoading from "@/Shared/ButtonLoading"
+import ButtonLoading from "@/Shared/ButtonLoading";
 
 export default {
   components: {
@@ -46,14 +70,16 @@ export default {
       form: {
         name: null,
         score_per_question: null,
-        passing_grade: null,
+        passing_grade: null
       }
     };
   },
   methods: {
     submit() {
-      this.sending = true
-      this.$inertia.post(this.$route("creator.sections.store", this.exam.uuid), this.form).then(() => this.sending = false)
+      this.sending = true;
+      this.$inertia
+        .post(this.$route("creator.sections.store", this.exam.uuid), this.form)
+        .then(() => (this.sending = false));
     }
   }
 };

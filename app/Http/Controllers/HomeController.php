@@ -28,4 +28,14 @@ class HomeController extends Controller
     {
         return Inertia::render('Home');
     }
+
+    /**
+     * Show the application pauli.
+     *
+     * @return \Inertia\Response
+     */
+    public function pauli()
+    {
+        return Inertia::render('Pauli');
+    }
 }

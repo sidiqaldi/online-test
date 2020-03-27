@@ -20,19 +20,10 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto"></ul>
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto" v-if="!$page.auth.user">
-              <!-- Authentication Links -->
-              <li class="nav-item">
-                <inertia-link class="nav-link" :href="$route('login')">Masuk</inertia-link>
-              </li>
-              <li class="nav-item">
-                <inertia-link class="nav-link" :href="$route('register')">Daftar</inertia-link>
-              </li>
-            </ul>
             <ul class="navbar-nav ml-auto" v-if="$page.auth.user">
               <!-- Authentication Links -->
               <li class="nav-item">
-                <inertia-link class="nav-link" :href="$route('dashboard')">Dashboard</inertia-link>
+                <inertia-link class="nav-link" :href="$route('dashboard')">Kembali ke dashboard</inertia-link>
               </li>
             </ul>
           </div>
@@ -47,19 +38,36 @@
 </template>
 
 <script>
+import ButtonLogout from "@/Shared/ButtonLogout"
+import Sidebar from "@/Shared/Sidebar"
+import FlashNote from "@/Shared/FlashNote"
+
 export default {
+  components: {
+    ButtonLogout,
+    FlashNote,
+    Sidebar
+  },
+  data() {
+    return {
+      sidebar: false
+    };
+  },
   props: {
     title: String,
-    header: null
+    active: String
   },
   watch: {
     title: {
       immediate: true,
       handler(title) {
-        if (title) {
-          document.title = title;
-        }
+        document.title = title;
       }
+    }
+  },
+  methods: {
+    logout() {
+      this.$inertia.post(this.$route("logout"), this.form)
     }
   }
 };

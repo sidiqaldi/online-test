@@ -1,7 +1,19 @@
 <template>
   <div>
-    <label v-if="label" :for="id">{{ label }} <span v-if="required" class="text-danger">*</span></label>
-    <textarea ref="input" :id="id" v-bind="$attrs" class="form-control" :class="{ 'is-invalid': errors.length }" :value="value" :placeholder="placeholder" @input="$emit('input', $event.target.value)"></textarea>
+    <label v-if="label" :for="id">
+      {{ label }}
+      <span v-if="required" class="text-danger">*</span>
+    </label>
+    <textarea
+      ref="input"
+      :id="id"
+      v-bind="$attrs"
+      class="form-control"
+      :class="{ 'is-invalid': errors.length }"
+      :value="value"
+      :placeholder="placeholder"
+      @input="$emit('input', $event.target.value)"
+    ></textarea>
     <span v-if="errors.length" class="invalid-feedback" role="alert">
       <strong>{{ errors[0] }}</strong>
     </span>
@@ -15,28 +27,28 @@ export default {
     id: {
       type: String,
       default() {
-        return `textarea-input-${this._uid}`
-      },
+        return `textarea-input-${this._uid}`;
+      }
     },
     required: false,
     value: String,
     label: String,
     placeholder: {
-        type: String,
-        default: '',
+      type: String,
+      default: ""
     },
     errors: {
       type: Array,
-      default: () => [],
-    },
+      default: () => []
+    }
   },
   methods: {
     focus() {
-      this.$refs.input.focus()
+      this.$refs.input.focus();
     },
     select() {
-      this.$refs.input.select()
-    },
-  },
-}
+      this.$refs.input.select();
+    }
+  }
+};
 </script>

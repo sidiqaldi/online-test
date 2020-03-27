@@ -18,7 +18,7 @@
       </div>
       <div class="row mt-5">
         <div class="col-md-12">
-          <button-loading :loading="sending" type="submit">Update sesi</button-loading>
+          <button-loading :loading="sending" class="btn btn-outline-secondary" type="submit">Update sesi</button-loading>
         </div>
       </div>
     </form>

@@ -15,7 +15,7 @@
         v-bind:class="{ 'active' : active === 'participant.exams.form' }"
         :href="$route('participant.exams.form')"
       >Ikuti Ujian</inertia-link>
-       <inertia-link
+      <inertia-link
         class="list-group-item list-group-item-action"
         v-bind:class="{ 'active' : active === 'participant.results.index' }"
         :href="$route('participant.results.index')"

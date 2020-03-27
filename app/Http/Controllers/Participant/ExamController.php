@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Participant;
 use App\Exam;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Participant\Exam\DetailsRequest;
+use App\Http\Resources\ConfigResource;
 use App\Http\Resources\ExamResource;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -26,12 +27,14 @@ class ExamController extends Controller
         $exam = Exam::where('code', $code)->firstOrFail();
         return Inertia::render('Participant/Exam/Details', [
             'exam' => new ExamResource($exam),
+            'config' => new ConfigResource($exam->config),
             'creator' => $exam->user->name,
         ]);
     }
 
     public function join()
     {
+        
         // return Inertia::render('Participant/Exam/Join');
     }
 }
