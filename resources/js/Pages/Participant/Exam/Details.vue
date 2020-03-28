@@ -1,5 +1,17 @@
 <template>
   <layout :title="'Ikuti Ujian - ' + $page.app.name" active="participant.exams.form">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" v-if="$page.errors.join && showError">
+      <strong>Peringatan!</strong>
+      {{ $page.errors.join[0] }}.
+      <button
+        aria-label="Close"
+        class="close"
+        type="button"
+        @click="showError = false"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     <div class="row justify-content-center">
       <div class="col-md-6">
         <h2>{{ exam.data.name }}</h2>
@@ -41,9 +53,22 @@ export default {
     exam: Object,
     config: Object,
   },
+  data() {
+    return {
+      showError : false
+    }
+  },
+  watch: {
+    "$page.errors.join": {
+      handler() {
+        this.showError = true;
+      },
+      deep: true
+    }
+  },
   methods: {
     join() {
-      this.$inertia.post(this.$route("participant.exams.join", this.form));
+      this.$inertia.post(this.$route("participant.exams.join", this.exam.data.uuid));
     }
   }
 };

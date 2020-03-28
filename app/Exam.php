@@ -6,6 +6,7 @@ use App\Enums\ExamStatus;
 use App\Filters\Filterable;
 use App\Traits\HasOwner;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Webpatser\Uuid\Uuid;
 
 /**
@@ -73,5 +74,13 @@ class Exam extends Model
     public function sections()
     {
         return $this->hasMany('App\Section')->orderBy('order');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function participants()
+    {
+        return $this->hasMany('App\Participant');
     }
 }

@@ -20,11 +20,8 @@ class CreateParticipantsTable extends Migration
             $table->unsignedBigInteger('exam_id');
             $table->unsignedBigInteger('random_key');
             $table->unsignedBigInteger('score')->nullable();
+            $table->timestamp('finish_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('exam_id')
-                ->references('id')->on('exams')
-                ->onDelete('cascade');
 
             $table->foreign('user_id')
                 ->references('id')->on('users')

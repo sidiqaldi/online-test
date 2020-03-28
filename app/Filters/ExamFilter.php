@@ -12,7 +12,7 @@ class ExamFilter extends Filter
      */
     public function name(string $name): Builder
     {
-        return $this->builder->where('name', $name);
+        return $this->builder->where('name', 'like', '%'.$name.'%');
     }
 
     /**

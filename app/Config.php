@@ -40,7 +40,7 @@ class Config extends Model
     /**
      * @return BelongsTo
      */
-    public function config()
+    public function exam()
     {
         return $this->belongsTo('App\Exam');
     }

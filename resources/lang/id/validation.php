@@ -119,8 +119,9 @@ return [
     'uploaded' => ':attribute gagal melakukan upload.',
     'url' => ':attribute format tidak valid.',
     'uuid' => ':attribute harus berupa UUID yang valid.',
-    'correct_value' => 'harus ada satu jawaban benar.',
-    'no_questions' => 'ada sesi yang belum memiliki pertanyaan.',
+    'correct_value' => 'Harus ada satu jawaban benar.',
+    'no_questions' => 'Ada sesi yang belum memiliki pertanyaan.',
+    'participate' => 'Anda telah mengikuti ujian ini.',
 
     /*
     |--------------------------------------------------------------------------

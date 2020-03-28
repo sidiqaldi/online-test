@@ -12,7 +12,7 @@
         :href="$route('creator.exams.create')"
         class="mr-auto my-auto btn btn-outline-secondary"
       >Buat ujian</inertia-link>
-      <input type="text" class="col-6 form-control" />
+      <input maxlength="50" v-model="form.name" type="text" class="col-6 form-control" @input="$emit('input', $event.target.value)"/>
     </template>
     <div class="table-responsive">
       <table class="table">
@@ -85,16 +85,35 @@
 </template>
 
 <script>
-import Layout from "@/Layout/Dashboard";
-import Icon from "@/Shared/Icon";
+import Layout from "@/Layout/Dashboard"
+import Icon from "@/Shared/Icon"
+import pickBy from 'lodash/pickBy'
+import throttle from 'lodash/throttle'
 
 export default {
   props: {
-    exams: Object
+    exams: Object,
+    filters: Object
   },
   components: {
     Layout,
     Icon
+  },
+  data() {
+    return {
+      form : {
+        name : this.filters.name
+      }
+    }
+  },
+  watch: {
+    form: {
+      handler: throttle(function() {
+        let query = pickBy(this.form)
+        this.$inertia.replace(this.$route('creator.exams.index', Object.keys(query).length ? query : { remember: 'forget' }))
+      }, 150),
+      deep: true,
+    }
   },
   methods: {
     deleteExam(uuid) {

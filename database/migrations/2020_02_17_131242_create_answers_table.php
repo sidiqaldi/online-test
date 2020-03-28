@@ -20,9 +20,9 @@ class CreateAnswersTable extends Migration
             $table->unsignedBigInteger('participant_id');
             $table->unsignedBigInteger('section_id');
             $table->unsignedBigInteger('question_id');
-            $table->unsignedBigInteger('option_id');
-            $table->unsignedSmallInteger('is_correct');
-            $table->unsignedBigInteger('score');
+            $table->unsignedBigInteger('option_id')->nullable();
+            $table->unsignedSmallInteger('is_correct')->nullable();
+            $table->unsignedBigInteger('score')->nullable();
             $table->timestamps();
 
             $table->foreign('participant_id')
@@ -31,6 +31,14 @@ class CreateAnswersTable extends Migration
 
             $table->foreign('user_id')
                 ->references('id')->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('section_id')
+                ->references('id')->on('sections')
+                ->onDelete('cascade');
+
+            $table->foreign('question_id')
+                ->references('id')->on('questions')
                 ->onDelete('cascade');
         });
     }

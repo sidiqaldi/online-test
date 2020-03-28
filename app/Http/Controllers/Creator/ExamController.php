@@ -24,7 +24,12 @@ class ExamController extends Controller
         $perPage = $request->input('per_page', 10);
 
         return Inertia::render('Creator/Exam/Index', [
-            'exams' => ExamResource::collection(Exam::filter(new ExamFilter($request))->owner(Auth::user())->paginate($perPage))
+            'filters' => $request->all('name'),
+            'exams' => ExamResource::collection(
+                Exam::filter(new ExamFilter($request))
+                    ->owner(Auth::user())
+                    ->paginate($perPage)
+            )
         ]);
     }
 
