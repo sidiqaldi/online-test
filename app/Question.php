@@ -6,7 +6,7 @@ use App\Enums\CorrectStatus;
 use App\Filters\Filterable;
 use App\Traits\HasOwner;
 use Illuminate\Database\Eloquent\Model;
-use Webpatser\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @method static self filter($param)
@@ -20,7 +20,7 @@ class Question extends Model
 {
     use Filterable, HasOwner;
 
-    protected $fillable = ['user_id', 'section_id', 'type', 'title', 'value', 'image', 'order'];
+    protected $fillable = ['user_id', 'section_id', 'type', 'title', 'value', 'image', 'order', 'time_limit'];
 
     /**
      * Setup model event hooks
@@ -29,7 +29,7 @@ class Question extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 
@@ -49,7 +49,7 @@ class Question extends Model
         return $this->belongsTo('App\Exam');
     }
 
-    /** 
+    /**
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo
     */
     public function section()

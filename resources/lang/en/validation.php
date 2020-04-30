@@ -119,6 +119,7 @@ return [
     'uuid' => 'The :attribute must be a valid UUID.',
     'correct_value' => 'There is must be one correct value.',
     'no_questions' => 'There are section that still have no questions.',
+    'no_sections' => 'This Exam still has no section.',
     'participate' => 'You already participate this exam.',
 
     /*

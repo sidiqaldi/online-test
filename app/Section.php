@@ -5,7 +5,7 @@ namespace App;
 use App\Filters\Filterable;
 use App\Traits\HasOwner;
 use Illuminate\Database\Eloquent\Model;
-use Webpatser\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @method static self filter($param)
@@ -19,7 +19,7 @@ class Section extends Model
 {
     use Filterable, HasOwner;
 
-    protected $fillable = ['user_id', 'exam_id', 'name', 'score_per_question', 'passing_grade', 'order'];
+    protected $fillable = ['user_id', 'exam_id', 'name', 'score_per_question', 'passing_grade', 'order', 'time_limit'];
 
     /**
      * Setup model event hooks
@@ -28,7 +28,7 @@ class Section extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 

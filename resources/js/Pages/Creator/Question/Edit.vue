@@ -177,7 +177,7 @@
                 @error="imgError"
               />
             </div>
-            <ul>
+            <ol type="A">
               <li v-for="(option, key) in form.options" :key="key">
                 <img
                   class="img-fluid border"
@@ -188,7 +188,7 @@
                 />
                 <span v-else>{{option.value}}</span>
               </li>
-            </ul>
+            </ol>
           </b-card>
         </div>
       </div>
@@ -246,8 +246,8 @@ export default {
     };
   },
   mounted() {
-    this.answer = this.correct_answer.answer;
-    this.answerKey = this.correct_answer.key;
+    this.answer = this.correct_answer ? this.correct_answer.answer : null;
+    this.answerKey = this.correct_answer ? this.correct_answer.key : null;
     this.form.question_title = this.question.title;
     this.form.question_value = this.question.value;
     this.form.question_type = this.question.type;
@@ -268,6 +268,7 @@ export default {
       this.answerKey = key;
     },
     deleteOption(key) {
+      if ((this.form.options).length <= 2) return;
       if (this.answerKey == key) {
         this.answer = null;
         this.answerKey = null;

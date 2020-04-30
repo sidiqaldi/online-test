@@ -79,6 +79,10 @@ class ExamController extends Controller
 
     public function publish(PublishRequest $request, Exam $exam)
     {
+        if (!$exam->sections->count()) {
+            return redirect()->back()->withErrors(['exam' => [__('validation.no_sections')]]);
+        }
+
         foreach ($exam->sections as $section) {
             if (!$section->questions()->count()) {
                 return redirect()->back()->withErrors(['exam' => [__('validation.no_questions')]]);

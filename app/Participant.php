@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Ramsey\Uuid\Uuid;
 
 class Participant extends Model
@@ -40,5 +41,13 @@ class Participant extends Model
     public function exam()
     {
         return $this->belongsTo('App\Exam');
+    }
+
+    /**
+     * @return HasMany 
+     */
+    public function answers()
+    {
+        return $this->hasMany('App\Answer');
     }
 }

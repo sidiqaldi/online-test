@@ -4,7 +4,7 @@ namespace App;
 
 use App\Traits\HasOwner;
 use Illuminate\Database\Eloquent\Model;
-use Webpatser\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @method static self filter($param)
@@ -27,7 +27,7 @@ class Option extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 

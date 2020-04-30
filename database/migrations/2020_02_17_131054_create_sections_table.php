@@ -22,6 +22,7 @@ class CreateSectionsTable extends Migration
             $table->unsignedInteger('score_per_question');
             $table->unsignedInteger('passing_grade');
             $table->unsignedInteger('order');
+            $table->unsignedInteger('time_limit')->nullable();
             $table->timestamps();
 
             $table->foreign('exam_id')

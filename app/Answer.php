@@ -27,4 +27,12 @@ class Answer extends Model
     {
         return 'uuid';
     }
+
+    /**
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo 
+     */
+    public function question()
+    {
+        return $this->belongsTo('App\Question');
+    }
 }

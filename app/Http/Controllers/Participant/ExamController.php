@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Participant;
 
+use App\Answer;
 use App\Exam;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Participant\Exam\DetailsRequest;
-use App\Http\Requests\Participant\Exam\JoinRequest;
 use App\Http\Resources\ConfigResource;
 use App\Http\Resources\ExamResource;
 use App\Participant;
 use App\Services\ParticipantService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ExamController extends Controller
@@ -41,8 +40,16 @@ class ExamController extends Controller
         return ParticipantService::join($exam);
     }
 
-    public function process(Participant $participant)
+    public function process(Participant $participant, Answer $answer)
     {
-        dd($participant);
+        $exam = $participant->exam;
+
+        return Inertia::render('Participant/Exam/Process', [
+            'exam' => new ExamResource($exam),
+            'config' => new ConfigResource($exam->config),
+            'answers' => $participant->answers,
+            'question' => $answer->question,
+            'options' => $answer->question->options,
+        ]);
     }
 }

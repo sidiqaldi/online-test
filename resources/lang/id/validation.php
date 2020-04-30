@@ -121,6 +121,7 @@ return [
     'uuid' => ':attribute harus berupa UUID yang valid.',
     'correct_value' => 'Harus ada satu jawaban benar.',
     'no_questions' => 'Ada sesi yang belum memiliki pertanyaan.',
+    'no_sections' => 'Ujian ini belum memiliki sesi.',
     'participate' => 'Anda telah mengikuti ujian ini.',
 
     /*

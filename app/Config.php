@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Webpatser\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 class Config extends Model
 {
@@ -33,7 +33,7 @@ class Config extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
+            $model->uuid = (string) Uuid::uuid4();
         });
     }
 

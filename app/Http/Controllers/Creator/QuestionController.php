@@ -82,12 +82,11 @@ class QuestionController extends Controller
 
         $question->update($request->dataQuestion());
 
-        OptionService::updateOptions($request->dataOptions());
+        OptionService::updateOptions($question, $request->dataOptions());
 
         DB::commit();
 
-        return redirect()->route('creator.questions.index', $question->section->uuid)
-            ->with('status', __('notification.success.update', ['model' => __('Question')]));
+        return redirect()->back()->with('status', __('notification.success.update', ['model' => __('Question')]));
     }
 
     public function order(OrderRequest $request, Question $question)

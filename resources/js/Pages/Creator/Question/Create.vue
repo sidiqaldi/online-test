@@ -177,7 +177,7 @@
                 @error="imgError"
               />
             </div>
-            <ul>
+            <ol type="A">
               <li v-for="(option, key) in form.options" :key="key">
                 <img
                   class="img-fluid border"
@@ -188,7 +188,7 @@
                 />
                 <span v-else>{{option.value}}</span>
               </li>
-            </ul>
+            </ol>
           </b-card>
         </div>
       </div>
@@ -238,7 +238,22 @@ export default {
         question_value: "",
         question_type: 1,
         question_image: "",
-        options: []
+        options: [
+          {
+            key: Date.now()+1,
+            value: "",
+            image: "",
+            type: 1,
+            correct_id: 1
+          },
+          {
+            key: Date.now()+5,
+            value: "",
+            image: "",
+            type: 1,
+            correct_id: 1
+          }
+        ]
       }
     };
   },
@@ -256,6 +271,7 @@ export default {
       this.answerKey = key;
     },
     deleteOption(key) {
+      if ((this.form.options).length <= 2) return;
       if (this.answerKey == key) {
         this.answer = null;
         this.answerKey = null;
