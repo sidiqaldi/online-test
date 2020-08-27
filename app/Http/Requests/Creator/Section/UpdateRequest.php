@@ -27,6 +27,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|min:10|max:150',
+            'instruction' => 'required|min:10|max: 255',
             'score_per_question' => 'required|numeric',
             'passing_grade' => 'required|numeric',
         ];

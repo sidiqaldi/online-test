@@ -166,6 +166,7 @@ return [
         'question_image' => 'Gambar',
         'question_title' => 'Judul',
         'options' => 'Jawaban',
+        'question' => 'Pertanyaan'
     ],
 
     'values' => [

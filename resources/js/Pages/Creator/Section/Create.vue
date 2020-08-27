@@ -18,6 +18,20 @@
             :required="true"
             placeholder="contoh: Sesi 1 matematika dasar"
           />
+          <div class="form-group">
+            <label>
+              Instruksi: <span class="text-danger">*</span>
+            </label>
+            <textarea
+              class="form-control mb-2"
+              v-model="form.instruction"
+              :class="{ 'is-invalid' : $page.errors.instruction }"
+              placeholder="contoh: Pilihlah jawaban yang paling tepat"
+            ></textarea>
+            <span v-if="$page.errors.instruction" class="invalid-feedback" role="alert">
+              <strong>{{ $page.errors.instruction[0] }}</strong>
+            </span>
+          </div>
           <input-text
             type="number"
             min="0"
@@ -39,6 +53,25 @@
             placeholder="contoh: 100"
           />
         </div>
+        <div class="col-md-6">
+          <label>Preview:</label>
+          <b-card class="col-auto mb-2">
+            <h4>{{ form.name }}</h4>
+            <vue-markdown
+              class="result-html full-height"
+              :watches="['markdown.show','markdown.html','markdown.breaks','markdown.linkify','markdown.emoji','markdown.typographer','markdown.toc']"
+              :source="form.instruction"
+              :show="markdown.show"
+              :html="markdown.html"
+              :breaks="markdown.breaks"
+              :linkify="markdown.linkify"
+              :emoji="markdown.emoji"
+              :typographer="markdown.typographer"
+              :toc="markdown.toc"
+              toc-id="toc"
+            ></vue-markdown>
+          </b-card>
+        </div>
       </div>
       <div class="row mt-5">
         <div class="col-md-12">
@@ -53,12 +86,14 @@
 import Layout from "@/Layout/Dashboard";
 import InputText from "@/Shared/InputText";
 import ButtonLoading from "@/Shared/ButtonLoading";
+import VueMarkdown from "vue-markdown";
 
 export default {
   components: {
     Layout,
     InputText,
-    ButtonLoading
+    ButtonLoading,
+    VueMarkdown
   },
   props: {
     exam: Object,
@@ -66,9 +101,19 @@ export default {
   },
   data() {
     return {
+      markdown: {
+        show: true,
+        html: false,
+        breaks: true,
+        linkify: false,
+        emoji: true,
+        typographer: true,
+        toc: false
+      },
       sending: false,
       form: {
         name: null,
+        instruction: '',
         score_per_question: null,
         passing_grade: null
       }

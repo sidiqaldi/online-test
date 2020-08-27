@@ -3,9 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * @property mixed exam
+ * @property mixed answers
+ * @property mixed id
+ * @property mixed uuid
+ * @property mixed created_at
+ * @property Carbon|mixed finish_at
+ * @method static find(\Illuminate\Database\Eloquent\HigherOrderBuilderProxy $id)
+ */
 class Participant extends Model
 {
     protected $fillable = ['user_id', 'exam_id', 'random_key', 'finish_at'];
@@ -36,7 +44,7 @@ class Participant extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function exam()
     {
@@ -44,7 +52,7 @@ class Participant extends Model
     }
 
     /**
-     * @return HasMany 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function answers()
     {

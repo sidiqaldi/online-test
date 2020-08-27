@@ -14,12 +14,13 @@ use Ramsey\Uuid\Uuid;
  * @method static self paginate($perPage)
  * @method static create(array $data)
  * @property mixed id
+ * @property mixed instruction
  */
 class Section extends Model
 {
     use Filterable, HasOwner;
 
-    protected $fillable = ['user_id', 'exam_id', 'name', 'score_per_question', 'passing_grade', 'order', 'time_limit'];
+    protected $fillable = ['user_id', 'exam_id', 'name', 'instruction', 'score_per_question', 'passing_grade','order', 'time_limit'];
 
     /**
      * Setup model event hooks
@@ -54,5 +55,13 @@ class Section extends Model
     public function questions()
     {
         return $this->hasMany('App\Question')->orderBy('order');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function answers()
+    {
+        return $this->hasMany('App\Answer');
     }
 }

@@ -52,6 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
             Route::post('details', 'Participant\ExamController@details')->name('exams.details.post');
             Route::get('details/{code}', 'Participant\ExamController@show')->name('exams.details.show');
             Route::post('join/{exam}', 'Participant\ExamController@join')->name('exams.join');
+            Route::get('section/{participant}/{answer}/{section}', 'Participant\ExamController@section')->name('exams.section');
             Route::get('process/{participant}/{answer}', 'Participant\ExamController@process')->name('exams.process');
         });
         Route::prefix('/results')->group(function () {

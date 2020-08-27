@@ -9,6 +9,7 @@ use App\Http\Requests\Participant\Exam\DetailsRequest;
 use App\Http\Resources\ConfigResource;
 use App\Http\Resources\ExamResource;
 use App\Participant;
+use App\Section;
 use App\Services\ParticipantService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -27,11 +28,11 @@ class ExamController extends Controller
 
     public function show($code)
     {
-        $exam = Exam::where('code', $code)->firstOrFail();
+        $exam = Exam::query()->where('code', $code)->firstOrFail();
         return Inertia::render('Participant/Exam/Details', [
-            'exam' => new ExamResource($exam),
             'config' => new ConfigResource($exam->config),
             'creator' => $exam->user->name,
+            'exam' => new ExamResource($exam),
         ]);
     }
 
@@ -40,16 +41,33 @@ class ExamController extends Controller
         return ParticipantService::join($exam);
     }
 
+    public function section(Participant $participant, Answer $answer, Section $section)
+    {
+        $exam = $participant->exam;
+
+        return Inertia::render('Participant/Exam/Section', [
+            'answer' => $answer,
+            'answers' => ParticipantService::getParticipantAnswers($participant),
+            'config' => new ConfigResource($exam->config),
+            'exam' => new ExamResource($exam),
+            'participant' => $participant,
+            'section' => $section,
+        ]);
+    }
+
     public function process(Participant $participant, Answer $answer)
     {
         $exam = $participant->exam;
 
         return Inertia::render('Participant/Exam/Process', [
-            'exam' => new ExamResource($exam),
+            'answer' => $answer,
+            'answers' => ParticipantService::getParticipantAnswers($participant),
             'config' => new ConfigResource($exam->config),
-            'answers' => $participant->answers,
-            'question' => $answer->question,
+            'exam' => new ExamResource($exam),
             'options' => $answer->question->options,
+            'participant' => $participant,
+            'question' => $answer->question,
+            'section' => $answer->section,
         ]);
     }
 }

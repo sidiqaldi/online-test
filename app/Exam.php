@@ -6,16 +6,18 @@ use App\Enums\ExamStatus;
 use App\Filters\Filterable;
 use App\Traits\HasOwner;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Ramsey\Uuid\Uuid;
 
 /**
  * @method static self filter($param)
- * @method static self where(int|null $id)
  * @method static self owner(\Illuminate\Contracts\Auth\Authenticatable|null $user)
  * @method static self paginate($perPage)
  * @method static create(array $data)
+ * @method select(array $select)
+ * @method firstOrFail()
  * @property mixed id
+ * @property mixed sections
+ * @property mixed config
  */
 class Exam extends Model
 {
@@ -61,7 +63,7 @@ class Exam extends Model
     }
 
     /**
-     * @return HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function config()
     {
@@ -69,7 +71,7 @@ class Exam extends Model
     }
 
     /**
-     * @return HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function sections()
     {
@@ -77,7 +79,7 @@ class Exam extends Model
     }
 
     /**
-     * @return HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function participants()
     {

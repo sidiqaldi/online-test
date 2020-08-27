@@ -27,6 +27,7 @@ class ExamController extends Controller
             'filters' => $request->all('name'),
             'exams' => ExamResource::collection(
                 Exam::filter(new ExamFilter($request))
+                    ->select(['uuid', 'name' , 'description', 'status_id'])
                     ->owner(Auth::user())
                     ->paginate($perPage)
             )

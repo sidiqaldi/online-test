@@ -31,4 +31,13 @@ class ParticipantService
 
         return static::$service->join($exam);
     }
+
+    public static function getParticipantAnswers(Participant $participant)
+    {
+        return Answer::withSectionOrder()
+            ->where('participant_id', $participant->id)
+            ->orderBy('section_order', 'asc')
+            ->orderBy('id', 'asc')
+            ->get();
+    }
 }

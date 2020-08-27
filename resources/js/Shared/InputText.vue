@@ -42,7 +42,7 @@ export default {
       type: String,
       default: ""
     },
-    value: String,
+    value: {},
     label: {
       type: String,
       default: null
